@@ -32,7 +32,7 @@ win1.add(label1);
 // create controls tab and root window
 //
 var win2 = Titanium.UI.createWindow({  
-    title:'Tab 2',
+    title:'kut window 2',
     backgroundColor:'#fff'
 });
 var tab2 = Titanium.UI.createTab({  
