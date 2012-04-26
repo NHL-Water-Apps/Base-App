@@ -9,7 +9,7 @@ var tabGroup = Titanium.UI.createTabGroup();
 // create base UI tab and root window
 //
 var win1 = Titanium.UI.createWindow({  
-    title:'Kut Github',
+    title:'Kut Github ',
     backgroundColor:'#fff'
 });
 var tab1 = Titanium.UI.createTab({  
@@ -20,7 +20,7 @@ var tab1 = Titanium.UI.createTab({
 
 var label1 = Titanium.UI.createLabel({
 	color:'#999',
-	text:'I am Window 1',
+	text:'Flikker op github',
 	font:{fontSize:20,fontFamily:'Helvetica Neue'},
 	textAlign:'center',
 	width:'auto'
