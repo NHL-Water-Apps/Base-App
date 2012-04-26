@@ -1,1 +1,3 @@
 build/*
+.fastdev.lock
+build.log
