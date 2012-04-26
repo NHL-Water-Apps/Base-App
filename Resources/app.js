@@ -9,18 +9,18 @@ var tabGroup = Titanium.UI.createTabGroup();
 // create base UI tab and root window
 //
 var win1 = Titanium.UI.createWindow({  
-    title:'Tab 1',
+    title:'Kaart',
     backgroundColor:'#fff'
 });
 var tab1 = Titanium.UI.createTab({  
     icon:'KS_nav_views.png',
-    title:'Tab 1',
+    title:'Kaart',
     window:win1
 });
 
 var label1 = Titanium.UI.createLabel({
 	color:'#999',
-	text:'I am Window 1',
+	text:'Kaart',
 	font:{fontSize:20,fontFamily:'Helvetica Neue'},
 	textAlign:'center',
 	width:'auto'
@@ -32,18 +32,18 @@ win1.add(label1);
 // create controls tab and root window
 //
 var win2 = Titanium.UI.createWindow({  
-    title:'Tab 2',
+    title:'-',
     backgroundColor:'#fff'
 });
 var tab2 = Titanium.UI.createTab({  
     icon:'KS_nav_ui.png',
-    title:'Tab 2',
+    title:'-',
     window:win2
 });
 
 var label2 = Titanium.UI.createLabel({
 	color:'#999',
-	text:'I am Window 2',
+	text:'-',
 	font:{fontSize:20,fontFamily:'Helvetica Neue'},
 	textAlign:'center',
 	width:'auto'
@@ -52,12 +52,33 @@ var label2 = Titanium.UI.createLabel({
 win2.add(label2);
 
 
+// create base UI tab and root window
+//
+var win3 = Titanium.UI.createWindow({  
+    title:'Opties',
+    backgroundColor:'#fff'
+});
+var tab3 = Titanium.UI.createTab({  
+    icon:'KS_nav_views.png',
+    title:'Opties',
+    window:win3
+});
 
+var label3 = Titanium.UI.createLabel({
+	color:'#999',
+	text:'Opties',
+	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+	textAlign:'center',
+	width:'auto'
+});
+
+win1.add(label1);
 //
 //  add tabs
 //
 tabGroup.addTab(tab1);  
-tabGroup.addTab(tab2);  
+tabGroup.addTab(tab2); 
+tabGroup.addTab(tab3) 
 
 
 // open tab group
