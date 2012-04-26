@@ -1,6 +1,11 @@
-
 .DS_Store
-
-.fastdev.lock
-
 build.log
+build/*
+.fastdev.lock
+build.log
+build/iphone/Classes/ApplicationDefaults.m
+
+build/iphone/Classes/ApplicationRouting.m
+
+build/iphone/Info.plist
+.DS_Store
