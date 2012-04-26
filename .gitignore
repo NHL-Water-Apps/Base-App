@@ -6,3 +6,5 @@ build/iphone/Classes/ApplicationDefaults.m
 build/iphone/Classes/ApplicationRouting.m
 
 build/iphone/Info.plist
+.DS_Store
+
