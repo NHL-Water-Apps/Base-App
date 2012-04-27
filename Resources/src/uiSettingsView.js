@@ -6,8 +6,18 @@
 // Het maken van de window
 var SettingsWindow = Titanium.UI.createWindow({
 	title: 'Opties',			// Titel van de window
-	backgroundColor: '#000000'	// En de achtergrond kleur
+	backgroundColor: '#000000',	// En de achtergrond kleur
+	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
+
+//De orientatiemodus voor de verschillende platformen
+SettingsWindow.orientationModes = [
+	Titanium.UI.PORTRAIT,
+	Titanium.UI.UPSIDE_PORTRAIT,
+	Titanium.UI.LANDSCAPE_LEFT,
+	Titanium.UI.LANDSCAPE_RIGHT
+];
+
 
 
 // Het maken van een lege textfield waarin we de breedte van een boot
@@ -20,6 +30,7 @@ var WidthField = Titanium.UI.createTextField({
 	value: BoatWidth !== 0 ? BoatWidth : '',  // inladen van de "opgeslagen" waarde breedte van de boot
 	height: 30,							// De hoogte
 	top: 20,							// Plaatsing van het vakje vanaf de bovenkant
+	focusable: false,
 	width: 100, // de breedte van het vakje (70% van de breedte van de app)
 	left: 130,
 	backgroundColor: '#FFFFFF'			// achtergrond kleur
