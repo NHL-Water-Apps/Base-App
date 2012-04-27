@@ -28,9 +28,8 @@ var BoatWidth = 0; // Dit is een globaal beschikbare variable die de breedte van
 var WidthField = Titanium.UI.createTextField({
 	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, // De stijl van de rand
 	value: BoatWidth !== 0 ? BoatWidth : '',  // inladen van de "opgeslagen" waarde breedte van de boot
-	height: 30,							// De hoogte
+	height: 40,							// De hoogte
 	top: 20,							// Plaatsing van het vakje vanaf de bovenkant
-	focusable: false,
 	width: 100, // de breedte van het vakje (70% van de breedte van de app)
 	left: 130,
 	backgroundColor: '#FFFFFF'			// achtergrond kleur
@@ -42,7 +41,7 @@ var ClearButton = Titanium.UI.createButton({
 	height: 40,
 	width: 90,
 	top: 200,
-	left: Math.round(Titanium.Platform.displayCaps.getPlatformWidth - 10)
+	left: Math.round(Titanium.Platform.displayCaps.getPlatformWidth - 400)
 });
 
 var WidthLabel = Titanium.UI.createLabel({
