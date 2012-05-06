@@ -1,6 +1,12 @@
 // Vanuit dit bestand wordt de rest ingeladen.
 // Dit bestand zal de verder nodige bestanden inladen.
 
+// Titanium.App.Properties.getInt("BoatWidth", 0) bevat de breedte van de boot 
+// Wel checken of het niet 0 is (default)
+
+// Titanium.App.Properties.getInt("BoatHeight", 0) bevat de hoogte van de boot
+// Wel checken of het niet 0 is (default)
+
 // Alle andere pagina ui's includen
 Titanium.include('uiListView.js'); // lijst pagina
 Titanium.include('uiDetailView.js'); // detail pagina
