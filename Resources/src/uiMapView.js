@@ -17,10 +17,6 @@ var mapView = Titanium.Map.createView({
 	height: "100%", // de hoogte is 100%
 	width: "100%", // de breedte is 100%
 	mapType: Titanium.Map.STANDARD_TYPE, //het maptype van de kaart wordt ingesteld op de Standard Type
-	region:{ //hiermee geef je aan welk deel van de kaar hij laat zien
-		latitudeDelta: 0.02, //hiermee zoomt hij de kaart in ten opzichte van de oosterlengte
-		longitudeDelta: 0.02 //hiermee zoomt hij de kaart in ten opzichte van de noorderbreedte
-	},
 	animate: true, //hiermee geeft hij een animatie zodra de kaart getoond wordt
 	regionFit: false, //de kaart wordt niet passende gemaakt
 	userLocation: true //hiemeer haalt hij je huidge positie op en toont hij die op de kaart
