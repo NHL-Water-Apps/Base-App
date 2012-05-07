@@ -23,10 +23,7 @@ var WidthField = Titanium.UI.createTextField({
 	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, // De stijl van de rand
 	value: Titanium.App.Properties.getInt("BoatWidth", 0) !== 0 ? Titanium.App.Properties.getInt("BoatWidth", 0) : "" ,  // inladen van de "opgeslagen" waarde breedte van de boot (0 indien niet bestaand)
 	height: 'auto',							// De hoogte
-<<<<<<< HEAD
 	hintText: 'Breedte',
-=======
->>>>>>> settingsView veranderd + Mapview veranderd
 	top: 20,							// Plaatsing van het vakje vanaf de bovenkant
 	width: 100, 						// de breedte van het vakje (70% van de breedte van de app)
 	left: 135,							// De plaatsing vanuit links
@@ -78,6 +75,7 @@ var ClearButton = Titanium.UI.createButton({
 	right: 20					// positie vanuit de rechterkant
 });
 
+<<<<<<< HEAD
 // Label boven de types kaart
 var MapLabel = Titanium.UI.createLabel({
 	text: 'Selecteer het type kaart:',
@@ -112,6 +110,60 @@ var sHybrid = Titanium.UI.createSwitch({
 	left: 144,
     value:false
 });
+=======
+// Selecteren van de types kaart voor android
+if(Titanium.Platform.osname === 'android'){
+	var MapLabel = Titanium.UI.createLabel({
+		text: 'Selecteer het type kaart:',
+		height: 'auto',
+		width: 'auto',
+		bottom: 100,
+		left: 20
+	});
+	
+	var sSatelite = Titanium.UI.createSwitch({
+		style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
+	    titleOff:'Satelite',
+	    titleOn:'Satelite',
+	   	bottom: 50,
+		left: 40,
+	    value:false
+	});
+	var sMap = Titanium.UI.createSwitch({
+		style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
+	    titleOff:'Map',
+	    titleOn:'Map',
+	   	bottom: 50,
+		left: 93,
+	    value:false
+	});
+	var sHybrid = Titanium.UI.createSwitch({
+		style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
+	    titleOff:'Hybrid',
+	    titleOn:'Hybrid',
+	   	bottom: 50,
+		left: 144,
+	    value:false
+	});
+}
+
+//selecteren van de types kaart voor iPhone
+if(Titanium.Platform.osname === 'iphone'){
+	var buttonMapTypes = Titanium.UI.createButtonBar({
+		labels:[
+			{title: 'Standaard', value: true},
+			{title: 'Satelliet', value: false},
+			{title: 'Hybride', value: false}
+		],
+		backgroundcolor: "#999",
+		//top: "70%",
+		bottom: "10%",
+		style: Titanium.UI.iPhone.SystemButtonStyle.PLAIN,
+		height: 40,
+		width: 280
+	});
+}
+>>>>>>> mapTypes toegevoegd
 
 // add all the methods to this page
 Titanium.include('methods/settings.js');
@@ -126,9 +178,14 @@ SettingsWindow.add(HeightField); 		// Voor de hoogte van de boot
 
 SettingsWindow.add(ClearButton);	// de wis knop
 
+if(Titanium.Platform.osname === 'iphone'){
+	SettingsWindow.add(buttonMapTypes);
+}
 
 // De types kaart
-SettingsWindow.add(sMap);
-SettingsWindow.add(sHybrid);
-SettingsWindow.add(sSatelite);
-SettingsWindow.add(MapLabel); // en een label
+if(Titanium.Platform.osname === 'android'){
+	SettingsWindow.add(sMap);
+	SettingsWindow.add(sHybrid);
+	SettingsWindow.add(sSatelite);
+	SettingsWindow.add(MapLabel); // en een label
+}
