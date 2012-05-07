@@ -18,8 +18,6 @@ var mapView = Titanium.Map.createView({
 	width: "100%", // de breedte is 100%
 	mapType: Titanium.Map.STANDARD_TYPE, //het maptype van de kaart wordt ingesteld op de Standard Type
 	region:{ //hiermee geef je aan welk deel van de kaar hij laat zien
-		latitude: 53.198732, //dit zijn de graden oosterlengte
-		longitude: 5.788336, //dit zijn de graden noorderbreedte
 		latitudeDelta: 0.02, //hiermee zoomt hij de kaart in ten opzichte van de oosterlengte
 		longitudeDelta: 0.02 //hiermee zoomt hij de kaart in ten opzichte van de noorderbreedte
 	},
@@ -40,9 +38,11 @@ var searchBarMap = Titanium.UI.createSearchBar({
 
 //Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt
 searchBarMap.addEventListener("focus", function(){
+	//voor de iphone
 	if(Titanium.Platform.osname = 'iphone'){
 		searchBarMap.setShowCancel(true, { animated: true });	
 	}	
+	//voor de android
 	else if(Titanium.Platform.osname = 'android'){
 		softKeyboardOnFocus: Titanium.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
 		searchBarMap.setFocusable = false;

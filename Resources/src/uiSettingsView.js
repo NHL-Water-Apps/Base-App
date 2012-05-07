@@ -23,11 +23,14 @@ var WidthField = Titanium.UI.createTextField({
 	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, // De stijl van de rand
 	value: Titanium.App.Properties.getInt("BoatWidth", 0) !== 0 ? Titanium.App.Properties.getInt("BoatWidth", 0) : "" ,  // inladen van de "opgeslagen" waarde breedte van de boot (0 indien niet bestaand)
 	height: 'auto',							// De hoogte
+<<<<<<< HEAD
 	hintText: 'Breedte',
+=======
+>>>>>>> settingsView veranderd + Mapview veranderd
 	top: 20,							// Plaatsing van het vakje vanaf de bovenkant
 	width: 100, 						// de breedte van het vakje (70% van de breedte van de app)
 	left: 135,							// De plaatsing vanuit links
-	backgroundColor: '#FFFFFF'			// achtergrond kleur
+	//backgroundColor: '#FFFFFF'			// achtergrond kleur
 });
 
 // Een label wat aangeeft wat er in de tekstfield dient te worden ingevuld
@@ -50,7 +53,7 @@ var HeightField = Titanium.UI.createTextField({
 	top: 80,							// Plaatsing van het vakje vanaf de bovenkant
 	width: 100, 						// de breedte van het vakje (70% van de breedte van de app)
 	left: 135,							// De plaatsing vanuit links
-	backgroundColor: '#FFFFFF'			// achtergrond kleur
+	//backgroundColor: '#FFFFFF'			// achtergrond kleur
 });
 
 // Een label wat aangeeft wat er in de tekstfield dient te worden ingevuld
