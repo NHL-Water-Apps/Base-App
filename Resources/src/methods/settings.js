@@ -1,3 +1,7 @@
+/*
+ * Dit bestand zal alle methodes bevatten zoals gebruikt bij settings
+ */
+
 // Functie die zal kijken naar welke breedte en hoogte is ingevuld
 // Indien deze 0 of negatief is zal deze een error opgooien en
 // het tekstvakje weer leeg maken.
@@ -38,3 +42,26 @@ ClearButton.addEventListener("click", function(e){
 	Titanium.App.Properties.setInt("BoatHeight", 0); 	// opgeslagen hoogte resetten
 	Titanium.App.Properties.setInt("BoatWidth", 0); 	// opgeslagen breedte resetten
 });
+
+// Functie die kijkt of er op het type map is geklikt
+// if so dan zet hij deze aan en de rest uit
+sMap.addEventListener("click", function (e) {
+	sMap.value = true;
+	sSatelite.value = false;
+	sHybrid.value = false;
+});
+sHybrid.addEventListener("click", function(e){
+	sMap.value = false;
+	sSatelite.value = false;
+	sHybrid.value = true;
+});
+sSatelite.addEventListener("click", function(e){
+	sMap.value = false;
+	sSatelite.value = true;
+	sHybrid.value = false;
+});
+
+// Self exectuting functie voor het bepalen van welke kaart type er geselecteerd is
+(function(){
+	
+})();
