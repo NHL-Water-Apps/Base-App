@@ -75,8 +75,7 @@ var ClearButton = Titanium.UI.createButton({
 	right: 20					// positie vanuit de rechterkant
 });
 
-// Selecteren van de types kaart
-
+// Label boven de types kaart
 var MapLabel = Titanium.UI.createLabel({
 	text: 'Selecteer het type kaart:',
 	height: 'auto',
@@ -85,6 +84,7 @@ var MapLabel = Titanium.UI.createLabel({
 	left: 20
 });
 
+// Selecteren welk type kaart je wilt
 var sSatelite = Titanium.UI.createSwitch({
 	style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
     titleOff:'Satelite',

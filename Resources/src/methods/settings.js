@@ -49,19 +49,48 @@ sMap.addEventListener("click", function (e) {
 	sMap.value = true;
 	sSatelite.value = false;
 	sHybrid.value = false;
+	mapView.mapType = Titanium.Map.STANDARD_TYPE;
+	Titanium.App.Properties.setString('mapType', 'map');
 });
 sHybrid.addEventListener("click", function(e){
 	sMap.value = false;
 	sSatelite.value = false;
 	sHybrid.value = true;
+	mapView.mapType = Titanium.Map.HYBRID_TYPE;
+	Titanium.App.Properties.setString('mapType', 'hybrid');
 });
 sSatelite.addEventListener("click", function(e){
 	sMap.value = false;
 	sSatelite.value = true;
 	sHybrid.value = false;
+	mapView.mapType = Titanium.Map.SATELLITE_TYPE;
+	Titanium.App.Properties.setString('mapType', 'satelite');
 });
 
 // Self exectuting functie voor het bepalen van welke kaart type er geselecteerd is
+// Als er geen type kaart geselecteerd is zal er voor de stratenkaart gekozen worden
 (function(){
-	
+	var mapType = Titanium.App.Properties.getString('mapType', null);
+	// controleren of de opgeslagen waarde valid is
+	if(mapType === null || !(mapType === 'map' || mapType === 'hybrid' || mapType === 'satelite') )
+	{
+		mapType = 'map';
+		Titanium.App.Properties.setString('mapType', 'map');
+	}
+	// en anders het juiste knopje aanzetten
+	if(mapType === 'map')
+	{
+		mapView.mapType = Titanium.Map.STANDARD_TYPE;
+		sMap.value = true;
+	}
+	else if(mapType === 'hybrid')
+	{
+		sHybrid.value = true;
+		mapView.mapType = Titanium.Map.HYBRID_TYPE;
+	}
+	else if(mapType === 'satelite')
+	{
+		mapView.mapType = Titanium.Map.SATELLITE_TYPE;
+		sSatelite.value = true;
+	}
 })();
