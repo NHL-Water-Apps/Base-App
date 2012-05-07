@@ -75,44 +75,10 @@ var ClearButton = Titanium.UI.createButton({
 	right: 20					// positie vanuit de rechterkant
 });
 
-<<<<<<< HEAD
-// Label boven de types kaart
-var MapLabel = Titanium.UI.createLabel({
-	text: 'Selecteer het type kaart:',
-	height: 'auto',
-	width: 'auto',
-	bottom: 100,
-	left: 20
-});
 
-// Selecteren welk type kaart je wilt
-var sSatelite = Titanium.UI.createSwitch({
-	style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
-    titleOff:'Satelite',
-    titleOn:'Satelite',
-   	bottom: 50,
-	left: 40,
-    value:false
-});
-var sMap = Titanium.UI.createSwitch({
-	style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
-    titleOff:'Map',
-    titleOn:'Map',
-   	bottom: 50,
-	left: 93,
-    value:false
-});
-var sHybrid = Titanium.UI.createSwitch({
-	style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
-    titleOff:'Hybrid',
-    titleOn:'Hybrid',
-   	bottom: 50,
-	left: 144,
-    value:false
-});
-=======
 // Selecteren van de types kaart voor android
 if(Titanium.Platform.osname === 'android'){
+		// Label boven de types kaart
 	var MapLabel = Titanium.UI.createLabel({
 		text: 'Selecteer het type kaart:',
 		height: 'auto',
@@ -121,6 +87,7 @@ if(Titanium.Platform.osname === 'android'){
 		left: 20
 	});
 	
+	// Selecteren welk type kaart je wilt
 	var sSatelite = Titanium.UI.createSwitch({
 		style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
 	    titleOff:'Satelite',
@@ -149,7 +116,7 @@ if(Titanium.Platform.osname === 'android'){
 
 //selecteren van de types kaart voor iPhone
 if(Titanium.Platform.osname === 'iphone'){
-	var buttonMapTypes = Titanium.UI.createButtonBar({
+	var buttonMapTypes = Titanium.UI.iOS.createTabbedBar({
 		labels:[
 			{title: 'Standaard', value: true},
 			{title: 'Satelliet', value: false},
@@ -163,7 +130,7 @@ if(Titanium.Platform.osname === 'iphone'){
 		width: 280
 	});
 }
->>>>>>> mapTypes toegevoegd
+
 
 // add all the methods to this page
 Titanium.include('methods/settings.js');

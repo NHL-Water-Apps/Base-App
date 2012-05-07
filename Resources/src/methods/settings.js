@@ -43,7 +43,9 @@ ClearButton.addEventListener("click", function(e){
 	Titanium.App.Properties.setInt("BoatWidth", 0); 	// opgeslagen breedte resetten
 });
 
-<<<<<<< HEAD
+
+
+if(Titanium.Platform.osname === 'android'){
 // Functie die kijkt of er op het type map is geklikt
 // if so dan zet hij deze aan en de rest uit
 sMap.addEventListener("click", function (e) {
@@ -67,25 +69,6 @@ sSatelite.addEventListener("click", function(e){
 	mapView.mapType = Titanium.Map.SATELLITE_TYPE;
 	Titanium.App.Properties.setString('mapType', 'satelite');
 });
-=======
-if(Titanium.Platform.osname === 'android'){
-	// Functie die kijkt of er op het type map is geklikt
-	// if so dan zet hij deze aan en de rest uit
-	sMap.addEventListener("click", function (e) {
-		sMap.value = true;
-		sSatelite.value = false;
-		sHybrid.value = false;
-	});
-	sHybrid.addEventListener("click", function(e){
-		sMap.value = false;
-		sSatelite.value = false;
-		sHybrid.value = true;
-	});
-	sSatelite.addEventListener("click", function(e){
-		sMap.value = false;
-		sSatelite.value = true;
-		sHybrid.value = false;
-	});
 }
 
 //een functie om de verschillende kaarten te tonen op de map
@@ -107,32 +90,33 @@ if(Titanium.Platform.osname === 'iphone'){
 		}
 	});
 }
->>>>>>> mapTypes toegevoegd
 
-// Self exectuting functie voor het bepalen van welke kaart type er geselecteerd is
-// Als er geen type kaart geselecteerd is zal er voor de stratenkaart gekozen worden
-(function(){
-	var mapType = Titanium.App.Properties.getString('mapType', null);
-	// controleren of de opgeslagen waarde valid is
-	if(mapType === null || !(mapType === 'map' || mapType === 'hybrid' || mapType === 'satelite') )
-	{
-		mapType = 'map';
-		Titanium.App.Properties.setString('mapType', 'map');
-	}
-	// en anders het juiste knopje aanzetten
-	if(mapType === 'map')
-	{
-		mapView.mapType = Titanium.Map.STANDARD_TYPE;
-		sMap.value = true;
-	}
-	else if(mapType === 'hybrid')
-	{
-		sHybrid.value = true;
-		mapView.mapType = Titanium.Map.HYBRID_TYPE;
-	}
-	else if(mapType === 'satelite')
-	{
-		mapView.mapType = Titanium.Map.SATELLITE_TYPE;
-		sSatelite.value = true;
-	}
-})();
+if(Titanium.Platform.osname === 'android'){
+	// Self exectuting functie voor het bepalen van welke kaart type er geselecteerd is
+	// Als er geen type kaart geselecteerd is zal er voor de stratenkaart gekozen worden
+	(function(){
+		var mapType = Titanium.App.Properties.getString('mapType', null);
+		// controleren of de opgeslagen waarde valid is
+		if(mapType === null || !(mapType === 'map' || mapType === 'hybrid' || mapType === 'satelite') )
+		{
+			mapType = 'map';
+			Titanium.App.Properties.setString('mapType', 'map');
+		}
+		// en anders het juiste knopje aanzetten
+		if(mapType === 'map')
+		{
+			mapView.mapType = Titanium.Map.STANDARD_TYPE;
+			sMap.value = true;
+		}
+		else if(mapType === 'hybrid')
+		{
+			sHybrid.value = true;
+			mapView.mapType = Titanium.Map.HYBRID_TYPE;
+		}
+		else if(mapType === 'satelite')
+		{
+			mapView.mapType = Titanium.Map.SATELLITE_TYPE;
+			sSatelite.value = true;
+		}
+	})();
+}
