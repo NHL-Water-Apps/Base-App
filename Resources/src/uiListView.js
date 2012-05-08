@@ -9,6 +9,16 @@ var ListWindow = Titanium.UI.createWindow({
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
 
+var Labeltje = Titanium.UI.createLabel({
+	top: 20,
+	left: 10,
+	text: 'Hoi daaro',
+	height: 'auto',
+	width: 'auto'
+});
+
+ListWindow.add(Labeltje);
+
 //De orientatiemodus voor de verschillende platformen
 ListWindow.orientationModes = [
 	Titanium.UI.PORTRAIT,

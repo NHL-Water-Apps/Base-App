@@ -12,7 +12,7 @@ var MapWindow = Titanium.UI.createWindow({
 
 //het maken van een map
 var mapView = Titanium.Map.createView({
-	top: 0, // hiermee positioneert hij de kaart vanuit de top
+	bottom: 0, // hiermee positioneert hij de kaart vanuit de top
 	left: 0, // hiermee positioneert hij de kaart vanuit de linkerkant
 	height: "100%", // de hoogte is 100%
 	width: "100%", // de breedte is 100%
@@ -27,7 +27,7 @@ var searchBarMap = Titanium.UI.createSearchBar({
     barColor:'#000', //de kleur van de searchbar
     showCancel:false, //hij zet de cancelButton op false
     focusable: false, //Hiermee wordt de searhbar niet gelijk gefocust
-    hintText: 'Zoek voor plaatsen...', //dit is de hinttext die in de searchbar wordt geplaatst
+    hintText: 'Zoek voor POI\'s...', //dit is de hinttext die in de searchbar wordt geplaatst
     height: 43, //de hoogte van de searchbar
     top: 0, //hiermee wordt de searhbar tegen de bovenkant van het scherm gepositioneerd
 });
@@ -52,10 +52,6 @@ MapWindow.orientationModes = [
 Titanium.include('methods/map.js');
 
 // hier voegt hij de MapView toe aan de MapWindow
-
 MapWindow.add(mapView);
 MapWindow.add(mapButton);
 MapWindow.add(searchBarMap);
-
-// Deze krijgt een .open om zo te starten met dit window open
-MapWindow.open();
