@@ -25,7 +25,7 @@ var mapView = Titanium.Map.createView({
 //een searchbar voor de map
 var searchBarMap = Titanium.UI.createSearchBar({
     barColor:'#000', //de kleur van de searchbar
-    showCancel:false, //hij zet de cancelButton op false
+    showCancel: false, //hij zet de cancelButton op false
     focusable: false, //Hiermee wordt de searhbar niet gelijk gefocust
     hintText: 'Zoek voor plaatsen...', //dit is de hinttext die in de searchbar wordt geplaatst
     height: 43, //de hoogte van de searchbar
