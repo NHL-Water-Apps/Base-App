@@ -19,22 +19,22 @@ var tabMenu = Titanium.UI.createTabGroup(); // de container van het menu
 // Eerst de verschillende tabs maken:
 // De tab voor de kaart
 var MapTab = Titanium.UI.createTab({
+	icon: '../img/Map.png', 	// Het icoontje van de tab
 	title: 'Map',			// Naam die op de tab staat
-	icon: 'MapIcon.png', 	// Het icoontje van de tab
 	window: MapWindow 		// bind deze tab aan deze window (Kaart)
 });
 
 // De tab voor het lijstje van alle POI's
 var ListTab = Titanium.UI.createTab({
 	title: 'Lijst',			// Naam die op de tab staat
-	icon: 'ListIcon.png',	// Het icoontje van de tab
+	icon: '../img/lijstje.png',	// Het icoontje van de tab
 	window: ListWindow 		// bind deze tab aan deze window (Lijst)
 });
 
 // En de tab voor de instellingen
 var SettingsTab = Titanium.UI.createTab({
 	title: 'Opties',		// Naam die op de tab staat
-	icon: 'SettingsIcon.png',// Het icoontje van de tab
+	icon: '../img/Opties.png',// Het icoontje van de tab
 	window: SettingsWindow	// bind deze tab aan deze window (Opties)
 });
 

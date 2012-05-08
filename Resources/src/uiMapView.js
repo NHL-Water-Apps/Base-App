@@ -32,34 +32,12 @@ var searchBarMap = Titanium.UI.createSearchBar({
     top: 0, //hiermee wordt de searhbar tegen de bovenkant van het scherm gepositioneerd
 });
 
-//Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt
-searchBarMap.addEventListener("focus", function(){
-	//voor de iphone
-	if(Titanium.Platform.osname = 'iphone'){
-		searchBarMap.setShowCancel(true, { animated: true });	
-	}	
-	//voor de android
-	else if(Titanium.Platform.osname = 'android'){
-		softKeyboardOnFocus: Titanium.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
-		searchBarMap.setFocusable = false;
-		Titanium.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
-		searchBarMap.setSoftKeyboardOnFocus();
-	}
-})
-
-//een event waarmee de searhBar inactief wordt gemaakt zodra je op de cancel knop klikt
-searchBarMap.addEventListener("cancel", function(){
-	if(Titanium.Platform.osname = 'iphone'){
-		searchBarMap.setShowCancel(false, { animated: true });	//de cancel knop wordt inactief gemaakt
-		searchBarMap.blur();
-	}
-});
-
-//een event waarmee de searchBar inactief wordt gemaakt zodra je op de search knop klikt
-searchBarMap.addEventListener("return", function(){
-	if(Titanium.Platform.osname = 'iphone'){
-		searchBarMap.blur();	
-	}
+var mapButton = Titanium.UI.createButton({
+	title: '+',
+	right: 5,
+	bottom: 5,
+	height: 'auto',
+	width: 'auto'
 });
 
 //De orientatiemodus voor de verschillende platformen
@@ -70,10 +48,13 @@ MapWindow.orientationModes = [
 	Titanium.UI.LANDSCAPE_RIGHT
 ];
 
+//hierin staan alle functies van de MapView
+Titanium.include('methods/map.js');
+
 // hier voegt hij de MapView toe aan de MapWindow
 
 MapWindow.add(mapView);
-
+MapWindow.add(mapButton);
 MapWindow.add(searchBarMap);
 
 // Deze krijgt een .open om zo te starten met dit window open

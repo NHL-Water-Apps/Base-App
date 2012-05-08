@@ -115,13 +115,9 @@ if(Titanium.Platform.osname === 'android'){
 }
 
 //selecteren van de types kaart voor iPhone
-if(Titanium.Platform.osname === 'iphone'){
+if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	var buttonMapTypes = Titanium.UI.iOS.createTabbedBar({
-		labels:[
-			{title: 'Standaard', value: true},
-			{title: 'Satelliet', value: false},
-			{title: 'Hybride', value: false}
-		],
+		labels:['Standaard', 'Satelliet', 'Hybride'	],
 		backgroundcolor: "#999",
 		//top: "70%",
 		bottom: "10%",
@@ -145,7 +141,7 @@ SettingsWindow.add(HeightField); 		// Voor de hoogte van de boot
 
 SettingsWindow.add(ClearButton);	// de wis knop
 
-if(Titanium.Platform.osname === 'iphone'){
+if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	SettingsWindow.add(buttonMapTypes);
 }
 
