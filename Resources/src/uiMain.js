@@ -20,14 +20,14 @@ var tabMenu = Titanium.UI.createTabGroup(); // de container van het menu
 // De tab voor de kaart
 var MapTab = Titanium.UI.createTab({
 	title: 'Map',			// Naam die op de tab staat
-	icon: '../img/Map.png', 	// Het icoontje van de tab
+	icon: '../KS_nav_ui.png', 	// Het icoontje van de tab
 	window: MapWindow 		// bind deze tab aan deze window (Kaart)
 });
 
 // De tab voor het lijstje van alle POI's
 var ListTab = Titanium.UI.createTab({
 	title: 'Lijst',			// Naam die op de tab staat
-	icon: '../list.png',	// Het icoontje van de tab
+	icon: '../img/map_icon.png',	// Het icoontje van de tab
 	window: ListWindow 		// bind deze tab aan deze window (Lijst)
 });
 

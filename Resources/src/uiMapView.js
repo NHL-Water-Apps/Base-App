@@ -54,7 +54,7 @@ Titanium.include('methods/map.js');
 // hier voegt hij de MapView toe aan de MapWindow
 
 MapWindow.add(mapView);
-
+MapWindow.add(mapButton);
 MapWindow.add(searchBarMap);
 
 // Deze krijgt een .open om zo te starten met dit window open
