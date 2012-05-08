@@ -24,9 +24,8 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 		    alert('Please enable location services');
 		}
 	})();
-}
-
-mapButton.addEventListener("click", function(){
+	
+	mapButton.addEventListener("click", function(){
 	if (Ti.Geolocation.locationServicesEnabled) {	
 		if (Ti.Geolocation.locationServicesEnabled) {
 		    Titanium.Geolocation.purpose = 'Get Current Location';
@@ -52,6 +51,7 @@ mapButton.addEventListener("click", function(){
 	    alert('Please enable location services');
 	}
 });
+}
 
 //Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt
 searchBarMap.addEventListener("focus", function(){
