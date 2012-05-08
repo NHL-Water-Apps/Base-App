@@ -71,7 +71,7 @@ sSatelite.addEventListener("click", function(e){
 });
 }
 
-//een functie om de verschillende kaarten te tonen op de map
+// een functie om de verschillende kaarten te tonen op de map
 if(Titanium.Platform.osname === 'iphone'){
 	buttonMapTypes.addEventListener("click", function(e){
 		if(e.index === 0)
@@ -103,6 +103,7 @@ if(Titanium.Platform.osname === 'android'){
 			Titanium.App.Properties.setString('mapType', 'map');
 		}
 		// en anders het juiste knopje aanzetten
+		// en de kaart veranderen in het juiste type
 		if(mapType === 'map')
 		{
 			mapView.mapType = Titanium.Map.STANDARD_TYPE;
