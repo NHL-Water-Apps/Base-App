@@ -46,33 +46,33 @@ ClearButton.addEventListener("click", function(e){
 
 
 if(Titanium.Platform.osname === 'android'){
-// Functie die kijkt of er op het type map is geklikt
-// if so dan zet hij deze aan en de rest uit
-sMap.addEventListener("click", function (e) {
-	sMap.value = true;
-	sSatelite.value = false;
-	sHybrid.value = false;
-	mapView.mapType = Titanium.Map.STANDARD_TYPE;
-	Titanium.App.Properties.setString('mapType', 'map');
-});
-sHybrid.addEventListener("click", function(e){
-	sMap.value = false;
-	sSatelite.value = false;
-	sHybrid.value = true;
-	mapView.mapType = Titanium.Map.HYBRID_TYPE;
-	Titanium.App.Properties.setString('mapType', 'hybrid');
-});
-sSatelite.addEventListener("click", function(e){
-	sMap.value = false;
-	sSatelite.value = true;
-	sHybrid.value = false;
-	mapView.mapType = Titanium.Map.SATELLITE_TYPE;
-	Titanium.App.Properties.setString('mapType', 'satelite');
-});
+	// Functie die kijkt of er op het type map is geklikt
+	// if so dan zet hij deze aan en de rest uit
+	sMap.addEventListener("click", function (e) {
+		sMap.value = true;
+		sSatelite.value = false;
+		sHybrid.value = false;
+		mapView.mapType = Titanium.Map.STANDARD_TYPE;
+		Titanium.App.Properties.setString('mapType', 'map');
+	});
+	sHybrid.addEventListener("click", function(e){
+		sMap.value = false;
+		sSatelite.value = false;
+		sHybrid.value = true;
+		mapView.mapType = Titanium.Map.HYBRID_TYPE;
+		Titanium.App.Properties.setString('mapType', 'hybrid');
+	});
+	sSatelite.addEventListener("click", function(e){
+		sMap.value = false;
+		sSatelite.value = true;
+		sHybrid.value = false;
+		mapView.mapType = Titanium.Map.SATELLITE_TYPE;
+		Titanium.App.Properties.setString('mapType', 'satelite');
+	});
 }
 
 //een functie om de verschillende kaarten te tonen op de map
-if(Titanium.Platform.osname === 'iphone'){
+if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	buttonMapTypes.addEventListener("click", function(e){
 		if(e.index === 0)
 		{

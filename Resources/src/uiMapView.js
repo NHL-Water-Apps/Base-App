@@ -18,7 +18,7 @@ var mapView = Titanium.Map.createView({
 	width: "100%", // de breedte is 100%
 	mapType: Titanium.Map.STANDARD_TYPE, //het maptype van de kaart wordt ingesteld op de Standard Type
 	animate: true, //hiermee geeft hij een animatie zodra de kaart getoond wordt
-	regionFit: false, //de kaart wordt niet passende gemaakt
+	regionFit: true, //de kaart wordt niet passende gemaakt
 	userLocation: true //hiemeer haalt hij je huidge positie op en toont hij die op de kaart
 });
 
@@ -69,6 +69,8 @@ MapWindow.orientationModes = [
 	Titanium.UI.LANDSCAPE_LEFT,
 	Titanium.UI.LANDSCAPE_RIGHT
 ];
+
+Titanium.include('methods/map.js');
 
 // hier voegt hij de MapView toe aan de MapWindow
 
