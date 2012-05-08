@@ -117,11 +117,7 @@ if(Titanium.Platform.osname === 'android'){
 //selecteren van de types kaart voor iPhone
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	var buttonMapTypes = Titanium.UI.iOS.createTabbedBar({
-		labels:[
-			{title: 'Standaard', value: true},
-			{title: 'Satelliet', value: false},
-			{title: 'Hybride', value: false}
-		],
+		labels:['Standaard', 'Satelliet', 'Hybride'	],
 		backgroundcolor: "#999",
 		//top: "70%",
 		bottom: "10%",

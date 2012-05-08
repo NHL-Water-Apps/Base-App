@@ -27,7 +27,7 @@ var MapTab = Titanium.UI.createTab({
 // De tab voor het lijstje van alle POI's
 var ListTab = Titanium.UI.createTab({
 	title: 'Lijst',			// Naam die op de tab staat
-	icon: '../img/Lijst.png',	// Het icoontje van de tab
+	icon: '../img/lijstje.png',	// Het icoontje van de tab
 	window: ListWindow 		// bind deze tab aan deze window (Lijst)
 });
 
