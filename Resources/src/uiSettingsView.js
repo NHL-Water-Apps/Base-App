@@ -66,6 +66,7 @@ width.add(Titanium.UI.createLabel({
 	text: 'Breedte (meters):',
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
 	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
+	touchEnabled: false,
 	height: 'auto',
 	width: 'auto'
 }));
@@ -74,20 +75,27 @@ data[0].add(width);
 data[1] = Titanium.UI.createTableViewSection({
 	headerTitle: 'Type kaart:'
 });
-data[1].add(Titanium.UI.createTableViewRow({
-	// het lijstje
-	title: 'Verschillende types:',
-	className: "row",
-	hasCheck: true,
-	touchEnabled: false
-	}));
-data[1].add(Titanium.UI.createTableViewRow({
-	// het lijstje
-	title: 'Verschillende types2:',
+var sSatelite = Titanium.UI.createTableViewRow({
+	title: 'Satelliet',
 	className: "row",
 	hasCheck: false,
 	touchEnabled: false
-	}));
+	});
+var sMap = Titanium.UI.createTableViewRow({
+	title: 'Kaart',
+	className: "row",
+	hasCheck: false,
+	touchEnabled: false
+	});
+var sHybrid = Titanium.UI.createTableViewRow({
+	title: 'Hybride',
+	className: "row",
+	hasCheck: false,
+	touchEnabled: false
+	});
+data[1].add(sSatelite);
+data[1].add(sMap);
+data[1].add(sHybrid);
 
 var settingsTable = Titanium.UI.createTableView({
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED,
