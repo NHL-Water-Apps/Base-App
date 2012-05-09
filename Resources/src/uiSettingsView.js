@@ -28,8 +28,8 @@ data[0] = Titanium.UI.createTableViewSection({
 });
 var height = Titanium.UI.createTableViewRow({
 	// verdere boot eigenschappen
-	title: 'Hoogte (meters):',
 	touchEnabled: false,
+	className: "row",
 	height: 'auto'
 	});
 heightField = Titanium.UI.createTextField({
@@ -50,8 +50,8 @@ height.add(Titanium.UI.createLabel({
 data[0].add(height);
 var width = Titanium.UI.createTableViewRow({
 	// verdere boot eigenschappen
-	title: 'Breedte (meters):',
 	touchEnabled: false,
+	className: "row",
 	height: 'auto'
 	});
 var widthField = Titanium.UI.createTextField({
@@ -77,10 +77,20 @@ data[1] = Titanium.UI.createTableViewSection({
 data[1].add(Titanium.UI.createTableViewRow({
 	// het lijstje
 	title: 'Verschillende types:',
+	className: "row",
+	hasCheck: true,
+	touchEnabled: false
+	}));
+data[1].add(Titanium.UI.createTableViewRow({
+	// het lijstje
+	title: 'Verschillende types2:',
+	className: "row",
+	hasCheck: false,
 	touchEnabled: false
 	}));
 
 var settingsTable = Titanium.UI.createTableView({
+	style: Titanium.UI.iPhone.TableViewStyle.GROUPED,
 	data: data,
 	touchEnabled: false
 });
