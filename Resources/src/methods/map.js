@@ -25,8 +25,7 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 		}
 	})();
 	
-	mapButton.addEventListener("click", function(){
-	if (Ti.Geolocation.locationServicesEnabled) {	
+	mapButton.addEventListener("click", function(){	
 		if (Ti.Geolocation.locationServicesEnabled) {
 		    Titanium.Geolocation.purpose = 'Get Current Location';
 		    Titanium.Geolocation.getCurrentPosition(function(e) {
@@ -47,9 +46,6 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 		} else {
 		    alert('Please enable location services');
 		}
-	} else {
-	    alert('Please enable location services');
-	}
 });
 }
 

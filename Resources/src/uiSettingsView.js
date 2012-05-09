@@ -17,138 +17,75 @@ SettingsWindow.orientationModes = [
 	Titanium.UI.LANDSCAPE_LEFT,
 	Titanium.UI.LANDSCAPE_RIGHT
 ];
-	   
-// Dit is de daadwerkelijke textbox
-var WidthField = Titanium.UI.createTextField({
-	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, // De stijl van de rand
-	value: Titanium.App.Properties.getInt("BoatWidth", 0) !== 0 ? Titanium.App.Properties.getInt("BoatWidth", 0) : "" ,  // inladen van de "opgeslagen" waarde breedte van de boot (0 indien niet bestaand)
-	height: 'auto',							// De hoogte
-	hintText: 'Breedte',
-	top: 20,							// Plaatsing van het vakje vanaf de bovenkant
-	width: 100, 						// de breedte van het vakje (70% van de breedte van de app)
-	left: 135,							// De plaatsing vanuit links
-	//backgroundColor: '#FFFFFF'			// achtergrond kleur
+
+var data = [];
+
+data[0] = Titanium.UI.createTableViewSection({
+	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.05),
+	headerTitle: 'Boot eigenschappen:',
+	size: 20,
+	touchEnabled: false
+});
+var height = Titanium.UI.createTableViewRow({
+	// verdere boot eigenschappen
+	title: 'Hoogte (meters):',
+	touchEnabled: false,
+	height: 'auto'
+	});
+heightField = Titanium.UI.createTextField({
+	height: 'auto',
+	width: Math.round(Titanium.Platform.displayCaps.platformWidth*0.35),
+	right: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
+	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.01),
+	hintText: 'Hoogte'
+});
+height.add(heightField);
+height.add(Titanium.UI.createLabel({
+	text: 'Hoogte (meters):',
+	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
+	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
+	height: 'auto',
+	width: 'auto'
+}));
+data[0].add(height);
+var width = Titanium.UI.createTableViewRow({
+	// verdere boot eigenschappen
+	title: 'Breedte (meters):',
+	touchEnabled: false,
+	height: 'auto'
+	});
+var widthField = Titanium.UI.createTextField({
+	height: 'auto',
+	width: Math.round(Titanium.Platform.displayCaps.platformWidth*0.35),
+	right: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
+	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.01),
+	hintText: 'Breedte'
+});
+width.add(widthField);
+width.add(Titanium.UI.createLabel({
+	text: 'Breedte (meters):',
+	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
+	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
+	height: 'auto',
+	width: 'auto'
+}));
+data[0].add(width);
+
+data[1] = Titanium.UI.createTableViewSection({
+	headerTitle: 'Type kaart:'
+});
+data[1].add(Titanium.UI.createTableViewRow({
+	// het lijstje
+	title: 'Verschillende types:',
+	touchEnabled: false
+	}));
+
+var settingsTable = Titanium.UI.createTableView({
+	data: data,
+	touchEnabled: false
 });
 
-// Een label wat aangeeft wat er in de tekstfield dient te worden ingevuld
-var WidthLabel = Titanium.UI.createLabel({
-	top: 20,					// positie vanuit de bovenkant
-	left: 10,					// vanuit de linkerkant
-	text: 'Breedte(meter):',	// De tekst in het label
-	width: 'auto',				// de breedte
-	color: '#FFFFFF',	// kleur (standaard zwart, zwart op zwart?)
-	height: 40,					// Hoogte van deze label
-	textAlign: 'left'			// uitlijning van de tekst
-});
-
-// Dit is de daadwerkelijke textbox
-var HeightField = Titanium.UI.createTextField({
-	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, // De stijl van de rand
-	value: Titanium.App.Properties.getInt("BoatHeight", 0) !== 0 ? Titanium.App.Properties.getInt("BoatHeight", 0) : "" ,  // inladen van de "opgeslagen" waarde breedte van de boot (0 indien niet bestaand)
-	height: 'auto',						// De hoogte
-	hintText: 'Hoogte',
-	top: 80,							// Plaatsing van het vakje vanaf de bovenkant
-	width: 100, 						// de breedte van het vakje (70% van de breedte van de app)
-	left: 135,							// De plaatsing vanuit links
-	//backgroundColor: '#FFFFFF'			// achtergrond kleur
-});
-
-// Een label wat aangeeft wat er in de tekstfield dient te worden ingevuld
-var HeightLabel = Titanium.UI.createLabel({
-	top: 80,					// positie vanuit de bovenkant
-	left: 10,					// vanuit de linkerkant
-	text: 'Hoogte(meter):',		// De tekst in het label
-	width: 'auto',				// de breedte
-	color: '#FFFFFF',	// kleur (standaard zwart, zwart op zwart?)
-	height: 40,					// Hoogte van deze label
-	textAlign: 'left'			// uitlijning van de tekst
-});
-
-
-// De button om alle ingevulde waarden te resetten
-var ClearButton = Titanium.UI.createButton({
-	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED, // De stijl van de rand
-	title: "Wissen",			// Wat er in de knop staat
-	height: 'auto',					// De hoogte 
-	width: 85,				// Breedte: auto, app bepaalt hoe breedt aan de had van de tekst
-	top: 200,					// positie vanuit de bovenkant
-	right: 20					// positie vanuit de rechterkant
-});
-
-
-// Selecteren van de types kaart voor android
-if(Titanium.Platform.osname === 'android'){
-		// Label boven de types kaart
-	var MapLabel = Titanium.UI.createLabel({
-		text: 'Selecteer het type kaart:',
-		height: 'auto',
-		width: 'auto',
-		bottom: 100,
-		left: 20
-	});
-	
-	// Selecteren welk type kaart je wilt
-	var sSatelite = Titanium.UI.createSwitch({
-		style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
-	    titleOff:'Satelite',
-	    titleOn:'Satelite',
-	   	bottom: 50,
-		left: 40,
-	    value:false
-	});
-	var sMap = Titanium.UI.createSwitch({
-		style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
-	    titleOff:'Map',
-	    titleOn:'Map',
-	   	bottom: 50,
-		left: 93,
-	    value:false
-	});
-	var sHybrid = Titanium.UI.createSwitch({
-		style:Titanium.UI.Android.SWITCH_STYLE_TOGGLEBUTTON,
-	    titleOff:'Hybrid',
-	    titleOn:'Hybrid',
-	   	bottom: 50,
-		left: 144,
-	    value:false
-	});
-}
-
-//selecteren van de types kaart voor iPhone
-if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
-	var buttonMapTypes = Titanium.UI.iOS.createTabbedBar({
-		labels:['Standaard', 'Satelliet', 'Hybride'	],
-		backgroundcolor: "#999",
-		//top: "70%",
-		bottom: "10%",
-		style: Titanium.UI.iPhone.SystemButtonStyle.PLAIN,
-		height: 40,
-		width: 280
-	});
-}
-
-
-// add all the methods to this page
+// include het bestand met alle opties
 Titanium.include('methods/settings.js');
 
-// Voeg de textvelden toe voor breedte
-SettingsWindow.add(WidthLabel);		// van het label voor het tekstvakje breedte
-SettingsWindow.add(WidthField); 	// Voor de breedte van de boot
-
-// Voeg de textvelden toe voor hoogte
-SettingsWindow.add(HeightLabel);		// van het label voor het tekstvakje hoogte
-SettingsWindow.add(HeightField); 		// Voor de hoogte van de boot
-
-SettingsWindow.add(ClearButton);	// de wis knop
-
-if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
-	SettingsWindow.add(buttonMapTypes);
-}
-
-// De types kaart
-if(Titanium.Platform.osname === 'android'){
-	SettingsWindow.add(sMap);
-	SettingsWindow.add(sHybrid);
-	SettingsWindow.add(sSatelite);
-	SettingsWindow.add(MapLabel); // en een label
-}
+SettingsWindow.add(settingsTable);
