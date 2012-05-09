@@ -5,10 +5,22 @@
 
 // Het maken van de window
 var MapWindow = Titanium.UI.createWindow({
-	title: 'Kaart',				// Titel van de window
+	title: 'Zoeken',				// Titel van de window
 	backgroundColor: '#FFFFFF',	// En de achtergrond kleur
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
+
+//hiermee maak je een annotation op de map
+/*var mountainView = Titanium.Map.createAnnotation({
+    latitude:53.206547,
+    longitude:5.801554,
+    title:"VrouwenpoortBrug",
+    subtitle:'Hoogte: 3.25 m',
+    pincolor:Titanium.Map.ANNOTATION_RED,
+    animate:true,
+    rightButton: Titanium.UI.iPhone.SystemButton.INFO_LIGHT, //'KS_nav_ui.png',
+    myid:1 // Custom property to uniquely identify this annotation.
+});*/
 
 //het maken van een map
 var mapView = Titanium.Map.createView({
@@ -19,7 +31,8 @@ var mapView = Titanium.Map.createView({
 	mapType: Titanium.Map.STANDARD_TYPE, //het maptype van de kaart wordt ingesteld op de Standard Type
 	animate: true, //hiermee geeft hij een animatie zodra de kaart getoond wordt
 	regionFit: true, //de kaart wordt niet passende gemaakt
-	userLocation: true //hiemeer haalt hij je huidge positie op en toont hij die op de kaart
+	userLocation: true, //hiemeer haalt hij je huidge positie op en toont hij die op de kaart
+	//annotations:[mountainView]
 });
 
 //een searchbar voor de map
