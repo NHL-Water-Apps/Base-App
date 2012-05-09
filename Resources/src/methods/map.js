@@ -25,7 +25,8 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 		}
 	})();
 	
-	mapButton.addEventListener("click", function(){	
+	mapButton.addEventListener("click", function(){
+	if (Ti.Geolocation.locationServicesEnabled) {	
 		if (Ti.Geolocation.locationServicesEnabled) {
 		    Titanium.Geolocation.purpose = 'Get Current Location';
 		    Titanium.Geolocation.getCurrentPosition(function(e) {
@@ -46,15 +47,18 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 		} else {
 		    alert('Please enable location services');
 		}
+	} else {
+	    alert('Please enable location services');
+	}
 });
 }
 
 //Zodra hij op de rightButton van de annotation klikt krijg je een alert
-mapView.addEventListener('click', function(e){
+/*mapView.addEventListener('click', function(e){
 	if(e.clicksource === 'rightButton'){
 		alert('vanaf hier ga je naar de Detailpagina');
 	}
-});
+});*/
 
 //Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt
 searchBarMap.addEventListener('focus', function(){
@@ -62,8 +66,6 @@ searchBarMap.addEventListener('focus', function(){
 	if(Titanium.Platform.osname = 'iphone'){
 		searchBarMap.setShowCancel(true, { animated: true});	
 		//MapWindow.showNavBar();
-		mapView.setVisible(false);
-		mapView.setBackgroundColor('#000');
 	}	
 	//voor de android
 	else if(Titanium.Platform.osname = 'android'){
@@ -87,6 +89,6 @@ searchBarMap.addEventListener('cancel', function(){
 searchBarMap.addEventListener("return", function(){
 	if(Titanium.Platform.osname = 'iphone'){
 		searchBarMap.blur();	
-		//MapWindow.hideNavBar();
+		MapWindow.hideNavBar();
 	}
 });
