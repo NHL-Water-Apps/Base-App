@@ -1,5 +1,5 @@
 //Een event voor het bepalen van de huidge locatie
-if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
+if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' || Titanium.Platform.osname === 'android'){
 	// Self exectuting functie voor het bepalen van je huidige positie op de kaart
 	// Als er geen type kaart geselecteerd is zal er voor de stratenkaart gekozen worden
 	(function(){
@@ -89,6 +89,5 @@ searchBarMap.addEventListener('cancel', function(){
 searchBarMap.addEventListener("return", function(){
 	if(Titanium.Platform.osname = 'iphone'){
 		searchBarMap.blur();	
-		MapWindow.hideNavBar();
 	}
 });
