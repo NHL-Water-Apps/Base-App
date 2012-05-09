@@ -47,7 +47,8 @@ var heightField = Titanium.UI.createTextField({
 	keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType: Titanium.UI.RETURNKEY_DONE,
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.01),
-	hintText: 'Hoogte'
+	hintText: 'Hoogte',
+	touchEnabled: true
 });
 height.add(heightField); 		// toevoegen
 // en een label om aan te geven wat er zou moeten komen te staan
@@ -56,8 +57,8 @@ height.add(Titanium.UI.createLabel({
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
 	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
 	height: 'auto',
-	touchEnabled: false,
-	width: 'auto'
+	width: 'auto',
+	touchEnabled: false
 }));
 data[0].add(height); // Deze rij toevoegen
 
@@ -83,7 +84,7 @@ width.add(Titanium.UI.createLabel({
 	text: 'Breedte (meters):',
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
 	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
-	touchEnabled: false,
+	//touchEnabled: false,
 	height: 'auto',
 	width: 'auto'
 }));
@@ -97,28 +98,29 @@ data[0].add(width);
  */
 // Een nieuwe sectie aanmaken
 data[1] = Titanium.UI.createTableViewSection({
-	headerTitle: 'Type kaart:'
+	headerTitle: 'Type kaart:',
+	touchEnabled: true
 });
 // Het type sateliet toevoegen
 var sSatelite = Titanium.UI.createTableViewRow({
 	title: 'Satelliet',
 	className: "row",
 	hasCheck: false,
-	touchEnabled: false
+	touchEnabled: true
 	});
 // Het type kaart toevoegen
 var sMap = Titanium.UI.createTableViewRow({
 	title: 'Kaart',
 	className: "row",
 	hasCheck: false,
-	touchEnabled: false
+	touchEnabled: true
 	});
 // het type hybride toevoegen
 var sHybrid = Titanium.UI.createTableViewRow({
 	title: 'Hybride',
 	className: "row",
 	hasCheck: false,
-	touchEnabled: false
+	touchEnabled: true
 	});
 // En de verschillende types kaart toevoegen aan de data
 data[1].add(sSatelite);

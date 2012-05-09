@@ -63,31 +63,34 @@ mapView.addEventListener('click', function(e){
 //Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt
 searchBarMap.addEventListener('focus', function(){
 	//voor de iphone
-	if(Titanium.Platform.osname = 'iphone'){
+	if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ){
 		searchBarMap.setShowCancel(true, { animated: true});	
 		//MapWindow.showNavBar();
 	}	
 	//voor de android
 	else if(Titanium.Platform.osname = 'android'){
-		softKeyboardOnFocus: Titanium.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
-		searchBarMap.setFocusable = false;
-		Titanium.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
-		searchBarMap.setSoftKeyboardOnFocus();
+		//softKeyboardOnFocus: Titaniu==m.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
+		//searchBarMap.setFocusable = false;
+		//Titanium.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
+		//searchBarMap.setSoftKeyboardOnFocus();
 	}
 })
 
 //een event waarmee de searhBar inactief wordt gemaakt zodra je op de cancel knop klikt
 searchBarMap.addEventListener('cancel', function(){
-	if(Titanium.Platform.osname = 'iphone'){
+	if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 		searchBarMap.setShowCancel(false, { animated: true });	//de cancel knop wordt inactief gemaakt
 		searchBarMap.blur();
 		//MapWindow.hideNavBar();
+	}
+	else if(Titanium.Platform.osname === 'android'){
+		searchBarMap.setShowCancel(false, {animated: true});
 	}
 });
 
 //een event waarmee de searchBar inactief wordt gemaakt zodra je op de search knop klikt
 searchBarMap.addEventListener("return", function(){
-	if(Titanium.Platform.osname = 'iphone'){
+	if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 		searchBarMap.blur();	
 	}
 });

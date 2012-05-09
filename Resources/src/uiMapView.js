@@ -40,8 +40,8 @@ var searchBarMap = Titanium.UI.createSearchBar({
     barColor:'#000', //de kleur van de searchbar
     showCancel: false, //hij zet de cancelButton op false
     focusable: false, //Hiermee wordt de searhbar niet gelijk gefocust
-    hintText: 'Zoek voor POI\'s...', //dit is de hinttext die in de searchbar wordt geplaatst
-    height: 43, //de hoogte van de searchbar
+    hintText: 'Zoek...', //dit is de hinttext die in de searchbar wordt geplaatst
+    height: '10%', //de hoogte van de searchbar
     top: 0, //hiermee wordt de searhbar tegen de bovenkant van het scherm gepositioneerd
 });
 
