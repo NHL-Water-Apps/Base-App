@@ -45,6 +45,7 @@ height.add(Titanium.UI.createLabel({
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
 	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
 	height: 'auto',
+	touchEnabled: false,
 	width: 'auto'
 }));
 data[0].add(height);
