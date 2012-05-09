@@ -9,15 +9,18 @@ var ListWindow = Titanium.UI.createWindow({
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
 
-var Labeltje = Titanium.UI.createLabel({
-	top: 20,
-	left: 10,
-	text: 'Hoi daaro',
-	height: 'auto',
-	width: 'auto'
-});
+var data = [{title:"Brug 1"},{title:"Brug 2"},{title:"Brug 3"},{title:"Brug 4"}];  //random data
+var table = Titanium.UI.createTableView({data:data,
+			search: Titanium.UI.createSearchBar(  //zoekbalk
+			{barColor:'#FFF',   //kleur zoekbalk
+   			height:43,   //hoogte zoekbalk
+   			hintText:'U zoekt een..',  //vraag in de zoekbalk
+   			top:0,
+			filterAttribute:'title' //zoeken op titel
+			})});
 
-ListWindow.add(Labeltje);
+
+ListWindow.add(table);
 
 //De orientatiemodus voor de verschillende platformen
 ListWindow.orientationModes = [
