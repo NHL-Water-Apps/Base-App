@@ -31,8 +31,4 @@ sSatelite.addEventListener('click', function(){
 	sMap.hasCheck = false;
 	sSatelite.hasCheck = true;
 	sHybrid.hasCheck = false;
-}); 
-//sHybrid.addEventListener('click', SetMap('hybrid')); 
-//sSatelite.addEventListener('click', SetMap('satelite')); 
-
-
+});

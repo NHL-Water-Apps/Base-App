@@ -32,7 +32,7 @@ var height = Titanium.UI.createTableViewRow({
 	className: "row",
 	height: 'auto'
 	});
-heightField = Titanium.UI.createTextField({
+var heightField = Titanium.UI.createTextField({
 	height: 'auto',
 	width: Math.round(Titanium.Platform.displayCaps.platformWidth*0.35),
 	right: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),

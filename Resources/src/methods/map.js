@@ -1,5 +1,5 @@
 //Een event voor het bepalen van de huidge locatie
-if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
+if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' || Titanium.Platform.osname === 'android'){
 	// Self exectuting functie voor het bepalen van je huidige positie op de kaart
 	// Als er geen type kaart geselecteerd is zal er voor de stratenkaart gekozen worden
 	(function(){
@@ -54,11 +54,11 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 }
 
 //Zodra hij op de rightButton van de annotation klikt krijg je een alert
-/*mapView.addEventListener('click', function(e){
+mapView.addEventListener('click', function(e){
 	if(e.clicksource === 'rightButton'){
 		alert('vanaf hier ga je naar de Detailpagina');
 	}
-});*/
+});
 
 //Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt
 searchBarMap.addEventListener('focus', function(){
@@ -89,6 +89,5 @@ searchBarMap.addEventListener('cancel', function(){
 searchBarMap.addEventListener("return", function(){
 	if(Titanium.Platform.osname = 'iphone'){
 		searchBarMap.blur();	
-		MapWindow.hideNavBar();
 	}
 });
