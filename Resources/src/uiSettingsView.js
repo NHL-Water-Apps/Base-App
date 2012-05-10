@@ -6,7 +6,7 @@
 
 // Het maken van de window
 var SettingsWindow = Titanium.UI.createWindow({
-	title: 'Opties',			// Titel van de window
+	title: 'Opties',		// Titel van de window
 	backgroundColor: '#000000',	// En de achtergrond kleur
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
@@ -20,13 +20,14 @@ SettingsWindow.orientationModes = [
 ];
 
 // een lege array die al onze opties zal gaan bevatten
-var data = [];
+var dataBovenste = [];
+var dataOnderste = [];
 /*
  * 	Data[0] zal een reeks elementen bevatten over de boot eigenschappen
  *	Hiervoor wordt eerst een section aangemaakt.
  *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
  */
-data[0] = Titanium.UI.createTableViewSection({
+dataBovenste[0] = Titanium.UI.createTableViewSection({
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.05),
 	headerTitle: 'Boot eigenschappen:',
 	size: 20,
@@ -60,7 +61,7 @@ height.add(Titanium.UI.createLabel({
 	width: 'auto',
 	touchEnabled: false
 }));
-data[0].add(height); // Deze rij toevoegen
+dataBovenste[0].add(height); // Deze rij toevoegen
 
 // Daarna ook een rij maken om de breedte in te geven
 var width = Titanium.UI.createTableViewRow({
@@ -89,7 +90,7 @@ width.add(Titanium.UI.createLabel({
 	width: 'auto'
 }));
 // en deze rij toevoegen aan de tabel
-data[0].add(width);
+dataBovenste[0].add(width);
 
 /*
  * 	De tweede secie:
@@ -97,7 +98,7 @@ data[0].add(width);
  * 		- Op een type kaart klikken zal deze waarde opslaan en de kaart opnieuw instellen
  */
 // Een nieuwe sectie aanmaken
-data[1] = Titanium.UI.createTableViewSection({
+dataOnderste[0] = Titanium.UI.createTableViewSection({
 	headerTitle: 'Type kaart:',
 	touchEnabled: true
 });
@@ -123,19 +124,28 @@ var sHybrid = Titanium.UI.createTableViewRow({
 	touchEnabled: true
 	});
 // En de verschillende types kaart toevoegen aan de data
-data[1].add(sSatelite);
-data[1].add(sMap);
-data[1].add(sHybrid);
+dataOnderste[0].add(sSatelite);
+dataOnderste[0].add(sMap);
+dataOnderste[0].add(sHybrid);
 
 // De daadwerkelijke tabel creëren
 var settingsTable = Titanium.UI.createTableView({
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED, // Om de opmaak natuurlijk te maken voor iPhone (geen effect op android)
-	data: data,				// Hier de reeds gemaakt tabel aan meegeven
-	touchEnabled: false
+	data: dataBovenste,			// Hier de reeds gemaakt tabel aan meegeven
+	allowsSelection: false
 });
+
+// De daadwerkelijke tabel creëren
+var settingsTable2 = Titanium.UI.createTableView({
+	style: Titanium.UI.iPhone.TableViewStyle.GROUPED, // Om de opmaak natuurlijk te maken voor iPhone (geen effect op android)
+	data: dataOnderste,			// Hier de reeds gemaakt tabel aan meegeven
+	touchEnabled: true,
+});
+
 
 // include het bestand met alle opties
 Titanium.include('methods/settings.js');
 
 // De tabel toevoegen aan de window
 SettingsWindow.add(settingsTable);
+SettingsWindow.add(settingsTable2);
