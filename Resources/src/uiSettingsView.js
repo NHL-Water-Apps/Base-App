@@ -19,26 +19,30 @@ SettingsWindow.orientationModes = [
 	Titanium.UI.LANDSCAPE_RIGHT
 ];
 
+
 // een lege array die al onze opties zal gaan bevatten
-var data = [];
+//var data = [];
 /*
  * 	Data[0] zal een reeks elementen bevatten over de boot eigenschappen
  *	Hiervoor wordt eerst een section aangemaakt.
  *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
  */
-data[0] = Titanium.UI.createTableViewSection({
-	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.05),
-	headerTitle: 'Boot eigenschappen:',
-	size: 20,
-	touchEnabled: false
-});
+//data[0] = Titanium.UI.createTableViewSection({
+//	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.05),
+//	headerTitle: 'Boot eigenschappen:',
+//	size: 20,
+//	touchEnabled: false
+//});
 
 // Aanmaken van een nieuwe rij voor de hoogte
 var height = Titanium.UI.createView({
+	top: 0,
+	left: 0,
+	width: 'auto',
 	selectionStyle: 0,
 	touchEnabled: false,
 	className: "row",
-	height: 'auto'
+	height: 10010
 });
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	var next = Titanium.UI.createButton({
@@ -75,10 +79,14 @@ height.add(Titanium.UI.createLabel({
 	width: 'auto',
 	touchEnabled: false
 }));
-//data[0].add(height); // Deze rij toevoegen
+data[0] = height; // Deze rij toevoegen
 
 // Daarna ook een rij maken om de breedte in te geven
 var width = Titanium.UI.createView({
+	top: 0,
+	left: 0,
+	width: '100%',
+	height: 50,
 	touchEnabled: false,
 	selectionStyle: 0,
 	className: "row",
@@ -101,11 +109,11 @@ width.add(Titanium.UI.createLabel({
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
 	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
 	touchEnabled: false,
-	height: 'auto',
+	height: 40,
 	width: 'auto'
 }));
 // en deze rij toevoegen aan de tabel
-data[0].add(width);
+data[1] = width;
 
 /*
  * 	De tweede secie:
@@ -113,10 +121,10 @@ data[0].add(width);
  * 		- Op een type kaart klikken zal deze waarde opslaan en de kaart opnieuw instellen
  */
 // Een nieuwe sectie aanmaken
-data[1] = Titanium.UI.createTableViewSection({
-	headerTitle: 'Type kaart:',
-	touchEnabled: true
-});
+//data[1] = Titanium.UI.createTableViewSection({
+//	headerTitle: 'Type kaart:',
+//	touchEnabled: true
+//});
 // Het type sateliet toevoegen
 var sSatelite = Titanium.UI.createTableViewRow({
 	title: 'Satelliet',
@@ -139,24 +147,30 @@ var sHybrid = Titanium.UI.createTableViewRow({
 	touchEnabled: false
 	});
 // En de verschillende types kaart toevoegen aan de data
-data[1].add(sSatelite);
-data[1].add(sMap);
-data[1].add(sHybrid);
+//data[1].add(sSatelite);
+//data[1].add(sMap);
+//data[1].add(sHybrid);
 
 // De daadwerkelijke tabel creëren
 var settingsTable = Titanium.UI.createScrollView({
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED, // Om de opmaak natuurlijk te maken voor iPhone (geen effect op android)
-	layout: 'vertical',
+	//layout: 'vertical',
+	top: 0,
+	//children: [height, width],
+	left: 0,
+	//height: 1000,
+	//width: '100%',	
 	allowsSelection: true,
-	touchEnabled: true
-	
+	touchEnabled: true,
+	contentWidth:'auto',
+    contentHeight:'auto'
 });
 
 settingsTable.add(height);
 settingsTable.add(width);
 
 // include het bestand met alle opties
-Titanium.include('methods/settings.js');
+//Titanium.include('methods/settings.js');
 
 // De tabel toevoegen aan de window
 SettingsWindow.add(settingsTable);
