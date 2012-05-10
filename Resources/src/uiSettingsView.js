@@ -34,7 +34,7 @@ data[0] = Titanium.UI.createTableViewSection({
 });
 
 // Aanmaken van een nieuwe rij voor de hoogte
-var height = Titanium.UI.createTableViewRow({
+var height = Titanium.UI.createView({
 	selectionStyle: 0,
 	touchEnabled: false,
 	className: "row",
@@ -43,8 +43,9 @@ var height = Titanium.UI.createTableViewRow({
 // Hier een textField aan toevoegen die waar de hoogte ingevoerd kan worden
 var heightField = Titanium.UI.createTextField({
 	height: 'auto',
-	width: Math.round(Titanium.Platform.displayCaps.platformWidth*0.35),
-	right: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
+	width: '35%',
+	focusable: true,
+	right: '5%',
 	keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType: Titanium.UI.RETURNKEY_DONE,
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.01),
@@ -61,10 +62,10 @@ height.add(Titanium.UI.createLabel({
 	width: 'auto',
 	touchEnabled: false
 }));
-data[0].add(height); // Deze rij toevoegen
+//data[0].add(height); // Deze rij toevoegen
 
 // Daarna ook een rij maken om de breedte in te geven
-var width = Titanium.UI.createTableViewRow({
+var width = Titanium.UI.createView({
 	touchEnabled: false,
 	selectionStyle: 0,
 	className: "row",
@@ -130,13 +131,16 @@ data[1].add(sMap);
 data[1].add(sHybrid);
 
 // De daadwerkelijke tabel creëren
-var settingsTable = Titanium.UI.createTableView({
+var settingsTable = Titanium.UI.createScrollView({
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED, // Om de opmaak natuurlijk te maken voor iPhone (geen effect op android)
-	data: data,			// Hier de reeds gemaakt tabel aan meegeven
+	layout: 'vertical',
 	allowsSelection: true,
 	touchEnabled: true
 	
 });
+
+settingsTable.add(height);
+settingsTable.add(width);
 
 // include het bestand met alle opties
 Titanium.include('methods/settings.js');

@@ -65,28 +65,37 @@ SettingsWindow.addEventListener('click', function(){
 	widthField.blur();
 	heightField.blur();
 });
+height.addEventListener('click', function(){
+	widthField.blur();
+	heightField.blur();
+});
+width.addEventListener('click', function(){
+	widthField.blur();
+	heightField.blur();
+});
 
 heightField.addEventListener('blur', function(e){
-	//heightField.blur(); 	// Verplichten om dan focus te verlieze
-	//widthField.blur(); 		// idem
-	var rExp  = /[0-9]+(\.[0-9]+)?/; // Regualar expression die test voor juiste getallen
+	var rExp  = /[0-9]+(\.[0-9]+)?/; 				// Regualar expression die test voor juiste getallen
 	if(heightField.value === '' || rExp.test(heightField.value)) // kijken of er een juist iets is ingevuld
 	{
-		var temp = rExp.exec(heightField.value);				// kijken of er een getal uit de regular expression komt
+		var temp = rExp.exec(heightField.value);	// kijken of er een getal uit de regular expression komt
 		if(heightField.value === '') { Titanium.App.Properties.setString( 'height', null); }	// indien het leeg is dan 0 oplsaan
 		else {
 			Titanium.App.Properties.setString('height', temp[0]);	// anders het eerste getal uit de regular expression opslaan
-			heightField.value = temp[0];						// deze waarde ook weer terug zetten
+			heightField.value = temp[0];			// deze waarde ook weer terug zetten
 		}
 	}
-	// Zelfde verhaal alleen dan voor het andere veld
-	if(widthField.value === '' || rExp.test(widthField.value))
+});
+
+widthField.addEventListener('blur', function(e){
+	var rExp  = /[0-9]+(\.[0-9]+)?/; 				// Regualar expression die test voor juiste getallen
+	if(widthField.value === '' || rExp.test(widthField.value)) // kijken of er een juist iets is ingevuld
 	{
-		var temp = rExp.exec(widthField.value);
-		if(widthField.value === '') { Titanium.App.Properties.setString( 'width', null); }
+		var temp = rExp.exec(widthField.value); 	// kijken of er een getal uit de regular expression komt
+		if(widthField.value === '') { Titanium.App.Properties.setString( 'width', null); } 
 		else {
-			Titanium.App.Properties.setString('width', temp[0]);
-			widthField.value = temp[0];
+			Titanium.App.Properties.setString('width', temp[0]); // anders het eerste getal uit de regular expression opslaan
+			widthField.value = temp[0];				// deze waarde ook weer terug zetten
 		}
 	}
 });
