@@ -9,18 +9,43 @@ var ListWindow = Titanium.UI.createWindow({
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
 
-var data = [{title:"Brug 1"},{title:"Brug 2"},{title:"Brug 3"},{title:"Brug 4"}];  //random data
-var table = Titanium.UI.createTableView({data:data,
-			search: Titanium.UI.createSearchBar(  //zoekbalk
-			{barColor:'#FFF',   //kleur zoekbalk
-   			height:43,   //hoogte zoekbalk
-   			hintText:'U zoekt een..',  //vraag in de zoekbalk
+var data = [
+    {title:"Lopersbrug 1", description:"De langste brug ter wereld", js:"'Detail.js'"},
+    {title:"Vrachtwagenbrug 2,5", description:"De hoogste brug ter wereld", js:"'Detail.js'"},
+    {title:"Allesbrug 3", description:"Een brug die sterk is"},
+    {title:"Autobrug 4", description:"Een brug onder de grond"},
+    {title:"Fietsbrug 5", description:"Nog een brug"}
+];  //random data
+
+data.sort(sortName);  //sorteren van de data met de methode sortName
+ 
+function sortName(thisObject,thatObject) {   //op naam sorteren
+    if (thisObject.title > thatObject.title)
+    {
+        return 1;
+    }
+    else if (thisObject.title < thatObject.title)
+    {
+        return -1;
+    }
+    return 0;
+  }
+
+
+var table = Titanium.UI.createTableView({data:data,  //lijst met searchbar
+			search: Titanium.UI.createSearchBar(
+			{barColor:'#FFF',  //kleur
+   			height:43, //hoogte
+   			hintText:'U zoekt..', //hinttekst
    			top:0,
-			filterAttribute:'title' //zoeken op titel
+			filterAttribute:'title'  //filteren op titel
 			})});
-
-
-ListWindow.add(table);
+table.addEventListener('click', function(e)
+{
+		tab2.open(MapWindow, {animated:true});	
+}
+)
+win2.add(table);
 
 //De orientatiemodus voor de verschillende platformen
 ListWindow.orientationModes = [
