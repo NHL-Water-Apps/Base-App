@@ -42,10 +42,10 @@ var table = Titanium.UI.createTableView({data:data,  //lijst met searchbar
 			})});
 table.addEventListener('click', function(e)
 {
-		tab2.open(MapWindow, {animated:true});	
+		ListWindow.open(MapWindow, {animated:true});	
 }
 )
-win2.add(table);
+ListWindow.add(table);
 
 //De orientatiemodus voor de verschillende platformen
 ListWindow.orientationModes = [
