@@ -20,14 +20,13 @@ SettingsWindow.orientationModes = [
 ];
 
 // een lege array die al onze opties zal gaan bevatten
-var dataBovenste = [];
-var dataOnderste = [];
+var data = [];
 /*
  * 	Data[0] zal een reeks elementen bevatten over de boot eigenschappen
  *	Hiervoor wordt eerst een section aangemaakt.
  *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
  */
-dataBovenste[0] = Titanium.UI.createTableViewSection({
+data[0] = Titanium.UI.createTableViewSection({
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.05),
 	headerTitle: 'Boot eigenschappen:',
 	size: 20,
@@ -61,7 +60,7 @@ height.add(Titanium.UI.createLabel({
 	width: 'auto',
 	touchEnabled: false
 }));
-dataBovenste[0].add(height); // Deze rij toevoegen
+data[0].add(height); // Deze rij toevoegen
 
 // Daarna ook een rij maken om de breedte in te geven
 var width = Titanium.UI.createTableViewRow({
@@ -85,12 +84,12 @@ width.add(Titanium.UI.createLabel({
 	text: 'Breedte (meters):',
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
 	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
-	//touchEnabled: false,
+	touchEnabled: false,
 	height: 'auto',
 	width: 'auto'
 }));
 // en deze rij toevoegen aan de tabel
-dataBovenste[0].add(width);
+data[0].add(width);
 
 /*
  * 	De tweede secie:
@@ -98,7 +97,7 @@ dataBovenste[0].add(width);
  * 		- Op een type kaart klikken zal deze waarde opslaan en de kaart opnieuw instellen
  */
 // Een nieuwe sectie aanmaken
-dataOnderste[0] = Titanium.UI.createTableViewSection({
+data[1] = Titanium.UI.createTableViewSection({
 	headerTitle: 'Type kaart:',
 	touchEnabled: true
 });
@@ -107,45 +106,36 @@ var sSatelite = Titanium.UI.createTableViewRow({
 	title: 'Satelliet',
 	className: "row",
 	hasCheck: false,
-	touchEnabled: true
+	touchEnabled: false
 	});
 // Het type kaart toevoegen
 var sMap = Titanium.UI.createTableViewRow({
 	title: 'Kaart',
 	className: "row",
 	hasCheck: false,
-	touchEnabled: true
+	touchEnabled: false
 	});
 // het type hybride toevoegen
 var sHybrid = Titanium.UI.createTableViewRow({
 	title: 'Hybride',
 	className: "row",
 	hasCheck: false,
-	touchEnabled: true
+	touchEnabled: false
 	});
 // En de verschillende types kaart toevoegen aan de data
-dataOnderste[0].add(sSatelite);
-dataOnderste[0].add(sMap);
-dataOnderste[0].add(sHybrid);
+data[1].add(sSatelite);
+data[1].add(sMap);
+data[1].add(sHybrid);
 
 // De daadwerkelijke tabel creëren
 var settingsTable = Titanium.UI.createTableView({
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED, // Om de opmaak natuurlijk te maken voor iPhone (geen effect op android)
-	data: dataBovenste,			// Hier de reeds gemaakt tabel aan meegeven
+	data: data,			// Hier de reeds gemaakt tabel aan meegeven
 	allowsSelection: false
 });
-
-// De daadwerkelijke tabel creëren
-var settingsTable2 = Titanium.UI.createTableView({
-	style: Titanium.UI.iPhone.TableViewStyle.GROUPED, // Om de opmaak natuurlijk te maken voor iPhone (geen effect op android)
-	data: dataOnderste,			// Hier de reeds gemaakt tabel aan meegeven
-	touchEnabled: true,
-});
-
 
 // include het bestand met alle opties
 Titanium.include('methods/settings.js');
 
 // De tabel toevoegen aan de window
 SettingsWindow.add(settingsTable);
-SettingsWindow.add(settingsTable2);
