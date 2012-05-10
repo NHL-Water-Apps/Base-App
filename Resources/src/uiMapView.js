@@ -18,7 +18,7 @@ var mountainView = Titanium.Map.createAnnotation({
     subtitle:'Hoogte: 3.25 m',
     pincolor:Titanium.Map.ANNOTATION_RED,
     animate:true,
-    rightButton: 'KS_nav_ui.png',
+    rightButton: Titanium.Platform.osname === 'android' ? '/img/Annotations.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
     myid:1 // Custom property to uniquely identify this annotation.
 });
 
@@ -60,8 +60,9 @@ if(Titanium.Platform.osname === 'android'){
 	});
 	
 	var searchButton = Titanium.UI.createButton({
-		title: '§',
-		left: 5,
+		title: '',
+		image: '/img/Zoek.png',
+		right: '13%',
 		bottom: 5,
 		height: 'auto',
 		width: 'auto'
@@ -70,11 +71,12 @@ if(Titanium.Platform.osname === 'android'){
 
 var mapButton = Titanium.UI.createButton({
 	title: '',
-	image: 'img/Locatie.png',
-	right: 5,
+	//backgroundColor: 'rgba(0,0,0,0.0)',
+	image: '/img/Locatie.png',
+	right: '2%',
 	bottom: 5,
-	//height: 'auto',
-	//width: 'auto'
+	height: 32,
+	width: 32
 });
 
 //De orientatiemodus voor de verschillende platformen
