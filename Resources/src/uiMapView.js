@@ -16,7 +16,7 @@ var mountainView = Titanium.Map.createAnnotation({
     longitude:5.801554,
     title:"VrouwenpoortBrug",
     subtitle:'Hoogte: 3.25 m',
-    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationRood.png' : '/img/Anotation Android Groen.png',
+    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationRood.png' : '/img/Anotation Android Rood.png',
     animate:true,
     rightButton: Titanium.Platform.osname === 'android' ? '/img/Annotations.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
     myid:1 // Custom property to uniquely identify this annotation.
