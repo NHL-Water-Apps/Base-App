@@ -60,6 +60,17 @@ mapView.addEventListener('click', function(e){
 	}
 });
 
+if(Titanium.Platform.osname === 'android'){
+	searchButton.addEventListener("click", function(){
+		if(searchBarMap.visible === false){
+			searchBarMap.setVisible(true, {animated: true});
+		}
+		else if(searchBarMap.visible === true){
+			searchBarMap.setVisible(false, {animated: true});
+		}
+	})
+}
+
 //Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt
 searchBarMap.addEventListener('focus', function(){
 	//voor de iphone
