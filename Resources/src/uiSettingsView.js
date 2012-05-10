@@ -40,6 +40,18 @@ var height = Titanium.UI.createView({
 	className: "row",
 	height: 'auto'
 });
+if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
+	var next = Titanium.UI.createButton({
+	    title : 'Volgende',
+	    style : Titanium.UI.iPhone.SystemButtonStyle.DONE,
+	});
+	 
+	var Done = Titanium.UI.createButton({
+		title: 'Klaar',
+	    systemButton : Titanium.UI.iPhone.SystemButton.DONE,
+	});
+}
+
 // Hier een textField aan toevoegen die waar de hoogte ingevoerd kan worden
 var heightField = Titanium.UI.createTextField({
 	height: 'auto',
@@ -50,7 +62,8 @@ var heightField = Titanium.UI.createTextField({
 	returnKeyType: Titanium.UI.RETURNKEY_DONE,
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.01),
 	hintText: 'Hoogte',
-	touchEnabled: true
+	touchEnabled: true,
+	keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0,
 });
 height.add(heightField); 		// toevoegen
 // en een label om aan te geven wat er zou moeten komen te staan

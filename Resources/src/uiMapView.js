@@ -16,10 +16,22 @@ var mountainView = Titanium.Map.createAnnotation({
     longitude:5.801554,
     title:"VrouwenpoortBrug",
     subtitle:'Hoogte: 3.25 m',
-    pincolor:Titanium.Map.ANNOTATION_RED,
+    image: '/img/AnnotationGroen3.png',
     animate:true,
     rightButton: Titanium.Platform.osname === 'android' ? '/img/Annotations.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
     myid:1 // Custom property to uniquely identify this annotation.
+});
+
+//hiermee maak je een annotation op de map
+var mountainView2 = Titanium.Map.createAnnotation({
+    latitude:53.208547,
+    longitude:5.803554,
+    title:"allesandersBrug",
+    subtitle:'Hoogte: 13.15 m',
+    image: '/img/AnnotationGroen3.png',
+    animate:true,
+    rightButton: Titanium.Platform.osname === 'android' ? '/img/Annotations.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
+    myid:2 // Custom property to uniquely identify this annotation.
 });
 
 //het maken van een map
@@ -32,7 +44,7 @@ var mapView = Titanium.Map.createView({
 	animate: true, //hiermee geeft hij een animatie zodra de kaart getoond wordt
 	regionFit: true, //de kaart wordt niet passende gemaakt
 	userLocation: true, //hiemeer haalt hij je huidge positie op en toont hij die op de kaart
-	annotations:[mountainView]
+	annotations:[mountainView, mountainView2]
 });
 
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
