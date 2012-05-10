@@ -48,32 +48,33 @@ var searchBarMap = Titanium.UI.createSearchBar({
 }
 
 if(Titanium.Platform.osname === 'android'){
-//een searchbar voor de map
-var searchBarMap = Titanium.UI.createSearchBar({
-    barColor:'#000', //de kleur van de searchbar
-    showCancel: false, //hij zet de cancelButton op false
-    focusable: false, //Hiermee wordt de searhbar niet gelijk gefocust
-    hintText: 'Zoek...', //dit is de hinttext die in de searchbar wordt geplaatst
-    height: '50', //de hoogte van de searchbar
-    top: 0, //hiermee wordt de searhbar tegen de bovenkant van het scherm gepositioneerd
-    visible: false
-});
-
-var searchButton = Titanium.UI.createButton({
-	title: '§',
-	left: 5,
-	bottom: 5,
-	height: 'auto',
-	width: 'auto'
-});
+	//een searchbar voor de map
+	var searchBarMap = Titanium.UI.createSearchBar({
+	    barColor:'#000', //de kleur van de searchbar
+	    showCancel: false, //hij zet de cancelButton op false
+	    focusable: false, //Hiermee wordt de searhbar niet gelijk gefocust
+	    hintText: 'Zoek...', //dit is de hinttext die in de searchbar wordt geplaatst
+	    height: '50', //de hoogte van de searchbar
+	    top: 0, //hiermee wordt de searhbar tegen de bovenkant van het scherm gepositioneerd
+	    visible: false
+	});
+	
+	var searchButton = Titanium.UI.createButton({
+		title: '§',
+		left: 5,
+		bottom: 5,
+		height: 'auto',
+		width: 'auto'
+	});
 }
 
 var mapButton = Titanium.UI.createButton({
-	title: '+',
+	title: '',
+	image: 'img/Locatie.png',
 	right: 5,
 	bottom: 5,
-	height: 'auto',
-	width: 'auto'
+	//height: 'auto',
+	//width: 'auto'
 });
 
 //De orientatiemodus voor de verschillende platformen
