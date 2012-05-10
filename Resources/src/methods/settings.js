@@ -56,14 +56,14 @@ sSatelite.addEventListener('click', function(){
 SettingsWindow.addEventListener('click', function(e){
 	heightField.blur(); 	// Verplichten om dan focus te verlieze
 	widthField.blur(); 		// idem
-	var rExp  = /[0-9]+(\.[0-9]+)?/;
-	if(heightField.value === '' || rExp.test(heightField.value))
+	var rExp  = /[0-9]+(\.[0-9]+)?/; // Regualar expression die test voor juiste getallen
+	if(heightField.value === '' || rExp.test(heightField.value)) // kijken of er een juist iets is ingevuld
 	{
-		var temp = rExp.exec(heightField.value);
-		if(heightField.value === '') { Titanium.App.Properties.setInt( 'height', 0); }
+		var temp = rExp.exec(heightField.value);				// kijken of er een getal uit de regular expression komt
+		if(heightField.value === '') { Titanium.App.Properties.setInt( 'height', 0); }	// indien het leeg is dan 0 oplsaan
 		else {
-			Titanium.App.Properties.setInt('height', temp[0]);
-			heightField.value = temp[0];
+			Titanium.App.Properties.setInt('height', temp[0]);	// anders het eerste getal uit de regular expression opslaan
+			heightField.value = temp[0];						// deze waarde ook weer terug zetten
 		}
 	}
 	if(widthField.value === '' || rExp.test(widthField.value))
