@@ -39,10 +39,7 @@ var height = Titanium.UI.createView({
 	top: 0,
 	left: 0,
 	width: 'auto',
-	selectionStyle: 0,
-	touchEnabled: false,
-	className: "row",
-	height: 10010
+	height: 'auto'
 });
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	var next = Titanium.UI.createButton({
@@ -86,11 +83,7 @@ var width = Titanium.UI.createView({
 	top: 0,
 	left: 0,
 	width: '100%',
-	height: 50,
-	touchEnabled: false,
-	selectionStyle: 0,
-	className: "row",
-	height: 'auto'
+	height: 'auto',
 });
 // Een textField om de breedte in in te voeren
 var widthField = Titanium.UI.createTextField({
@@ -153,15 +146,12 @@ var sHybrid = Titanium.UI.createTableViewRow({
 
 // De daadwerkelijke tabel creëren
 var settingsTable = Titanium.UI.createScrollView({
-	style: Titanium.UI.iPhone.TableViewStyle.GROUPED, // Om de opmaak natuurlijk te maken voor iPhone (geen effect op android)
-	//layout: 'vertical',
+	layout: 'vertical',
 	top: 0,
 	//children: [height, width],
 	left: 0,
 	//height: 1000,
-	//width: '100%',	
-	allowsSelection: true,
-	touchEnabled: true,
+	//width: '100%',
 	contentWidth:'auto',
     contentHeight:'auto'
 });
