@@ -106,7 +106,7 @@ var sSatelite = Titanium.UI.createTableViewRow({
 	title: 'Satelliet',
 	className: "row",
 	hasCheck: false,
-	touchEnabled: false
+	touchEnabled: false,
 	});
 // Het type kaart toevoegen
 var sMap = Titanium.UI.createTableViewRow({
@@ -131,7 +131,7 @@ data[1].add(sHybrid);
 var settingsTable = Titanium.UI.createTableView({
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED, // Om de opmaak natuurlijk te maken voor iPhone (geen effect op android)
 	data: data,			// Hier de reeds gemaakt tabel aan meegeven
-	allowsSelection: false
+	allowsSelection: true
 });
 
 // include het bestand met alle opties
