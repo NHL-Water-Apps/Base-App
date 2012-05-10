@@ -54,7 +54,7 @@ if(Titanium.Platform.osname === 'android'){
 	    showCancel: false, //hij zet de cancelButton op false
 	    focusable: false, //Hiermee wordt de searhbar niet gelijk gefocust
 	    hintText: 'Zoek...', //dit is de hinttext die in de searchbar wordt geplaatst
-	    height: '50', //de hoogte van de searchbar
+	    height: '20%', //de hoogte van de searchbar
 	    top: 0, //hiermee wordt de searhbar tegen de bovenkant van het scherm gepositioneerd
 	    visible: false
 	});

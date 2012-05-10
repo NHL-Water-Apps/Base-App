@@ -71,6 +71,10 @@ if(Titanium.Platform.osname === 'android'){
 	})
 }
 
+MapWindow.addEventListener('', function(){
+	
+});
+
 //Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt
 searchBarMap.addEventListener('focus', function(){
 	//voor de iphone
