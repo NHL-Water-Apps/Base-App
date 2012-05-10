@@ -46,3 +46,42 @@ sSatelite.addEventListener('click', function(){
 	mapView.mapType = Titanium.Map.SATELLITE_TYPE;
 	Titanium.App.Properties.setString('mapType', 'map');
 });
+
+
+/*
+ * 	Een functie zie zal kijken naar invoer in het hoogteveld en breedteveld
+ * 		- Hij zal controleren of dit om een getal gaat
+ * 		- Indien goed, dan opslaan anders een alert opgooien en resetten
+ */
+SettingsWindow.addEventListener('click', function(e){
+	heightField.blur(); 	// Verplichten om dan focus te verlieze
+	widthField.blur(); 		// idem
+	var rExp  = /[0-9]+(\.[0-9]+)?/;
+	if(heightField.value === '' || rExp.test(heightField.value))
+	{
+		var temp = rExp.exec(heightField.value);
+		if(heightField.value === '') { Titanium.App.Properties.setInt( 'height', 0); }
+		else {
+			Titanium.App.Properties.setInt('height', temp[0]);
+			heightField.value = temp[0];
+		}
+	}
+	if(widthField.value === '' || rExp.test(widthField.value))
+	{
+		var temp = rExp.exec(widthField.value);
+		if(widthField.value === '') { Titanium.App.Properties.setInt( 'breedte', 0); }
+		else {
+			Titanium.App.Properties.setInt('breedte', temp[0]);
+			widthField.value = temp[0];
+		}
+	}
+	//if(temp[1] !== '' && temp[1] !== undefined ) { alert('Alleen nummers dienen te worden ingevoerd. \nKomma getallen dienen te worden ingevoerd met een \'.\'.' . temp[1]); }
+});
+
+heightField.addEventListener('focus', function(){
+	var toast = Titanium.UI.createNotification({
+    duration: Titanium.UI.NOTIFICATION_DURATION_LONG,
+    message: 'Komma getallen scheiden met een punt.'
+    });
+    toast.show();
+});
