@@ -57,13 +57,18 @@ sSatelite.addEventListener('click', function(){
 
 
 /*
- * 	Een functie zie zal kijken naar invoer in het hoogteveld en breedteveld
+ * 	Een functie die zal kijken naar invoer in het hoogteveld en breedteveld
  * 		- Hij zal controleren of dit om een getal gaat
  * 		- Indien goed, dan opslaan anders een alert opgooien en resetten
  */
-SettingsWindow.addEventListener('click', function(e){
-	heightField.blur(); 	// Verplichten om dan focus te verlieze
-	widthField.blur(); 		// idem
+SettingsWindow.addEventListener('click', function(){
+	widthField.blur();
+	heightField.blur();
+});
+
+heightField.addEventListener('blur', function(e){
+	//heightField.blur(); 	// Verplichten om dan focus te verlieze
+	//widthField.blur(); 		// idem
 	var rExp  = /[0-9]+(\.[0-9]+)?/; // Regualar expression die test voor juiste getallen
 	if(heightField.value === '' || rExp.test(heightField.value)) // kijken of er een juist iets is ingevuld
 	{
@@ -84,19 +89,4 @@ SettingsWindow.addEventListener('click', function(e){
 			widthField.value = temp[0];
 		}
 	}
-});
-
-heightField.addEventListener('focus', function(){
-	var toast = Titanium.UI.createNotification({
-		duration: Titanium.UI.NOTIFICATION_DURATION_LONG,
-		message: 'Decimale getallen scheiden met een .'
-	});
-	toast.show();
-});
-widthField.addEventListener('focus', function(){
-	var toast = Titanium.UI.createNotification({
-		duration: Titanium.UI.NOTIFICATION_DURATION_LONG,
-		message: 'Decimale getallen scheiden met een .'
-	});
-	toast.show();
 });

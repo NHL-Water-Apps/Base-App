@@ -35,6 +35,7 @@ data[0] = Titanium.UI.createTableViewSection({
 
 // Aanmaken van een nieuwe rij voor de hoogte
 var height = Titanium.UI.createTableViewRow({
+	selectionStyle: 0,
 	touchEnabled: false,
 	className: "row",
 	height: 'auto'
@@ -65,6 +66,7 @@ data[0].add(height); // Deze rij toevoegen
 // Daarna ook een rij maken om de breedte in te geven
 var width = Titanium.UI.createTableViewRow({
 	touchEnabled: false,
+	selectionStyle: 0,
 	className: "row",
 	height: 'auto'
 });
@@ -131,7 +133,9 @@ data[1].add(sHybrid);
 var settingsTable = Titanium.UI.createTableView({
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED, // Om de opmaak natuurlijk te maken voor iPhone (geen effect op android)
 	data: data,			// Hier de reeds gemaakt tabel aan meegeven
-	allowsSelection: true
+	allowsSelection: true,
+	touchEnabled: true
+	
 });
 
 // include het bestand met alle opties
