@@ -65,14 +65,28 @@ SettingsWindow.addEventListener('click', function(){
 	widthField.blur();
 	heightField.blur();
 });
-height.addEventListener('click', function(){
-	widthField.blur();
-	heightField.blur();
-});
-width.addEventListener('click', function(){
-	widthField.blur();
-	heightField.blur();
-});
+
+// Eerste poging voor workaround
+//function keepFocus(field, count){
+//	field.focus();
+//	if(count < 1000){ 
+//		setTimeout(function(){
+//			keepFocus(field, count + 1)
+//		}, 10);	 
+//	}
+//	else{
+//		alert('TimeOut over');
+//	}
+//};
+//heightField.addEventListener('focus', function () {
+//  	heightField.focus();
+// 	count = 0;
+//  	while(count < 1000){
+//  		count += 1;
+ // 		heightField.focus();
+ // 	}
+  //	alert('end');
+//});
 
 heightField.addEventListener('blur', function(e){
 	var rExp  = /[0-9]+(\.[0-9]+)?/; 				// Regualar expression die test voor juiste getallen

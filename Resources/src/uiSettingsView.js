@@ -19,28 +19,7 @@ SettingsWindow.orientationModes = [
 	Titanium.UI.LANDSCAPE_RIGHT
 ];
 
-
-// een lege array die al onze opties zal gaan bevatten
-//var data = [];
-/*
- * 	Data[0] zal een reeks elementen bevatten over de boot eigenschappen
- *	Hiervoor wordt eerst een section aangemaakt.
- *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
- */
-//data[0] = Titanium.UI.createTableViewSection({
-//	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.05),
-//	headerTitle: 'Boot eigenschappen:',
-//	size: 20,
-//	touchEnabled: false
-//});
-
-// Aanmaken van een nieuwe rij voor de hoogte
-var height = Titanium.UI.createView({
-	top: 0,
-	left: 0,
-	width: 'auto',
-	height: 'auto'
-});
+// Aanmaken van extra knopjes indien we op iOS zitten
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	var next = Titanium.UI.createButton({
 	    title : 'Volgende',
@@ -52,6 +31,29 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 	    systemButton : Titanium.UI.iPhone.SystemButton.DONE,
 	});
 }
+
+
+// een lege array die al onze opties zal gaan bevatten
+var data = [];
+/*
+ * 	Data[0] zal een reeks elementen bevatten over de boot eigenschappen
+ *	Hiervoor wordt eerst een section aangemaakt.
+ *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
+ */
+data[0] = Titanium.UI.createTableViewSection({
+	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.05),
+	headerTitle: 'Boot eigenschappen:',
+	size: 20,
+	touchEnabled: false
+});
+
+// Aanmaken van een nieuwe rij voor de hoogte
+var height = Titanium.UI.createTableViewRow({
+	top: 0,
+	left: 0,
+	width: 'auto',
+	height: 'auto'
+});
 
 // Hier een textField aan toevoegen die waar de hoogte ingevoerd kan worden
 var heightField = Titanium.UI.createTextField({
@@ -76,10 +78,10 @@ height.add(Titanium.UI.createLabel({
 	width: 'auto',
 	touchEnabled: false
 }));
-data[0] = height; // Deze rij toevoegen
+data[0].add(height);
 
 // Daarna ook een rij maken om de breedte in te geven
-var width = Titanium.UI.createView({
+var width = Titanium.UI.createTableViewRow({
 	top: 0,
 	left: 0,
 	width: '100%',
@@ -102,11 +104,10 @@ width.add(Titanium.UI.createLabel({
 	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
 	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
 	touchEnabled: false,
-	height: 40,
+	height: 'auto',
 	width: 'auto'
 }));
-// en deze rij toevoegen aan de tabel
-data[1] = width;
+data[0].add(width);
 
 /*
  * 	De tweede secie:
@@ -114,11 +115,19 @@ data[1] = width;
  * 		- Op een type kaart klikken zal deze waarde opslaan en de kaart opnieuw instellen
  */
 // Een nieuwe sectie aanmaken
-//data[1] = Titanium.UI.createTableViewSection({
-//	headerTitle: 'Type kaart:',
-//	touchEnabled: true
-//});
+data[1] = Titanium.UI.createTableViewSection({
+	headerTitle: 'Type kaart:',
+	touchEnabled: true
+});
 // Het type sateliet toevoegen
+var sateliteType = Titanium.UI.createTableViewSection({
+	headerTitle: 'Selecteer type kaart',
+	height: 'auto',
+	top: 0,
+	left: 0,
+	width: 'auto',
+	touchEnabled: true
+})
 var sSatelite = Titanium.UI.createTableViewRow({
 	title: 'Satelliet',
 	className: "row",
@@ -139,28 +148,36 @@ var sHybrid = Titanium.UI.createTableViewRow({
 	hasCheck: false,
 	touchEnabled: false
 	});
+
 // En de verschillende types kaart toevoegen aan de data
-//data[1].add(sSatelite);
-//data[1].add(sMap);
-//data[1].add(sHybrid);
+data[1].add(sSatelite);
+data[1].add(sMap);
+data[1].add(sHybrid);
 
 // De daadwerkelijke tabel creëren
-var settingsTable = Titanium.UI.createScrollView({
-	layout: 'vertical',
+var settingsTable = Titanium.UI.createTableView({
 	top: 0,
-	//children: [height, width],
 	left: 0,
-	//height: 1000,
-	//width: '100%',
-	contentWidth:'auto',
-    contentHeight:'auto'
+	height: Titanium.Platform.displayCaps.platformHeight,
+	width: Titanium.Platform.displayCaps.platformWidth,
+	data:data,
+	//width: 'auto',
+	//showVerticalScrollIndicator: true,
 });
 
-settingsTable.add(height);
-settingsTable.add(width);
-
+var container = Titanium.UI.createScrollView({
+	top: 0,
+	left: 0,
+	layout: 'vertical',
+	contentHeight: 'auto',
+	contentWidth: 'auto',
+	height: 'auto',
+	width: 'auto'
+});
 // include het bestand met alle opties
-//Titanium.include('methods/settings.js');
+Titanium.include('methods/settings.js');
+
 
 // De tabel toevoegen aan de window
-SettingsWindow.add(settingsTable);
+container.add(settingsTable);
+SettingsWindow.add(container);
