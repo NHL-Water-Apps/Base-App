@@ -26,6 +26,20 @@
 	widthField.value = Titanium.App.Properties.getString('width', 0);
 })();
 
+Titanium.Gesture.addEventListener('orientationchange', function () {
+	settingsTable.height = '100%';
+	settingsTable.width = '100%';
+});
+
+(function(){
+	settingsTable.height = '100%';
+	settingsTable.width = '100%';
+})();
+
+SettingsWindow.addEventListener('click', function(){
+	settingsTable.height = '100%';
+	settingsTable.width = '100%';
+});
 
 /*
  * 	 Verschillende functies voor elk type kaart
