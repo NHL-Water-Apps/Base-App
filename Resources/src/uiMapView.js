@@ -4,6 +4,7 @@
 // POI's erop.
 
 // Het maken van de window
+
 var MapWindow = Titanium.UI.createWindow({
 	title: 'Kaart',				// Titel van de window
 	backgroundColor: '#FFFFFF',	// En de achtergrond kleur
@@ -18,7 +19,7 @@ var mountainView = Titanium.Map.createAnnotation({
     subtitle:'Hoogte: 3.25 m',
     image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationRood.png' : '/img/Anotation Android Rood.png',
     animate:true,
-    rightButton: Titanium.Platform.osname === 'android' ? '/img/Annotations.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
+    rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
     myid:1 // Custom property to uniquely identify this annotation.
 });
 
@@ -30,7 +31,7 @@ var mountainView2 = Titanium.Map.createAnnotation({
     subtitle:'Hoogte: 13.15 m',
     image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationGroen.png' : '/img/Anotation Android Groen.png',
     animate:true,
-    rightButton: Titanium.Platform.osname === 'android' ? '/img/Annotations.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
+    rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
     myid:2 // Custom property to uniquely identify this annotation.
 });
 
