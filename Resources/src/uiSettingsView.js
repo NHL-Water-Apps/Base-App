@@ -63,7 +63,7 @@ var heightField = Titanium.UI.createTextField({
 	right: '5%',
 	keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType: Titanium.UI.RETURNKEY_DONE,
-	top: '5%',
+	top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
 	hintText: 'Hoogte',
 	touchEnabled: true,
 	keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0,
@@ -72,7 +72,7 @@ height.add(heightField); 		// toevoegen
 // en een label om aan te geven wat er zou moeten komen te staan
 height.add(Titanium.UI.createLabel({
 	text: 'Hoogte (meters):',
-	top: Titanium.Platform.osname === 'android' ? '35%' : '5%',
+	top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
 	left: '5%',
 	height: 'auto',
 	width: 'auto',
@@ -95,14 +95,14 @@ var widthField = Titanium.UI.createTextField({
 	right: '5%',
 	keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType: Titanium.UI.RETURNKEY_DONE,
-	top: '5%',
+	top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
 	hintText: 'Breedte'
 });
 width.add(widthField); // Deze toevoegen aan de rij
 // En een label toevoegen die zegt wat er zou moeten komen te staan
 width.add(Titanium.UI.createLabel({
 	text: 'Breedte (meters):',
-	top: '35%',
+	top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
 	left: '5%',
 	touchEnabled: false,
 	height: 'auto',

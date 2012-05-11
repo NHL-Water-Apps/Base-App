@@ -54,11 +54,11 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' 
 }
 
 //Zodra hij op de rightButton van de annotation klikt krijg je een alert
-mapView.addEventListener('click', function(e){
+/*mapView.addEventListener('click', function(e){
 	if(e.clicksource === 'rightButton'){
 		alert('vanaf hier ga je naar de Detailpagina');
 	}
-});
+});*/
 
 if(Titanium.Platform.osname === 'android'){
 	searchButton.addEventListener("click", function(){
@@ -71,7 +71,7 @@ if(Titanium.Platform.osname === 'android'){
 	})
 }
 
-/*mapView.addEventListener('click', function(e){
+mapView.addEventListener('click', function(e){
 	if(e.clicksource === 'rightButton')
 	{
 		var windowBrug = Titanium.UI.createWindow({
@@ -85,7 +85,7 @@ if(Titanium.Platform.osname === 'android'){
 		MapTab.open(windowBrug, {animated: true});
 	}
 	
-});*/
+});
 
 //Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt
 searchBarMap.addEventListener('focus', function(){
