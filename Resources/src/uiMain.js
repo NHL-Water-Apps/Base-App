@@ -67,4 +67,3 @@ tabMenu.addTab(ListTab); // de tab met het lijstje
 tabMenu.addTab(SettingsTab); // de tab met de instellingen
 
 tabMenu.open(); // Openen van het menu zodat deze onderaan komt te staan
-

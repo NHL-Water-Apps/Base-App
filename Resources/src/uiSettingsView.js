@@ -42,9 +42,8 @@ var data = [];
  *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
  */
 data[0] = Titanium.UI.createTableViewSection({
-	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.05),
+	top: '5%',
 	headerTitle: 'Boot eigenschappen:',
-	size: 20,
 	touchEnabled: false
 });
 
@@ -53,6 +52,7 @@ var height = Titanium.UI.createTableViewRow({
 	top: 0,
 	left: 0,
 	width: 'auto',
+	selectionStyle: 0,
 	height: 'auto'
 });
 
@@ -64,7 +64,7 @@ var heightField = Titanium.UI.createTextField({
 	right: '5%',
 	keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType: Titanium.UI.RETURNKEY_DONE,
-	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.01),
+	top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
 	hintText: 'Hoogte',
 	touchEnabled: true,
 	keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0,
@@ -73,8 +73,8 @@ height.add(heightField); 		// toevoegen
 // en een label om aan te geven wat er zou moeten komen te staan
 height.add(Titanium.UI.createLabel({
 	text: 'Hoogte (meters):',
-	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
-	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
+	top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
+	left: '5%',
 	height: 'auto',
 	width: 'auto',
 	touchEnabled: false
@@ -87,23 +87,24 @@ var width = Titanium.UI.createTableViewRow({
 	left: 0,
 	width: '100%',
 	height: 'auto',
+	selectionStyle: 0
 });
 // Een textField om de breedte in in te voeren
 var widthField = Titanium.UI.createTextField({
 	height: 'auto',
-	width: Math.round(Titanium.Platform.displayCaps.platformWidth*0.35),
-	right: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
+	width: '35%',
+	right: '5%',
 	keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType: Titanium.UI.RETURNKEY_DONE,
-	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.01),
+	top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
 	hintText: 'Breedte'
 });
 width.add(widthField); // Deze toevoegen aan de rij
 // En een label toevoegen die zegt wat er zou moeten komen te staan
 width.add(Titanium.UI.createLabel({
 	text: 'Breedte (meters):',
-	top: Math.round(Titanium.Platform.displayCaps.platformHeight*0.035),
-	left: Math.round(Titanium.Platform.displayCaps.platformWidth*0.05),
+	top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
+	left: '5%',
 	touchEnabled: false,
 	height: 'auto',
 	width: 'auto'
@@ -165,9 +166,10 @@ data[1].add(sMap);
 var settingsTable = Titanium.UI.createTableView({
 	top: 0,
 	left: 0,
-	height: Titanium.Platform.displayCaps.platformHeight,
-	width: Titanium.Platform.displayCaps.platformWidth,
+	height: '100%',
+	width: '100%',
 	data:data,
+	style: Titanium.UI.iPhone.TableViewStyle.GROUPED
 	//width: 'auto',
 	//showVerticalScrollIndicator: true,
 });
@@ -181,10 +183,10 @@ var container = Titanium.UI.createScrollView({
 	height: '100%',
 	width: '100%'
 });
-// include het bestand met alle opties
-Titanium.include('methods/settings.js');
-
 
 // De tabel toevoegen aan de window
 container.add(settingsTable);
 SettingsWindow.add(container);
+
+// include het bestand met alle opties
+Titanium.include('methods/settings.js');
