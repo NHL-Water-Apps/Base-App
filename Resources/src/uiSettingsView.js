@@ -35,6 +35,7 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 
 // een lege array die al onze opties zal gaan bevatten
 var data = [];
+
 /*
  * 	Data[0] zal een reeks elementen bevatten over de boot eigenschappen
  *	Hiervoor wordt eerst een section aangemaakt.
@@ -141,18 +142,24 @@ var sMap = Titanium.UI.createTableViewRow({
 	hasCheck: false,
 	touchEnabled: false
 	});
-// het type hybride toevoegen
-var sHybrid = Titanium.UI.createTableViewRow({
-	title: 'Hybride',
-	className: "row",
-	hasCheck: false,
-	touchEnabled: false
-	});
+	
+// 	Omdat op android het type hybride niet wordt ondersteund
+// 	geven we deze alleen als het niet op android is
+if(Titanium.Platform.osname !== 'android'){
+	// het type hybride toevoegen
+	var sHybrid = Titanium.UI.createTableViewRow({
+		title: 'Hybride',
+		className: "row",
+		hasCheck: false,
+		touchEnabled: false
+		});
+	data[1].add(sHybrid);
+}
 
 // En de verschillende types kaart toevoegen aan de data
 data[1].add(sSatelite);
 data[1].add(sMap);
-data[1].add(sHybrid);
+
 
 // De daadwerkelijke tabel creëren
 var settingsTable = Titanium.UI.createTableView({
@@ -171,8 +178,8 @@ var container = Titanium.UI.createScrollView({
 	layout: 'vertical',
 	contentHeight: 'auto',
 	contentWidth: 'auto',
-	height: 'auto',
-	width: 'auto'
+	height: '100%',
+	width: '100%'
 });
 // include het bestand met alle opties
 Titanium.include('methods/settings.js');

@@ -1,12 +1,24 @@
 /*
- * Dit bestand zal alle methodes bevatten zoals gebruikt bij settings
- * oa.:
+ * 	Dit bestand zal alle methodes bevatten zoals gebruikt bij settings
+ * 	oa.:
  * 		- inlezen van opgeslagen waarden
  * 		- waarden opslaan
  * 		- eventhandelers voor knoppen en tekstvelden
  */
 
-// Functie voor het inladen van opgeslagen waarden
+/*
+ * 	Deze functie zal het inladen van alle opgeslagen waarden afhandelen.
+ * 
+ * 	Het laad eerst het type kaart in:
+ * 		- Kijken of dit type een valide kaart type is
+ * 		- Indien deze laden
+ * 			anders het standaardType kaart laden en dit opslaan
+ * 
+ * 	Daarna laadt hij de breedte en hoogte in,
+ * 		indien dit niet opgeslagen staat komt er een null (leeg)
+ * 		te staan.
+ * 
+ */
 (function(){
 	// Ophalen van de opgeslagen waarde
 	var mapType = Titanium.App.Properties.getString('mapType', 'map');
@@ -22,8 +34,8 @@
 	else { sHybrid.hasCheck = true; mapView.mapType = Titanium.Map.HYBRID_TYPE; } // Niet met een else if omdat er aan het begin al gechecked wordt
 
 	// Hoogte van een boot ophalen en in het tekstvakje zetten
-	heightField.value = Titanium.App.Properties.getString('height', 0);
-	widthField.value = Titanium.App.Properties.getString('width', 0);
+	heightField.value = Titanium.App.Properties.getString('height', null);
+	widthField.value = Titanium.App.Properties.getString('width', null);
 })();
 
 
@@ -34,27 +46,32 @@
  * 		- De map opnieuw instellen zodat deze de juiste type kaart gebruikt
  */
 sMap.addEventListener('click', function(){
-	sMap.hasCheck = true;
-	sSatelite.hasCheck = false;
-	sHybrid.hasCheck = false;
-	mapView.mapType = Titanium.Map.STANDARD_TYPE;
+	sMap.hasCheck = true;					// De juiste aanvinken
+	sSatelite.hasCheck = false;				// De rest uitvinken
+	if(Titanium.Platform.osname !== 'android'){	// Dit omdat deze het niet doet op android
+		sHybrid.hasCheck = false;			
+	}
+	mapView.mapType = Titanium.Map.STANDARD_TYPE,
 	Titanium.App.Properties.setString('mapType', 'map');
-});
-sHybrid.addEventListener('click', function(){
-	sMap.hasCheck = false;
-	sSatelite.hasCheck = false;
-	sHybrid.hasCheck = true;
-	mapView.mapType = Titanium.Map.HYBRID_TYPE;
-	Titanium.App.Properties.setString('mapType', 'hybrid');
 });
 sSatelite.addEventListener('click', function(){
 	sMap.hasCheck = false;
 	sSatelite.hasCheck = true;
-	sHybrid.hasCheck = false;
+	if(Titanium.Platform.osname !== 'android'){
+		sHybrid.hasCheck = false;
+	}
 	mapView.mapType = Titanium.Map.SATELLITE_TYPE;
 	Titanium.App.Properties.setString('mapType', 'satelite');
 });
-
+if(Titanium.Platform.osname !== 'android'){
+	sHybrid.addEventListener('click', function(){
+		sMap.hasCheck = false;
+		sSatelite.hasCheck = false;
+		sHybrid.hasCheck = true;
+		mapView.mapType = Titanium.Map.HYBRID_TYPE;
+		Titanium.App.Properties.setString('mapType', 'hybrid');
+	});
+}
 
 /*
  * 	Een functie die zal kijken naar invoer in het hoogteveld en breedteveld
@@ -66,28 +83,14 @@ SettingsWindow.addEventListener('click', function(){
 	heightField.blur();
 });
 
-// Eerste poging voor workaround
-//function keepFocus(field, count){
-//	field.focus();
-//	if(count < 1000){ 
-//		setTimeout(function(){
-//			keepFocus(field, count + 1)
-//		}, 10);	 
-//	}
-//	else{
-//		alert('TimeOut over');
-//	}
-//};
-//heightField.addEventListener('focus', function () {
-//  	heightField.focus();
-// 	count = 0;
-//  	while(count < 1000){
-//  		count += 1;
- // 		heightField.focus();
- // 	}
-  //	alert('end');
-//});
-
+/*
+ * Twee functies die zullen kijken of de textvelden 'gedeselecteerd' worden, idien:
+ * 		- Controle of het ingevoerde valid is
+ * 		- Indien deze waarde opslaan,
+ * 			anders zal gekeken worden of er een valid iets in zat
+ * 			dit zal dan opgeslagen worden en weergegeven worden in
+ * 			het tekstvak
+ */
 heightField.addEventListener('blur', function(e){
 	var rExp  = /[0-9]+(\.[0-9]+)?/; 				// Regualar expression die test voor juiste getallen
 	if(heightField.value === '' || rExp.test(heightField.value)) // kijken of er een juist iets is ingevuld
@@ -99,8 +102,11 @@ heightField.addEventListener('blur', function(e){
 			heightField.value = temp[0];			// deze waarde ook weer terug zetten
 		}
 	}
+	else
+	{
+		heightField.color = 'red';
+	}
 });
-
 widthField.addEventListener('blur', function(e){
 	var rExp  = /[0-9]+(\.[0-9]+)?/; 				// Regualar expression die test voor juiste getallen
 	if(widthField.value === '' || rExp.test(widthField.value)) // kijken of er een juist iets is ingevuld
@@ -111,5 +117,8 @@ widthField.addEventListener('blur', function(e){
 			Titanium.App.Properties.setString('width', temp[0]); // anders het eerste getal uit de regular expression opslaan
 			widthField.value = temp[0];				// deze waarde ook weer terug zetten
 		}
+	}
+	else{
+		widthField.color = 'red';
 	}
 });
