@@ -71,9 +71,21 @@ if(Titanium.Platform.osname === 'android'){
 	})
 }
 
-MapWindow.addEventListener('', function(){
+/*mapView.addEventListener('click', function(e){
+	if(e.clicksource === 'rightButton')
+	{
+		var windowBrug = Titanium.UI.createWindow({
+			title: e.title,
+			backgroundColor: "#FFF",
+			url: '/src/uiDetailView.js',
+			navBarHidden: false,
+			tabBarHidden: true
+		});
+		
+		MapTab.open(windowBrug, {animated: true});
+	}
 	
-});
+});*/
 
 //Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt
 searchBarMap.addEventListener('focus', function(){
