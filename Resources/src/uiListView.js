@@ -9,17 +9,10 @@ var ListWindow = Titanium.UI.createWindow({
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
 
-var data = [
-    {title:"Lopersbrug 1", description:"De langste brug ter wereld", js:"'Detail.js'"},
-    {title:"Vrachtwagenbrug 2,5", description:"De hoogste brug ter wereld", js:"'Detail.js'"},
-    {title:"Allesbrug 3", description:"Een brug die sterk is"},
-    {title:"Autobrug 4", description:"Een brug onder de grond"},
-    {title:"Fietsbrug 5", description:"Nog een brug"}
-];  //random data
-
-data.sort(sortName);  //sorteren van de data met de methode sortName
+Titanium.include('Dummydata.js');  //data inladen
+data.sort(sortName);  //sorteren van de data
  
-function sortName(thisObject,thatObject) {   //op naam sorteren
+function sortName(thisObject,thatObject) {     //sorteerfunctie
     if (thisObject.title > thatObject.title)
     {
         return 1;
@@ -32,21 +25,28 @@ function sortName(thisObject,thatObject) {   //op naam sorteren
   }
 
 
-var table = Titanium.UI.createTableView({data:data,  //lijst met searchbar
+var table = Titanium.UI.createTableView({data:data,       //list inclusief zoekveld
 			search: Titanium.UI.createSearchBar(
-			{barColor:'#FFF',  //kleur
-   			height:43, //hoogte
-   			hintText:'U zoekt..', //hinttekst
+			{barColor:'#000000',    //zwarte kleur voor zoekbar
+   			height:55,
+   			hintText:'U zoekt..',  //hulptekst
    			top:0,
-			filterAttribute:'title'  //filteren op titel
+			filterAttribute:'title'  //filteren op title wanneer er iets ingevoerd wordt
 			})});
-table.addEventListener('click', function(e)
-{
-
-		ListWindow.open(MapWindow, {animated:true});	
-});
-
+table.addEventListener('click', function(e)   //eventlistener
+{	
+	 var DetailView = Titanium.UI.createWindow({ //aanmaken nieuw window
+	 	title: e.rowData.title,  //titel nieuwe window
+	 	dataToPass: e.rowData.PICTURE,  //data versturen naar detailscherm
+	 	backgroundColor: '#FFF',  //achtergrondkleur
+	 	url:'src/uiDetailView.js',  //url van pagina is uiDetailView.js
+}); 
+		
+		ListTab.open(DetailView, {animated: true});	//nieuwe window openenen
+}
+)
 ListWindow.add(table);
+
 
 //De orientatiemodus voor de verschillende platformen
 ListWindow.orientationModes = [
