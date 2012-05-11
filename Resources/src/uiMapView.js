@@ -5,7 +5,7 @@
 
 // Het maken van de window
 var MapWindow = Titanium.UI.createWindow({
-	title: 'Zoeken',				// Titel van de window
+	title: 'Kaart',				// Titel van de window
 	backgroundColor: '#FFFFFF',	// En de achtergrond kleur
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
@@ -14,9 +14,9 @@ var MapWindow = Titanium.UI.createWindow({
 var mountainView = Titanium.Map.createAnnotation({
     latitude:53.206547,
     longitude:5.801554,
-    title:"VrouwenpoortBrug",
+    title:'VrouwenpoortBrug',
     subtitle:'Hoogte: 3.25 m',
-    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationRood.png' : '/img/Anotation Android Groen.png',
+    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationRood.png' : '/img/Anotation Android Rood.png',
     animate:true,
     rightButton: Titanium.Platform.osname === 'android' ? '/img/Annotations.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
     myid:1 // Custom property to uniquely identify this annotation.
@@ -26,9 +26,9 @@ var mountainView = Titanium.Map.createAnnotation({
 var mountainView2 = Titanium.Map.createAnnotation({
     latitude:53.208547,
     longitude:5.803554,
-    title:"allesandersBrug",
+    title:'allesandersBrug',
     subtitle:'Hoogte: 13.15 m',
-   image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationGroen.png' : '/img/Anotation Android Groen.png',
+    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationGroen.png' : '/img/Anotation Android Groen.png',
     animate:true,
     rightButton: Titanium.Platform.osname === 'android' ? '/img/Annotations.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
     myid:2 // Custom property to uniquely identify this annotation.
