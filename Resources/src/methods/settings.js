@@ -48,10 +48,7 @@ Titanium.Gesture.addEventListener('orientationchange', function () {
 	settingsTable.width = '100%';
 })();
 
-SettingsWindow.addEventListener('click', function(){
-	settingsTable.height = '100%';
-	settingsTable.width = '100%';
-});
+
 
 /*
  * 	 Verschillende functies voor elk type kaart
@@ -105,34 +102,29 @@ SettingsWindow.addEventListener('click', function(){
  * 			dit zal dan opgeslagen worden en weergegeven worden in
  * 			het tekstvak
  */
-heightField.addEventListener('blur', function(e){
-	var rExp  = /[0-9]+(\.[0-9]+)?/; 				// Regualar expression die test voor juiste getallen
-	if(heightField.value === '' || rExp.test(heightField.value)) // kijken of er een juist iets is ingevuld
-	{
-		var temp = rExp.exec(heightField.value);	// kijken of er een getal uit de regular expression komt
-		if(heightField.value === '') { Titanium.App.Properties.setString( 'height', null); }	// indien het leeg is dan 0 oplsaan
-		else {
-			Titanium.App.Properties.setString('height', temp[0]);	// anders het eerste getal uit de regular expression opslaan
-			heightField.value = temp[0];			// deze waarde ook weer terug zetten
-		}
-	}
-	else
-	{
-		heightField.color = 'red';
-	}
+
+heightField.addEventListener('blur', function(){
+	checkField(heightField, 'height');
 });
-widthField.addEventListener('blur', function(e){
-	var rExp  = /[0-9]+(\.[0-9]+)?/; 				// Regualar expression die test voor juiste getallen
-	if(widthField.value === '' || rExp.test(widthField.value)) // kijken of er een juist iets is ingevuld
+widthField.addEventListener('blur', function(){
+	checkField(widthField, 'width');
+});
+
+/*
+ * 	Comments pls :<
+ */
+function checkField(fieldName, saveName){
+	var rExp  = /[0-9]+(\.[0-9]+)?/; 							// Regualar expression die test voor juiste getallen
+	if(fieldName.value === '' || rExp.test(fieldName.value)) 	// kijken of er een juist iets is ingevuld
 	{
-		var temp = rExp.exec(widthField.value); 	// kijken of er een getal uit de regular expression komt
-		if(widthField.value === '') { Titanium.App.Properties.setString( 'width', null); } 
+		var temp = rExp.exec(widthField.value); 				// kijken of er een getal uit de regular expression komt
+		if(fieldName.value === '') { Titanium.App.Properties.setString( saveName, null); } 
 		else {
-			Titanium.App.Properties.setString('width', temp[0]); // anders het eerste getal uit de regular expression opslaan
-			widthField.value = temp[0];				// deze waarde ook weer terug zetten
+			Titanium.App.Properties.setString(saveName, temp[0]); // anders het eerste getal uit de regular expression opslaan
+			fieldName.value = temp[0];							// deze waarde ook weer terug zetten
 		}
 	}
 	else{
-		widthField.color = 'red';
+		fieldName.color = 'red';
 	}
-});
+}

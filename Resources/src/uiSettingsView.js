@@ -170,8 +170,6 @@ var settingsTable = Titanium.UI.createTableView({
 	width: '100%',
 	data:data,
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED
-	//width: 'auto',
-	//showVerticalScrollIndicator: true,
 });
 
 var container = Titanium.UI.createScrollView({
