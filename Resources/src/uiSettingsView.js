@@ -7,14 +7,14 @@
  * 			updaten van je positie in te stellen
  */
 
-// Het maken van de window
+// 	Het maken van de window
 var SettingsWindow = Titanium.UI.createWindow({
 	title: 'Opties',		// Titel van de window
 	backgroundColor: '#000000',	// En de achtergrond kleur
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
 
-//De orientatiemodus voor de verschillende platformen
+//	De orientatiemodus voor de verschillende platformen
 SettingsWindow.orientationModes = [
 	Titanium.UI.PORTRAIT,
 	Titanium.UI.UPSIDE_PORTRAIT,
@@ -22,7 +22,7 @@ SettingsWindow.orientationModes = [
 	Titanium.UI.LANDSCAPE_RIGHT
 ];
 
-// Aanmaken van extra knopjes indien we op iOS zitten
+// 	Aanmaken van extra knopjes indien we op iOS zitten
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	var next = Titanium.UI.createButton({
 	    title : 'Volgende',
@@ -36,7 +36,7 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 }
 
 
-// een lege array die al onze opties zal gaan bevatten
+// 	Een lege array die al onze opties zal gaan bevatten
 var data = [];
 
 /*
@@ -44,13 +44,14 @@ var data = [];
  *	Hiervoor wordt eerst een section aangemaakt.
  *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
  */
+// 	De sectie die als groepering zal dienen voor alle booteigenschappen
 data[0] = Titanium.UI.createTableViewSection({
 	top: '5%',
 	headerTitle: 'Boot eigenschappen:',
 	touchEnabled: false
 });
 
-// Aanmaken van een nieuwe rij voor de hoogte
+// 	Aanmaken van een nieuwe rij voor de hoogte
 var height = Titanium.UI.createTableViewRow({
 	top: 0,
 	left: 0,
@@ -59,7 +60,11 @@ var height = Titanium.UI.createTableViewRow({
 	height: 'auto'
 });
 
-// Hier een textField aan toevoegen die waar de hoogte ingevoerd kan worden
+/*
+ * 	De rij hoogte zal een textField krijgen (heightField)
+ * 	Hierin kunnen gebruikers de hoogte van hun boot ingeven
+ * 		zodat de app hier rekening mee kan houden (brughoogte)
+ */
 var heightField = Titanium.UI.createTextField({
 	height: 'auto',
 	width: '35%',
@@ -73,7 +78,8 @@ var heightField = Titanium.UI.createTextField({
 	keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0
 });
 height.add(heightField); // toevoegen aan de rij
-// en een label om aan te geven wat er zou moeten komen te staan
+// 	En een label aanmaken wat aangeeft wat er in deze rij dient te worden ingevoerd
+// 	Dit in verband met als je iets invuld de hintText niet meer zichtbaar is
 height.add(Titanium.UI.createLabel({
 	text: 'Hoogte (meters):',
 	top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
@@ -82,7 +88,7 @@ height.add(Titanium.UI.createLabel({
 	width: 'auto',
 	touchEnabled: false
 }));
-data[0].add(height);
+data[0].add(height); // Het geheel toevoegen aan de sectie (booteigenschappen)
 
 // Daarna ook een rij maken om de breedte in te geven
 var width = Titanium.UI.createTableViewRow({
@@ -92,7 +98,11 @@ var width = Titanium.UI.createTableViewRow({
 	height: 'auto',
 	selectionStyle: 0
 });
-// Een textField om de breedte in in te voeren
+/*
+ * 	De rij breedte zal een textField krijgen (widthField)
+ * 	Hierin kunnen gebruikers de breedte van hun boot ingeven
+ * 		zodat de app hier rekening mee kan houden (brug breedte of anders)
+ */
 var widthField = Titanium.UI.createTextField({
 	height: 'auto',
 	width: '35%',
@@ -104,7 +114,8 @@ var widthField = Titanium.UI.createTextField({
 	hintText: 'Breedte'
 });
 width.add(widthField); // Deze toevoegen aan de rij
-// En een label toevoegen die zegt wat er zou moeten komen te staan
+// 	En een label toevoegen die zegt wat er zou moeten komen te staan
+//	Dit omdat als we iets ingevuld hebben we de hintText niet meer zien
 width.add(Titanium.UI.createLabel({
 	text: 'Breedte (meters):',
 	top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
@@ -113,7 +124,7 @@ width.add(Titanium.UI.createLabel({
 	height: 'auto',
 	width: 'auto'
 }));
-data[0].add(width);
+data[0].add(width);	// Het geheel toevoegen aan de booteigenschappen
 
 /*
  * 	De tweede secie:
@@ -170,7 +181,8 @@ data[1].add(sMap);
 var settingsTable = Titanium.UI.createTableView({
 	top: 0,
 	left: 0,
-	height: '100%',
+	// 	Workaround voor het niet laten zien van de tabel
+	height: Titanium.Gesture.isPortrait ? Titanium.Platform.displayCaps.platformHeight : Titanium.Platform.displayCaps.platformWidth,
 	width: '100%',
 	data:data,
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED

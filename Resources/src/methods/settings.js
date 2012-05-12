@@ -81,9 +81,8 @@ if(Titanium.Platform.osname !== 'android'){
 }
 
 
-/*
- * 	Kopelen van de controle functies aan de inputvelden
- */
+
+//	Kopelen van de controle functies aan de inputvelden
 heightField.addEventListener('blur', function(){
 	checkField(heightField, 'height');
 });
@@ -107,7 +106,7 @@ function checkField(fieldName, saveName){
 	{
 		var temp = rExp.exec(widthField.value); 				// kijken of er een getal uit de regular expression komt
 		if(fieldName.value === '') { Titanium.App.Properties.setString( saveName, null); } 
-		else if(temp !== null && temp.length > 0){
+		else if(temp !== null && temp.length > 0){				// kleine controle (gaf een error zonder vreemd genoeg)
 			Titanium.App.Properties.setString(saveName, temp[0]); // anders het eerste getal uit de regular expression opslaan
 			fieldName.value = temp[0];							 // deze waarde ook weer terug zetten
 			fieldName.color = 'black';							 // de kleur van het tekstvak weer zwart maken	
