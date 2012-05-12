@@ -1,7 +1,10 @@
 /*
- * 	de instellingen van de app bevatten en de 
- *	mogelijkheid bieden om te kunnen kiezen tussen types
- * 	kaart en het invoeren van het formaat van de boot
+ *	Dit bestand zal alle instellingen bevatten:
+ *		- Mogelijkheid bieden om te kunnen kiezen tussen types
+ * 			kaart
+ * 		- Het invoeren van het formaat van de boot
+ * 		- De mogelijkheid bieden om de frequentie van het
+ * 			updaten van je positie in te stellen
  */
 
 // Het maken van de window
@@ -67,9 +70,9 @@ var heightField = Titanium.UI.createTextField({
 	top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
 	hintText: 'Hoogte',
 	touchEnabled: true,
-	keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0,
+	keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0
 });
-height.add(heightField); 		// toevoegen
+height.add(heightField); // toevoegen aan de rij
 // en een label om aan te geven wat er zou moeten komen te staan
 height.add(Titanium.UI.createLabel({
 	text: 'Hoogte (meters):',
@@ -97,6 +100,7 @@ var widthField = Titanium.UI.createTextField({
 	keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 	returnKeyType: Titanium.UI.RETURNKEY_DONE,
 	top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
+	keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0,
 	hintText: 'Breedte'
 });
 width.add(widthField); // Deze toevoegen aan de rij
@@ -172,6 +176,11 @@ var settingsTable = Titanium.UI.createTableView({
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED
 });
 
+/*
+ * 	Een scrollview waarin de de tableview gaan stoppen
+ * 		dit zodat we de textvelden goed kunnen selecteren
+ * 		op android(bug)
+ */
 var container = Titanium.UI.createScrollView({
 	top: 0,
 	left: 0,
@@ -182,9 +191,9 @@ var container = Titanium.UI.createScrollView({
 	width: '100%'
 });
 
-// De tabel toevoegen aan de window
-container.add(settingsTable);
-SettingsWindow.add(container);
+// Alles toevoegen aan de window
+container.add(settingsTable); // eerst de tabel aan de container toevoegen
+SettingsWindow.add(container); // Dan de container aan het scherm toevoegen
 
 // include het bestand met alle opties
 Titanium.include('methods/settings.js');

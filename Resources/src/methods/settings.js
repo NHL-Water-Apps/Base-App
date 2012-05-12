@@ -43,12 +43,6 @@ Titanium.Gesture.addEventListener('orientationchange', function () {
 	settingsTable.width = '100%';
 });
 
-(function(){
-	settingsTable.height = '100%';
-	settingsTable.width = '100%';
-})();
-
-
 
 /*
  * 	 Verschillende functies voor elk type kaart
@@ -62,9 +56,10 @@ sMap.addEventListener('click', function(){
 	if(Titanium.Platform.osname !== 'android'){	// Dit omdat deze het niet doet op android
 		sHybrid.hasCheck = false;			
 	}
-	mapView.mapType = Titanium.Map.STANDARD_TYPE,
-	Titanium.App.Properties.setString('mapType', 'map');
+	mapView.mapType = Titanium.Map.STANDARD_TYPE, // juiste kaart type instellen
+	Titanium.App.Properties.setString('mapType', 'map'); // en opslaan
 });
+// idem
 sSatelite.addEventListener('click', function(){
 	sMap.hasCheck = false;
 	sSatelite.hasCheck = true;
@@ -74,6 +69,7 @@ sSatelite.addEventListener('click', function(){
 	mapView.mapType = Titanium.Map.SATELLITE_TYPE;
 	Titanium.App.Properties.setString('mapType', 'satelite');
 });
+// idem maar omdat dit kaart type het niet doet op android staat er een if voor
 if(Titanium.Platform.osname !== 'android'){
 	sHybrid.addEventListener('click', function(){
 		sMap.hasCheck = false;
@@ -84,25 +80,10 @@ if(Titanium.Platform.osname !== 'android'){
 	});
 }
 
-/*
- * 	Een functie die zal kijken naar invoer in het hoogteveld en breedteveld
- * 		- Hij zal controleren of dit om een getal gaat
- * 		- Indien goed, dan opslaan anders een alert opgooien en resetten
- */
-SettingsWindow.addEventListener('click', function(){
-	widthField.blur();
-	heightField.blur();
-});
 
 /*
- * Twee functies die zullen kijken of de textvelden 'gedeselecteerd' worden, idien:
- * 		- Controle of het ingevoerde valid is
- * 		- Indien deze waarde opslaan,
- * 			anders zal gekeken worden of er een valid iets in zat
- * 			dit zal dan opgeslagen worden en weergegeven worden in
- * 			het tekstvak
+ * 	Kopelen van de controle functies aan de inputvelden
  */
-
 heightField.addEventListener('blur', function(){
 	checkField(heightField, 'height');
 });
@@ -111,7 +92,14 @@ widthField.addEventListener('blur', function(){
 });
 
 /*
- * 	Comments pls :<
+ * Een functies die zullen kijken of een textvelden 'gedeselecteerd' word, idien:
+ * 		- Controle of het ingevoerde valid is
+ * 		- Indien deze waarde opslaan,
+ * 			anders zal gekeken worden of er een valid iets in zat
+ * 			dit zal dan opgeslagen worden en weergegeven worden in
+ * 			het tekstvak
+ * 		- Als er niets valids gevonden is in het textvak dan zal
+ * 			de text in het textvak rood gemaakt worden
  */
 function checkField(fieldName, saveName){
 	var rExp  = /[0-9]+(\.[0-9]+)?/; 							// Regualar expression die test voor juiste getallen
@@ -119,12 +107,13 @@ function checkField(fieldName, saveName){
 	{
 		var temp = rExp.exec(widthField.value); 				// kijken of er een getal uit de regular expression komt
 		if(fieldName.value === '') { Titanium.App.Properties.setString( saveName, null); } 
-		else {
+		else if(temp !== null && temp.length > 0){
 			Titanium.App.Properties.setString(saveName, temp[0]); // anders het eerste getal uit de regular expression opslaan
-			fieldName.value = temp[0];							// deze waarde ook weer terug zetten
+			fieldName.value = temp[0];							 // deze waarde ook weer terug zetten
+			fieldName.color = 'black';							 // de kleur van het tekstvak weer zwart maken	
 		}
 	}
-	else{
-		fieldName.color = 'red';
+	else{														// indien de invoer niet valid is
+		fieldName.color = 'red';								// het textveld een andere kleur geven
 	}
 }
