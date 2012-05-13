@@ -23,6 +23,7 @@ SettingsWindow.orientationModes = [
 ];
 
 // 	Aanmaken van extra knopjes indien we op iOS zitten
+// 	Moet nog functionaliteit aan gekoppeld worden
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	var next = Titanium.UI.createButton({
 	    title : 'Volgende',
@@ -98,6 +99,7 @@ var width = Titanium.UI.createTableViewRow({
 	height: 'auto',
 	selectionStyle: 0
 });
+
 /*
  * 	De rij breedte zal een textField krijgen (widthField)
  * 	Hierin kunnen gebruikers de breedte van hun boot ingeven
@@ -136,15 +138,8 @@ data[1] = Titanium.UI.createTableViewSection({
 	headerTitle: 'Type kaart:',
 	touchEnabled: true
 });
+
 // Het type sateliet toevoegen
-var sateliteType = Titanium.UI.createTableViewSection({
-	headerTitle: 'Selecteer type kaart',
-	height: 'auto',
-	top: 0,
-	left: 0,
-	width: 'auto',
-	touchEnabled: true
-})
 var sSatelite = Titanium.UI.createTableViewRow({
 	title: 'Satelliet',
 	className: "row",
@@ -169,6 +164,8 @@ if(Titanium.Platform.osname !== 'android'){
 		hasCheck: false,
 		touchEnabled: false
 		});
+	// Hybrid voegen we hier dan ook gelijk toe
+	// Dat scheelt weer een if statement
 	data[1].add(sHybrid);
 }
 

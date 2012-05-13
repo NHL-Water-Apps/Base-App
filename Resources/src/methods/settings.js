@@ -81,7 +81,6 @@ if(Titanium.Platform.osname !== 'android'){
 }
 
 
-
 //	Kopelen van de controle functies aan de inputvelden
 heightField.addEventListener('blur', function(){
 	checkField(heightField, 'height');
@@ -99,6 +98,10 @@ widthField.addEventListener('blur', function(){
  * 			het tekstvak
  * 		- Als er niets valids gevonden is in het textvak dan zal
  * 			de text in het textvak rood gemaakt worden
+ * 
+ * 	@fieldName: de textField die gecontroleerd dient te worden
+ * 	@saveNam: string, mee te geven naam waarin de waarde (indien juist) zal worden opgeslagen
+ * 				om zo later weer te gebruiken
  */
 function checkField(fieldName, saveName){
 	var rExp  = /[0-9]+(\.[0-9]+)?/; 							// Regualar expression die test voor juiste getallen
