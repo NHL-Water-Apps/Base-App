@@ -106,7 +106,7 @@ if(Titanium.Platform.osname === 'android'){
 var mapButton = Titanium.UI.createButton({
 	title: '',
 	//backgroundColor: 'rgba(0,0,0,0.0)',
-	image: '/img/Groter/LocatieG.png',
+	image: Titanium.Platform.osname === 'android' ? '/img/Groter/LocatieG.png' : '/img/ILocatie.png',
 	right: '3%',
 	bottom: 5,
 	height: 'auto',

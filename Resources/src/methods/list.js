@@ -1,3 +1,3 @@
-//searchBarList.addEventListener('focus', function(){
-//	searchBarList.setShowCancel(false);
-//});
+table.search.addEventListener('focus', function(){
+	table.search.setShowCancel(false);
+});
