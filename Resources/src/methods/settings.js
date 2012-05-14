@@ -34,8 +34,9 @@
 	else { sHybrid.hasCheck = true; mapView.mapType = Titanium.Map.HYBRID_TYPE; } // Niet met een else if omdat er aan het begin al gechecked wordt
 
 	// Hoogte van een boot ophalen en in het tekstvakje zetten
-	heightField.value = Titanium.App.Properties.getString('height', null);
-	widthField.value = Titanium.App.Properties.getString('width', null);
+	// Maar alleen als dit aangegeven staat in de config
+	if(config.showHeight){ heightField.value = Titanium.App.Properties.getString('height', null); }
+	if(config.showWidth){ widthField.value = Titanium.App.Properties.getString('width', null); }
 })();
 
 Titanium.Gesture.addEventListener('orientationchange', function () {
@@ -82,12 +83,19 @@ if(Titanium.Platform.osname !== 'android'){
 
 
 //	Kopelen van de controle functies aan de inputvelden
-heightField.addEventListener('blur', function(){
-	checkField(heightField, 'height');
-});
-widthField.addEventListener('blur', function(){
-	checkField(widthField, 'width');
-});
+if(config.showHeight)	// indien we deze optie geven
+{	
+	heightField.addEventListener('blur', function(){
+		checkField(heightField, 'height');
+	});
+}
+// indien we een breedte willen weergeven
+if(config.showWidth)
+{
+	widthField.addEventListener('blur', function(){
+		checkField(widthField, 'width');
+	});
+}
 
 /*
  * Een functies die zullen kijken of een textvelden 'gedeselecteerd' word, idien:
