@@ -26,10 +26,9 @@ function sortName(thisObject,thatObject) {     //sorteerfunctie
     return 0;
   }
 
-
 var table = Titanium.UI.createTableView({data:data,       //list inclusief zoekveld
 			search: Titanium.UI.createSearchBar(
-			{barColor:'#000000',    //zwarte kleur voor zoekbar
+			{barColor: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '#000000' : '#FFF',    //kleur voor zoekbar
    			height:55,
    			hintText:'U zoekt..',  //hulptekst
    			top:0,
