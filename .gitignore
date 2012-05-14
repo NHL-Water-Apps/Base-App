@@ -9,3 +9,7 @@ build/iphone/Classes/ApplicationRouting.m
 
 build/iphone/Info.plist
 .DS_Store
+
+Resources/src/methods/map.js
+
+Resources/src/methods/map.js
