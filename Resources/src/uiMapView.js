@@ -18,7 +18,7 @@ var mountainView = Titanium.Map.createAnnotation({
     longitude:5.801554,
     title:'VrouwenpoortBrug',
     subtitle:'Hoogte: 3.25 m',
-    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationRood.png' : '/img/Anotation Android Rood.png',
+    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationRood.png' : '/img/Groter/Anotation Android Rood G.png',
     animate:true,
     rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
     myid:1 // Custom property to uniquely identify this annotation.
@@ -30,7 +30,7 @@ var mountainView2 = Titanium.Map.createAnnotation({
     longitude:5.803554,
     title:'allesandersBrug',
     subtitle:'Hoogte: 13.15 m',
-    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationGroen.png' : '/img/Anotation Android Groen.png',
+    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationGroen.png' : '/img/Groter/Anotation Android Groen G.png',
     animate:true,
     rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
     myid:2 // Custom property to uniquely identify this annotation.
@@ -75,9 +75,9 @@ if(Titanium.Platform.osname === 'android'){
 	
 	var searchButton = Titanium.UI.createButton({
 		title: '',
-		image: '/img/Zoek.png',
-		right: '13%',
-		bottom: 5,
+		image: '/img/Groter/ZoekG.png',
+		right: '2%',
+		bottom: 50,
 		height: 'auto',
 		width: 'auto'
 	});
@@ -86,11 +86,11 @@ if(Titanium.Platform.osname === 'android'){
 var mapButton = Titanium.UI.createButton({
 	title: '',
 	//backgroundColor: 'rgba(0,0,0,0.0)',
-	image: '/img/Locatie.png',
-	right: '2%',
+	image: '/img/Groter/LocatieG.png',
+	right: '3%',
 	bottom: 5,
-	height: 32,
-	width: 32
+	height: 'auto',
+	width: 'auto'
 });
 
 //De orientatiemodus voor de verschillende platformen
