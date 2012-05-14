@@ -1,11 +1,7 @@
 //Een event voor het bepalen van de huidge locatie
 	// Self exectuting functie voor het bepalen van je huidige positie op de kaart
 	// Als er geen type kaart geselecteerd is zal er voor de stratenkaart gekozen worden
-<<<<<<< HEAD
 function ShowOnMap(){
-=======
-(function(){
->>>>>>> locatie poging
 	if (Ti.Geolocation.locationServicesEnabled) {
 	    Titanium.Geolocation.purpose = 'Get Current Location';
 	    Titanium.Geolocation.getCurrentPosition(function(e) {
@@ -26,7 +22,6 @@ function ShowOnMap(){
 	} else {
 	    alert(config.geenGPS);
 	}
-<<<<<<< HEAD
 }
 
 (function(){
@@ -37,10 +32,6 @@ function ShowOnMap(){
 mapButton.addEventListener("click", function(){
 	ShowOnMap();
 });
-
-=======
-})();
->>>>>>> locatie poging
 
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){  //if iphone
 mapButton.addEventListener("click", function(){
