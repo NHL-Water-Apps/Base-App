@@ -37,7 +37,7 @@ var mapView = Titanium.Map.createView({
 	animate: true, //hiermee geeft hij een animatie zodra de kaart getoond wordt
 	regionFit: true, //de kaart wordt niet passende gemaakt
 	userLocation: true, //hiemeer haalt hij je huidge positie op en toont hij die op de kaart
-	annotations: annotationsMap //hiermee geeft hij de annotation weer op de kaart
+	annotations: annotationsMap, //hiermee geeft hij de annotation weer op de kaart
 });
 
 
@@ -67,7 +67,6 @@ if(Titanium.Platform.osname === 'android'){
 	
 	//de searchbutton voor android waarmee de searchbar wordt getoggled van visible naar unvisible en vice versa
 	var searchButton = Titanium.UI.createButton({
-		title: '', //de titel van de zoekbutton wordt leeggemaakt
 		image: '/img/Groter/ZoekG.png', //de afbeelding van de button
 		right: '2%', // de positie van de button vanaf de rechterkant
 		bottom: 50, //de positie van de button vanaf de onderkant
@@ -77,7 +76,6 @@ if(Titanium.Platform.osname === 'android'){
 }
 
 var mapButton = Titanium.UI.createButton({
-	//title: '', //de titel van de mapbutton wordt leeggemaakt
 	image: Titanium.Platform.osname === 'android' ? '/img/Groter/LocatieG.png' : '/img/ILocatie.png', //de afbeelding van de mapbutton
 	right: '3%', //de positie van de button vanaf de rechterkant
 	bottom: 5, //de positie van de button vanaf de onderkant

@@ -169,7 +169,7 @@ if(config.showWidth)
  * 		- Op een type kaart klikken zal deze waarde opslaan en de kaart opnieuw instellen
  */
 // Een nieuwe sectie aanmaken
-data[1] = Titanium.UI.createTableViewSection({
+tableData[1] = Titanium.UI.createTableViewSection({
 	headerTitle: 'Kaart eigenschappen:',
 	touchEnabled: true,
 	top: '1%'
