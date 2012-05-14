@@ -209,8 +209,6 @@ if(Titanium.Platform.osname !== 'android'){
 tableData[1].add(sSatelite);
 tableData[1].add(sMap);
 
-
-
 // De daadwerkelijke tabel creëren
 var settingsTable = Titanium.UI.createTableView({
 	top: 0,
