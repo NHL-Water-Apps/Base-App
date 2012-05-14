@@ -34,7 +34,7 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 	    systemButton : Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE,
 	}); 
 
-	var Done = Titanium.UI.createButton({
+	var done = Titanium.UI.createButton({
 		title: config.klaarText,
 	    systemButton : Titanium.UI.iPhone.SystemButton.DONE,
 	});
