@@ -88,7 +88,7 @@ if(config.showHeight)
 		width: '35%',
 		focusable: true,
 		right: '5%',
-		keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
+		keyboardType: Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 		returnKeyType: Titanium.UI.RETURNKEY_DONE,
 		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
 		hintText: config.hoogteHintText,
