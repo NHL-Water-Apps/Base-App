@@ -38,6 +38,12 @@ var config = {
 	volgendeText: 'Volgende',
 	klaarText: 'Done',
 	
+	/*
+	 * 	- - - - - - - - - -
+	 * 		 KAART
+	 * 	- - - - - - - - - -
+	 */
+	geenGPS: 'Schakel alstublieft de Locatievoorziening in.',
 	
 	/*	- - - - - - - - - - 
 	 * 	   INSTELLINGEN
