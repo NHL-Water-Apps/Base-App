@@ -42,6 +42,8 @@ table.addEventListener('click', function(e)   //eventlistener
 	 	dataToPass: e.rowData.PICTURE,  //data versturen naar detailscherm
 	 	backgroundColor: '#FFF',  //achtergrondkleur
 	 	url:'src/uiDetailView.js',  //url van pagina is uiDetailView.js
+	 	navBarHidden: false,
+	 	tabBarHidden: true
 }); 
 		
 		ListTab.open(DetailView, {animated: true});	//nieuwe window openenen
