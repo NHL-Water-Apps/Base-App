@@ -11,10 +11,11 @@ var config = {
 	showHeight: true,
 	// Voor het invoeren van de breedte van de boot
 	showWidth: true,
+	showLoadPicture: true,
 	// Voor het invoeren van de tijd tussen de trail stappen (milliseconden)
 	trailTimeout: 40000, // 40 seconden
 	// Voor het ingeven van hoelang een trail zou blijven staan (milliseconden)
-	trailSaveTime: 300000,
+	trailSaveTime: 300000,	// 5 minuten
 	
 	
 	/*
@@ -43,6 +44,7 @@ var config = {
 	 * 		 KAART
 	 * 	- - - - - - - - - -
 	 */
+	// Wat er in de error message komt idien hij gps aanvraagt
 	geenGPS: 'Schakel alstublieft de Locatievoorziening in.',
 	
 	/*	- - - - - - - - - - 
@@ -67,10 +69,16 @@ var config = {
 	// Knopje kaart
 	map: 'Kaart',
 	
+	// Header van het databebruik
+	dataHeader: 'Datagebruik:',
+	// text achter checkbox van het laden van data
+	laadAfbeeldingText: 'Afbeeldingen laden',
+	
 	/*	- - - - - - - - - - 
 	 * 	   DETAIL
 	 *	- - - - - - - - - -
 	 */ 
+	 // Text weer te geven als er geen foto is
 	 geenFoto: 'Geen foto beschikbaar'
 	 
 };

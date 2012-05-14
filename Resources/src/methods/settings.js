@@ -12,12 +12,7 @@
  * 	Het laad eerst het type kaart in:
  * 		- Kijken of dit type een valide kaart type is
  * 		- Indien deze laden
- * 			anders het standaardType kaart laden en dit opslaan
- * 
- * 	Daarna laadt hij de breedte en hoogte in,
- * 		indien dit niet opgeslagen staat komt er een null (leeg)
- * 		te staan.
- * 
+ * 			anders het standaardType kaart laden en dit opslaan 
  */
 (function(){
 	// Ophalen van de opgeslagen waarde
@@ -32,11 +27,6 @@
 	if(mapType === 'map') { sMap.hasCheck = true; mapView.mapType = Titanium.Map.STANDARD_TYPE;}
 	else if (mapType === 'satelite') { sSatelite.hasCheck = true; mapView.mapType = Titanium.Map.SATELLITE_TYPE; }
 	else { sHybrid.hasCheck = true; mapView.mapType = Titanium.Map.HYBRID_TYPE; } // Niet met een else if omdat er aan het begin al gechecked wordt
-
-	// Hoogte van een boot ophalen en in het tekstvakje zetten
-	// Maar alleen als dit aangegeven staat in de config
-	if(config.showHeight){ heightField.value = Titanium.App.Properties.getString('height', null); }
-	if(config.showWidth){ widthField.value = Titanium.App.Properties.getString('width', null); }
 })();
 
 Titanium.Gesture.addEventListener('orientationchange', function () {
@@ -145,3 +135,11 @@ function checkField(fieldName, saveName){
 		fieldName.color = 'red';								// het textveld een andere kleur geven
 	}
 }
+
+/*
+ * 	Eventlistener toevoegen die kijkt of er op het laden van afbeeldingen switch gedrukt is
+ * 	Indien zo nieuwe waarde opslaan
+ */
+dataSwitch.addEventListener('change', function(){
+	Titanium.App.Properties.setBool('laadData', dataSwitch.value);
+});

@@ -87,6 +87,7 @@ if(config.showHeight)
 		height: 'auto',
 		width: '35%',
 		focusable: true,
+		value: Titanium.App.Properties.getString('height', null),
 		right: '5%',
 		keyboardType: Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 		returnKeyType: Titanium.UI.RETURNKEY_DONE,
@@ -132,6 +133,7 @@ if(config.showWidth)
 		right: '5%',
 		keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 		returnKeyType: Titanium.UI.RETURNKEY_DONE,
+		value: Titanium.App.Properties.getString('width', null),
 		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
 		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, flex, done] : 0,
 		hintText: config.breedteHintText
@@ -151,7 +153,7 @@ if(config.showWidth)
 }
 
 /*
- * 	De tweede secie:
+ * 	De tweede secie(tableData[1]):
  * 		- Deze zal de verschillende types kaarten bevatten
  * 		- Op een type kaart klikken zal deze waarde opslaan en de kaart opnieuw instellen
  */
@@ -196,6 +198,46 @@ if(Titanium.Platform.osname !== 'android'){
 tableData[1].add(sSatelite);
 tableData[1].add(sMap);
 
+/*
+ * 	Opties voor het data gebruik
+ * 		- Laden van afbeeldingen aan of uit
+ */
+if(config.showLoadPicture)
+{
+	// Nieuwe sectie hiervoor maken
+	tableData[2] = Titanium.UI.createTableViewSection({
+		headerTitle: config.dataHeader,
+		touchEnabled: false,
+		top: '1%'
+	});
+	// hier een rij aan toevoegen
+	var dataRow = Titanium.UI.createTableViewRow({
+		top: 0,
+		left: 0,
+		width: 'auto',
+		selectionStyle: 0,
+		height: 'auto'
+	});
+	// En een switch met als style een checkbox
+	var dataSwitch = Titanium.UI.createSwitch({
+		style: Titanium.UI.Android.SWITCH_STYLE_CHECKBOX,
+		value: Titanium.App.Properties.getBool('laadData', false),
+		left: '5%'
+	});
+	dataRow.add(dataSwitch); // toevoegen aan de rij
+	// Een label erbij te indicatie
+	dataRow.add(Titanium.UI.createLabel({
+		text: config.laadAfbeeldingText,
+		top: Titanium.Platform.osname === 'android' ? '35%' : '6%', // voor het uitlijnen
+		left: '23%',
+		touchEnabled: false,
+		height: 'auto',
+		width: 'auto'
+	}));
+	// Geheel toevoegen aan de tabel
+	tableData[2].add(dataRow);
+}
+
 // De daadwerkelijke tabel creëren
 var settingsTable = Titanium.UI.createTableView({
 	top: 0,
@@ -219,6 +261,7 @@ var container = Titanium.UI.createScrollView({
 	top: 0,
 	left: 0,
 	layout: 'vertical',
+	scrollType: 'vertical',
 	contentHeight: 'auto',
 	contentWidth: 'auto',
 	height: '100%',
