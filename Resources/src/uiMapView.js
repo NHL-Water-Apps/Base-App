@@ -12,6 +12,23 @@ var MapWindow = Titanium.UI.createWindow({
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
 
+//hier maakt hij een array aan waarin de annotations worden opgeslagen
+var annotationsMap = [];
+//hiermee loopt hij door de array met data heen
+for(var i = 0; i < data.length; i++){
+	annotationsMap[i] = Titanium.Map.createAnnotation({ //voor elke index maakt hij een annotation aan
+		latitude: data[i].LAT, //de latitude van de brug
+		longitude: data[i].LON, //de longitude van de brug
+		title: data[i].title, //de titel van de brug
+		subtitle: 'H: ' + data[i].HEIGTH + 'm' + '\tB: ' + data[i].WIDTH + 'm', //de hoogte van de brug
+		image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationGroen.png' : '/img/Anotation Android Groen.png',
+		rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
+		animate: true,
+	})
+}
+Titanium.API.info(annotationsMap);
+
+/*
 // Hiermee maak je een annotation op de map
 var mountainView = Titanium.Map.createAnnotation({
     latitude:53.206547,
@@ -35,6 +52,7 @@ var mountainView2 = Titanium.Map.createAnnotation({
     rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
     myid:2 // Custom property to uniquely identify this annotation.
 });
+*/
 
 // Het maken van een map
 var mapView = Titanium.Map.createView({
@@ -46,8 +64,10 @@ var mapView = Titanium.Map.createView({
 	animate: true, //hiermee geeft hij een animatie zodra de kaart getoond wordt
 	regionFit: true, //de kaart wordt niet passende gemaakt
 	userLocation: true, //hiemeer haalt hij je huidge positie op en toont hij die op de kaart
-	annotations:[mountainView, mountainView2]
+	annotations: annotationsMap
+	//annotations:annotationsMap
 });
+
 
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	// Een searchbar voor de map

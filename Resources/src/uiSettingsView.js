@@ -38,7 +38,7 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 
 
 // 	Een lege array die al onze opties zal gaan bevatten
-var data = [];
+var tableData = [];
 
 /*
  * 	Data[0] zal een reeks elementen bevatten over de boot eigenschappen
@@ -46,7 +46,7 @@ var data = [];
  *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
  */
 // 	De sectie die als groepering zal dienen voor alle booteigenschappen
-data[0] = Titanium.UI.createTableViewSection({
+tableData[0] = Titanium.UI.createTableViewSection({
 	top: '5%',
 	headerTitle: 'Boot eigenschappen:',
 	touchEnabled: false
@@ -89,7 +89,7 @@ height.add(Titanium.UI.createLabel({
 	width: 'auto',
 	touchEnabled: false
 }));
-data[0].add(height); // Het geheel toevoegen aan de sectie (booteigenschappen)
+tableData[0].add(height); // Het geheel toevoegen aan de sectie (booteigenschappen)
 
 // Daarna ook een rij maken om de breedte in te geven
 var width = Titanium.UI.createTableViewRow({
@@ -126,7 +126,7 @@ width.add(Titanium.UI.createLabel({
 	height: 'auto',
 	width: 'auto'
 }));
-data[0].add(width);	// Het geheel toevoegen aan de booteigenschappen
+tableData[0].add(width);	// Het geheel toevoegen aan de booteigenschappen
 
 /*
  * 	De tweede secie:
@@ -134,7 +134,7 @@ data[0].add(width);	// Het geheel toevoegen aan de booteigenschappen
  * 		- Op een type kaart klikken zal deze waarde opslaan en de kaart opnieuw instellen
  */
 // Een nieuwe sectie aanmaken
-data[1] = Titanium.UI.createTableViewSection({
+tableData[1] = Titanium.UI.createTableViewSection({
 	headerTitle: 'Type kaart:',
 	touchEnabled: true
 });
@@ -166,12 +166,12 @@ if(Titanium.Platform.osname !== 'android'){
 		});
 	// Hybrid voegen we hier dan ook gelijk toe
 	// Dat scheelt weer een if statement
-	data[1].add(sHybrid);
+	tableData[1].add(sHybrid);
 }
 
 // En de verschillende types kaart toevoegen aan de data
-data[1].add(sSatelite);
-data[1].add(sMap);
+tableData[1].add(sSatelite);
+tableData[1].add(sMap);
 
 
 // De daadwerkelijke tabel creëren
@@ -181,7 +181,7 @@ var settingsTable = Titanium.UI.createTableView({
 	// 	Workaround voor het niet laten zien van de tabel
 	height: Titanium.Gesture.isPortrait ? Titanium.Platform.displayCaps.platformHeight : Titanium.Platform.displayCaps.platformWidth,
 	width: '100%',
-	data:data,
+	data: tableData,
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED
 });
 
