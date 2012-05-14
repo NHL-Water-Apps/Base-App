@@ -2,9 +2,9 @@
 	// Self exectuting functie voor het bepalen van je huidige positie op de kaart
 	// Als er geen type kaart geselecteerd is zal er voor de stratenkaart gekozen worden
 (function(){
-	if (Ti.Geolocation.locationServicesEnabled) {
-	    Titanium.Geolocation.purpose = 'Get Current Location';
-	    Titanium.Geolocation.getCurrentPosition(function(e) {
+	if (Ti.Geolocation.locationServicesEnabled) { //hiermee checkt hij of de services van de locatie er is
+	    Titanium.Geolocation.purpose = 'De huidige positie'; //hiermee wordt er een melding getoond
+	    Titanium.Geolocation.getCurrentPosition(function(e) { //hiermee wordt de huidige positie opgehaald
 	        if (e.error) {
 	            Ti.API.error('Error: ' + e.error);
 	        } else {
@@ -20,7 +20,7 @@
 	        }
 	    });
 	} else {
-	    alert('Please enable location services');
+	    alert('Schakel alstublieft de Locatievoorziening in');
 	}
 })();
 
@@ -122,6 +122,9 @@ searchBarMap.addEventListener("return", function(){
 	}
 });
 
+//Een event waarmee wordt gekeken of er een orientatiechange is
 Titanium.Gesture.addEventListener('orientationchange', function () {
-	searchBarMap.height = Titanium.Gesture.isPortrait() ? '12%' : '20%';
+	if(Titanium.Platform.osname === 'android'){
+		searchBarMap.height = Titanium.Gesture.isPortrait() ? '12%' : '20%';
+	}
 });
