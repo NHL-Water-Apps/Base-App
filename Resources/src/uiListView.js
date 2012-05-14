@@ -30,7 +30,7 @@ var table = Titanium.UI.createTableView({data:data,       //list inclusief zoekv
 			search: Titanium.UI.createSearchBar(
 			{barColor: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '#000000' : '#FFF',    //kleur voor zoekbar
    			height:55,
-   			hintText:'U zoekt..',  //hulptekst
+   			hintText: config.zoekText,  //hulptekst
    			top:0,
 			filterAttribute:'title'  //filteren op title wanneer er iets ingevoerd wordt
 			})});

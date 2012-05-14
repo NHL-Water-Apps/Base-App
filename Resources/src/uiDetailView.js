@@ -13,7 +13,7 @@ var labels =
 
 else   //geen foto beschikbaar
 {	var labels = Titanium.UI.createLabel({
-	text : "geen foto beschikbaar"})
+	text : config.geenFoto})
 }
 windowDetailview.add(labels);  //toevoegen aan tabel
 

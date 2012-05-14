@@ -47,7 +47,7 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
     	barColor:'#000', //de kleur van de searchbar
     	showCancel: false, //hij zet de cancelButton op false
     	focusable: false, //Hiermee wordt de searhbar niet gelijk gefocust
-    	hintText: 'Zoek...', //dit is de hinttext die in de searchbar wordt geplaatst
+    	hintText: config.zoekText, //dit is de hinttext die in de searchbar wordt geplaatst
     	//height: '43', //de hoogte van de searchbar
     	top: 0, //hiermee wordt de searhbar tegen de bovenkant van het scherm gepositioneerd
 	});
@@ -59,7 +59,7 @@ if(Titanium.Platform.osname === 'android'){
 	    barColor:'#000', //de kleur van de searchbar
 	    showCancel: false, //hij zet de cancelButton op false
 	    focusable: false, //Hiermee wordt de searhbar niet gelijk gefocust
-	    hintText: 'Zoek...', //dit is de hinttext die in de searchbar wordt geplaatst
+	    hintText: config.zoekText, //dit is de hinttext die in de searchbar wordt geplaatst
 	    height: Titanium.Gesture.isPortrait() ? '12%' : '20%', //de hoogte van de searchbar
 	    top: 0, //hiermee wordt de searhbar tegen de bovenkant van het scherm gepositioneerd
 	    visible: false //hier geeft hij de searchbar aan het begin niet weer 

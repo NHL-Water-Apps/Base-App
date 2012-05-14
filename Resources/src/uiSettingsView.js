@@ -26,12 +26,12 @@ SettingsWindow.orientationModes = [
 // 	Moet nog functionaliteit aan gekoppeld worden
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
 	var next = Titanium.UI.createButton({
-	    title : 'Volgende',
+	    title : config.volgendeText,
 	    style : Titanium.UI.iPhone.SystemButtonStyle.DONE,
 	});
 	 
 	var Done = Titanium.UI.createButton({
-		title: 'Klaar',
+		title: config.klaarText,
 	    systemButton : Titanium.UI.iPhone.SystemButton.DONE,
 	});
 }
@@ -45,36 +45,13 @@ var tableData = [];
  *	Hiervoor wordt eerst een section aangemaakt.
  *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
  */
-
-// 	De sectie die als groepering zal dienen voor alle booteigenschappen
-tableData[0] = Titanium.UI.createTableViewSection({
-	top: '5%',
-	headerTitle: 'Boot eigenschappen:',
-	touchEnabled: false
-});
-
-// 	Aanmaken van een nieuwe rij voor de hoogte
-var height = Titanium.UI.createTableViewRow({
-	top: 0,
-	left: 0,
-	width: 'auto',
-	selectionStyle: 0,
-	height: 'auto'
-});
-
-/*
- * 	De rij hoogte zal een textField krijgen (heightField)
- * 	Hierin kunnen gebruikers de hoogte van hun boot ingeven
- * 		zodat de app hier rekening mee kan houden (brughoogte)
- */
-
 // Indien we geen hoogte en geen breedte willen kunnen invoeren
 if(config.showHeight || config.showWidth) // hoeven we ook geen sectie aan te maken
 { 
-	// 	De sectie die als groepering zal dienen voor alle booteigenschappen
+	// De sectie die als groepering zal dienen voor alle booteigenschappen
 	tableData[0] = Titanium.UI.createTableViewSection({
 		top: '5%',
-		headerTitle: 'Boot eigenschappen:',
+		headerTitle: config.bootHeader,
 		touchEnabled: false
 	});
 }
@@ -82,6 +59,12 @@ if(config.showHeight || config.showWidth) // hoeven we ook geen sectie aan te ma
 // als we een hoogte moeten kunnen ingeven
 if(config.showHeight)
 {
+	/*
+ 	 * 	De rij hoogte zal een textField krijgen (heightField)
+	 * 	Hierin kunnen gebruikers de hoogte van hun boot ingeven
+ 	 * 		zodat de app hier rekening mee kan houden (brughoogte)
+	 */
+
 	// 	Aanmaken van een nieuwe rij voor de hoogte
 	var height = Titanium.UI.createTableViewRow({
 		top: 0,
@@ -104,7 +87,7 @@ if(config.showHeight)
 		keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 		returnKeyType: Titanium.UI.RETURNKEY_DONE,
 		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
-		hintText: 'Hoogte',
+		hintText: config.hoogteHintText,
 		touchEnabled: true,
 		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0
 	});
@@ -112,7 +95,7 @@ if(config.showHeight)
 	// 	En een label aanmaken wat aangeeft wat er in deze rij dient te worden ingevoerd
 	// 	Dit in verband met als je iets invuld de hintText niet meer zichtbaar is
 	height.add(Titanium.UI.createLabel({
-		text: 'Hoogte (meters):',
+		text: config.hoogte,
 		top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
 		left: '5%',
 		height: 'auto',
@@ -147,13 +130,13 @@ if(config.showWidth)
 		returnKeyType: Titanium.UI.RETURNKEY_DONE,
 		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
 		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0,
-		hintText: 'Breedte'
+		hintText: config.breedteHintText
 	});
 	width.add(widthField); // Deze toevoegen aan de rij
 	// 	En een label toevoegen die zegt wat er zou moeten komen te staan
 	//	Dit omdat als we iets ingevuld hebben we de hintText niet meer zien
 	width.add(Titanium.UI.createLabel({
-		text: 'Breedte (meters):',
+		text: config.breedte,
 		top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
 		left: '5%',
 		touchEnabled: false,
@@ -170,21 +153,21 @@ if(config.showWidth)
  */
 // Een nieuwe sectie aanmaken
 tableData[1] = Titanium.UI.createTableViewSection({
-	headerTitle: 'Kaart eigenschappen:',
+	headerTitle: config.mapHeader,
 	touchEnabled: true,
 	top: '1%'
 });
 
 // Het type sateliet toevoegen
 var sSatelite = Titanium.UI.createTableViewRow({
-	title: 'Satelliet',
+	title: config.sateliet,
 	className: "row",
 	hasCheck: false,
 	touchEnabled: false,
 	});
 // Het type kaart toevoegen
 var sMap = Titanium.UI.createTableViewRow({
-	title: 'Kaart',
+	title: config.map,
 	className: "row",
 	hasCheck: false,
 	touchEnabled: false
@@ -195,7 +178,7 @@ var sMap = Titanium.UI.createTableViewRow({
 if(Titanium.Platform.osname !== 'android'){
 	// het type hybride toevoegen
 	var sHybrid = Titanium.UI.createTableViewRow({
-		title: 'Hybride',
+		title: config.hybrid,
 		className: "row",
 		hasCheck: false,
 		touchEnabled: false

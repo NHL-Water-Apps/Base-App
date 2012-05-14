@@ -3,7 +3,6 @@
  * 	Hierin komen alle verschillende opties voor het snel uitbrengen
  * 		van verschillende apps 
  */
-
 var config = {
 	/*
 	 * 	Alle app eigenschappen
@@ -18,7 +17,6 @@ var config = {
 	trailSaveTime: 300000,
 	
 	
-	
 	/*
 	 * 	Alles voor tekstuele aanpassingen:
 	 */
@@ -31,6 +29,15 @@ var config = {
 	lijstTab: 'Lijst',		// Tweede tab
 	optiesTab: 'Opties',	// Derde tab
 	
+	/*
+	 * 	- - - - - - - - - -
+	 * 		OVERALL
+	 * 	- - - - - - - - - -
+	 */
+	zoekText: 'Zoek',
+	volgendeText: 'Volgende',
+	klaarText: 'Done',
+	
 	
 	/*	- - - - - - - - - - 
 	 * 	   INSTELLINGEN
@@ -40,8 +47,10 @@ var config = {
 	bootHeader: 'Boot eigenschappen',
 	// Hoogte (bij instellingen)
 	hoogte: 'Hoogte(m):',
+	hoogteHintText: 'Hoogte',
 	// Breedte (bij instellingen)
 	breedte: 'Breedte(m):',
+	breedteHintText: 'Breedte',
 	
 	// Header van de kaart spullen
 	mapHeader: 'Kaart eigenschappen',
@@ -50,6 +59,12 @@ var config = {
 	// Knopje hybride
 	hybrid: 'Hybride',
 	// Knopje kaart
-	map: 'Kaart'
+	map: 'Kaart',
 	
+	/*	- - - - - - - - - - 
+	 * 	   DETAIL
+	 *	- - - - - - - - - -
+	 */ 
+	 geenFoto: 'Geen foto beschikbaar'
+	 
 };
