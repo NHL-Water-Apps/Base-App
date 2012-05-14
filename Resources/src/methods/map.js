@@ -80,8 +80,7 @@ mapView.addEventListener('click', function(e){
 		});
 		
 		MapTab.open(windowBrug, {animated: true});
-	}
-	
+	}	
 });
 
 //Een event waarmee de cancelbutton wordt getoond op het scherm zodra de searchbar wordt aangeraakt

@@ -29,8 +29,11 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 	    title : 'Volgende',
 	    style : Titanium.UI.iPhone.SystemButtonStyle.DONE,
 	});
-	 
-	var Done = Titanium.UI.createButton({
+	
+	var flex = Titanium.UI.createButton({
+	    systemButton : Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE,
+	}); 
+	var done = Titanium.UI.createButton({
 		title: 'Klaar',
 	    systemButton : Titanium.UI.iPhone.SystemButton.DONE,
 	});
@@ -106,7 +109,7 @@ if(config.showHeight)
 		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
 		hintText: 'Hoogte',
 		touchEnabled: true,
-		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0
+		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, flex, done] : 0
 	});
 	height.add(heightField); // toevoegen aan de rij
 	// 	En een label aanmaken wat aangeeft wat er in deze rij dient te worden ingevoerd
@@ -146,7 +149,7 @@ if(config.showWidth)
 		keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 		returnKeyType: Titanium.UI.RETURNKEY_DONE,
 		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
-		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0,
+		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, flex, done] : 0,
 		hintText: 'Breedte'
 	});
 	width.add(widthField); // Deze toevoegen aan de rij

@@ -81,6 +81,10 @@ if(Titanium.Platform.osname !== 'android'){
 	});
 }
 
+done.addEventListener('click', function(){
+	heightField.blur();
+	widthField.blur();
+});
 
 //	Kopelen van de controle functies aan de inputvelden
 if(config.showHeight)	// indien we deze optie geven
