@@ -121,3 +121,7 @@ searchBarMap.addEventListener("return", function(){
 		searchBarMap.setShowCancel(false, {animated: true});	
 	}
 });
+
+Titanium.Gesture.addEventListener('orientationchange', function () {
+	searchBarMap.height = Titanium.Gesture.isPortrait() ? '12%' : '20%';
+});

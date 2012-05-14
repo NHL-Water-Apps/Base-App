@@ -11,7 +11,6 @@ var ListWindow = Titanium.UI.createWindow({
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
 
-Titanium.include('Dummydata.js');  //data inladen
 data.sort(sortName);  //sorteren van de data
  
 function sortName(thisObject,thatObject) {     //sorteerfunctie
@@ -26,6 +25,7 @@ function sortName(thisObject,thatObject) {     //sorteerfunctie
     return 0;
   }
 
+
 var table = Titanium.UI.createTableView({data:data,       //list inclusief zoekveld
 			search: Titanium.UI.createSearchBar(
 			{barColor: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '#000000' : '#FFF',    //kleur voor zoekbar
@@ -34,6 +34,7 @@ var table = Titanium.UI.createTableView({data:data,       //list inclusief zoekv
    			top:0,
 			filterAttribute:'title'  //filteren op title wanneer er iets ingevoerd wordt
 			})});
+
 table.addEventListener('click', function(e)   //eventlistener
 {	
 	 var DetailView = Titanium.UI.createWindow({ //aanmaken nieuw window
@@ -48,6 +49,7 @@ table.addEventListener('click', function(e)   //eventlistener
 )
 ListWindow.add(table);
 
+Titanium.include('methods/list.js');
 
 //De orientatiemodus voor de verschillende platformen
 ListWindow.orientationModes = [

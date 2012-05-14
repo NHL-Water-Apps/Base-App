@@ -38,18 +38,41 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 
 
 // 	Een lege array die al onze opties zal gaan bevatten
-var data = [];
+var tableData = [];
 
 /*
  * 	Data[0] zal een reeks elementen bevatten over de boot eigenschappen
  *	Hiervoor wordt eerst een section aangemaakt.
  *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
  */
+
+// 	De sectie die als groepering zal dienen voor alle booteigenschappen
+tableData[0] = Titanium.UI.createTableViewSection({
+	top: '5%',
+	headerTitle: 'Boot eigenschappen:',
+	touchEnabled: false
+});
+
+// 	Aanmaken van een nieuwe rij voor de hoogte
+var height = Titanium.UI.createTableViewRow({
+	top: 0,
+	left: 0,
+	width: 'auto',
+	selectionStyle: 0,
+	height: 'auto'
+});
+
+/*
+ * 	De rij hoogte zal een textField krijgen (heightField)
+ * 	Hierin kunnen gebruikers de hoogte van hun boot ingeven
+ * 		zodat de app hier rekening mee kan houden (brughoogte)
+ */
+
 // Indien we geen hoogte en geen breedte willen kunnen invoeren
 if(config.showHeight || config.showWidth) // hoeven we ook geen sectie aan te maken
 { 
 	// 	De sectie die als groepering zal dienen voor alle booteigenschappen
-	data[0] = Titanium.UI.createTableViewSection({
+	tableData[0] = Titanium.UI.createTableViewSection({
 		top: '5%',
 		headerTitle: 'Boot eigenschappen:',
 		touchEnabled: false
@@ -96,7 +119,7 @@ if(config.showHeight)
 		width: 'auto',
 		touchEnabled: false
 	}));
-	data[0].add(height); // Het geheel toevoegen aan de sectie (booteigenschappen)
+	tableData[0].add(height); // Het geheel toevoegen aan de sectie (booteigenschappen)
 }
 
 // Als we een breedte moeten kunnen ingeven
@@ -137,7 +160,7 @@ if(config.showWidth)
 		height: 'auto',
 		width: 'auto'
 	}));
-	data[0].add(width);	// Het geheel toevoegen aan de booteigenschappen
+	tableData[0].add(width);	// Het geheel toevoegen aan de booteigenschappen
 }
 
 /*
@@ -179,12 +202,12 @@ if(Titanium.Platform.osname !== 'android'){
 		});
 	// Hybrid voegen we hier dan ook gelijk toe
 	// Dat scheelt weer een if statement
-	data[1].add(sHybrid);
+	tableData[1].add(sHybrid);
 }
 
 // En de verschillende types kaart toevoegen aan de data
-data[1].add(sSatelite);
-data[1].add(sMap);
+tableData[1].add(sSatelite);
+tableData[1].add(sMap);
 
 
 
@@ -198,7 +221,7 @@ var settingsTable = Titanium.UI.createTableView({
 			(Titanium.Gesture.isPortrait ? Titanium.Platform.displayCaps.platformHeight : Titanium.Platform.displayCaps.platformWidth) : 
 			'100%',
 	width: '100%',
-	data:data,
+	data: tableData,
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED
 });
 
