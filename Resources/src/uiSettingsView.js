@@ -94,7 +94,7 @@ if(config.showHeight)
 		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
 		hintText: config.hoogteHintText,
 		touchEnabled: true,
-		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, flex, done] : 0
+		//keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, flex, done] : 0
 	});
 	height.add(heightField); // toevoegen aan de rij
 	// 	En een label aanmaken wat aangeeft wat er in deze rij dient te worden ingevoerd
@@ -131,11 +131,11 @@ if(config.showWidth)
 		height: 'auto',
 		width: '35%',
 		right: '5%',
-		keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
+		keyboardType: Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 		returnKeyType: Titanium.UI.RETURNKEY_DONE,
 		value: Titanium.App.Properties.getString('width', null),
 		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
-		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, flex, done] : 0,
+		//keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, flex, done] : 0,
 		hintText: config.breedteHintText
 	});
 	width.add(widthField); // Deze toevoegen aan de rij

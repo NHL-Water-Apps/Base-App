@@ -71,25 +71,14 @@ if(Titanium.Platform.osname !== 'android'){
 	});
 }
 
-if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
-done.addEventListener('click', function(){
+settingsTable.addEventListener('click', function(){
 	if(heightField.focus = true){
 		heightField.blur();
-	}
+	};
 	if(widthField.focus = true){
 		widthField.blur();
-	}
+	};
 });
-
-next.addEventListener('click', function(){
-	if(heightField.focus = true){
-		widthField.focus();
-	}
-	else if(widthField.focus = true){
-		widthField.blur();
-	}
-});
-};
 //	Kopelen van de controle functies aan de inputvelden
 if(config.showHeight)	// indien we deze optie geven
 {	

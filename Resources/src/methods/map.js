@@ -68,7 +68,7 @@ else  //zelfde functie, op paar dingen na(puur voor de test) nu voor android
 		        if (e.error) {
 		            Ti.API.error('Error: ' + e.error);
 		        } else {
-		            Ti.App.fireEvent("app:got.location", {
+		            Ti.App.fireEvent("app:got.location", {   //de verandering in de code
        			 	coords : e.coords});
 		            mapView.setRegion({
 		            	latitude: coords.latitude,
