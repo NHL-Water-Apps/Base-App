@@ -35,7 +35,7 @@ mapButton.addEventListener("click", function(){
 
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){  //if iphone
 mapButton.addEventListener("click", function(){
-	if (Ti.Geolocation.locationServicesEnabled) {	
+	
 		if (Ti.Geolocation.locationServicesEnabled) {
 		    Titanium.Geolocation.purpose = 'Get Current Location';
 		    Titanium.Geolocation.getCurrentPosition(function(e) {
@@ -56,14 +56,12 @@ mapButton.addEventListener("click", function(){
 		} else {
 		    alert('Please enable location services');
 		}
-	} else {
-	    alert('Please enable location services');
-	}
+	
 });
 }
 else  //zelfde functie, op paar dingen na(puur voor de test) nu voor android
 {mapButton.addEventListener("click", function(){
-	if (Ti.Geolocation.locationServicesEnabled) {	
+		
 		if (Ti.Geolocation.locationServicesEnabled) {
 		    Titanium.Geolocation.purpose = 'Get Current Location';
 		    Titanium.Geolocation.getCurrentPosition(function(e) {
@@ -84,11 +82,16 @@ else  //zelfde functie, op paar dingen na(puur voor de test) nu voor android
 		} else {
 		    alert('Please enable location services');
 		}
-	} else {
-	    alert('Please enable location services');
-	}
+	
 });
 }
+Ti.App.addEventListener("app:got.location", function(d) {
+    Ti.App.GeoApp.f_lng = d.longitude;
+    Ti.App.GeoApp.f_lat = d.latitude;
+    Ti.API.debug(JSON.stringify(d));
+    alert(JSON.stringify(d));
+
+});
 //Zodra hij op de rightButton van de annotation klikt krijg je een alert
 /*mapView.addEventListener('click', function(e){
 	if(e.clicksource === 'rightButton'){
