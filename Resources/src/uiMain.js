@@ -18,51 +18,28 @@ Titanium.include('uiSettingsView.js'); // settings pagina
 // Maken van het menu
 var tabMenu = Titanium.UI.createTabGroup(); // de container van het menu
 
-if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
-	// Eerst de verschillende tabs maken:
-	// De tab voor de kaart
-	var MapTab = Titanium.UI.createTab({
-		icon: 'img/IMap.png', 	// Het icoontje van de tab
-		title: 'Map',			// Naam die op de tab staat
-		window: MapWindow 		// bind deze tab aan deze window (Kaart)
-	});
+// Eerst de verschillende tabs maken:
+// De tab voor de kaart
+var MapTab = Titanium.UI.createTab({
+	icon: Titanium.Platform.osname === 'android' ? 'img/Map.png' : 'img/IMap.png', 	// Het icoontje van de tab
+	title: config.kaartTab,			// Naam die op de tab staat
+	window: MapWindow 		// bind deze tab aan deze window (Kaart)
+});
 	
-	// De tab voor het lijstje van alle POI's
-	var ListTab = Titanium.UI.createTab({
-		title: 'Lijst',			// Naam die op de tab staat
-		icon: 'img/IList.png',	// Het icoontje van de tab
-		window: ListWindow 		// bind deze tab aan deze window (Lijst)
-	});
+// De tab voor het lijstje van alle POI's
+var ListTab = Titanium.UI.createTab({
+	title: config.lijstTab,			// Naam die op de tab staat
+	icon: Titanium.Platform.osname === 'android' ? 'img/Lijst.png' : 'img/IList.png',	// Het icoontje van de tab
+	window: ListWindow 		// bind deze tab aan deze window (Lijst)
+});
 	
-	// En de tab voor de instellingen
-	var SettingsTab = Titanium.UI.createTab({
-		title: 'Opties',		// Naam die op de tab staat
-		icon: 'img/IOpties.png',// Het icoontje van de tab
-		window: SettingsWindow	// bind deze tab aan deze window (Opties)
-	});
-}
+// En de tab voor de instellingen
+var SettingsTab = Titanium.UI.createTab({
+	title: config.optiesTab,		// Naam die op de tab staat
+	icon: Titanium.Platform.osname === 'android' ? 'img/Opties.png' : 'img/IOpties.png',// Het icoontje van de tab
+	window: SettingsWindow	// bind deze tab aan deze window (Opties)
+});
 
-if(Titanium.Platform.osname === 'android'){
-	var MapTab = Titanium.UI.createTab({
-		icon: 'img/Map.png', 	// Het icoontje van de tab
-		title: 'Map',			// Naam die op de tab staat
-		window: MapWindow 		// bind deze tab aan deze window (Kaart)
-	});
-	
-	// De tab voor het lijstje van alle POI's
-	var ListTab = Titanium.UI.createTab({
-		title: 'Lijst',			// Naam die op de tab staat
-		icon: 'img/Lijst.png',	// Het icoontje van de tab
-		window: ListWindow 		// bind deze tab aan deze window (Lijst)
-	});
-	
-	// En de tab voor de instellingen
-	var SettingsTab = Titanium.UI.createTab({
-		title: 'Opties',		// Naam die op de tab staat
-		icon: 'img/Opties.png',// Het icoontje van de tab
-		window: SettingsWindow	// bind deze tab aan deze window (Opties)
-	});
-}
 // Toevoegen van elke tab aan het menu
 tabMenu.addTab(MapTab); // de tab met de kaart
 tabMenu.addTab(ListTab); // de tab met het lijstje
