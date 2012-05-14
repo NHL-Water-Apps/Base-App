@@ -1,9 +1,13 @@
 //Een event voor het bepalen van de huidge locatie
 	// Self exectuting functie voor het bepalen van je huidige positie op de kaart
 	// Als er geen type kaart geselecteerd is zal er voor de stratenkaart gekozen worden
+<<<<<<< HEAD
 function ShowOnMap(){
+=======
+(function(){
+>>>>>>> locatie poging
 	if (Ti.Geolocation.locationServicesEnabled) {
-	    Titanium.Geolocation.purpose = 'De huidige positie verkrijgen';
+	    Titanium.Geolocation.purpose = 'Get Current Location';
 	    Titanium.Geolocation.getCurrentPosition(function(e) {
 	        if (e.error) {
 	            Ti.API.error('Error: ' + e.error);
@@ -22,6 +26,7 @@ function ShowOnMap(){
 	} else {
 	    alert(config.geenGPS);
 	}
+<<<<<<< HEAD
 }
 
 (function(){
@@ -33,7 +38,66 @@ mapButton.addEventListener("click", function(){
 	ShowOnMap();
 });
 
+=======
+})();
+>>>>>>> locatie poging
 
+if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){  //if iphone
+mapButton.addEventListener("click", function(){
+	if (Ti.Geolocation.locationServicesEnabled) {	
+		if (Ti.Geolocation.locationServicesEnabled) {
+		    Titanium.Geolocation.purpose = 'Get Current Location';
+		    Titanium.Geolocation.getCurrentPosition(function(e) {
+		        if (e.error) {
+		            Ti.API.error('Error: ' + e.error);
+		        } else {
+		            Ti.App.fireEvent("app:got.location", {
+       				 	coords : e.coords})
+		            	mapView.setRegion({
+		            	latitude: coords.latitude,
+		            	longitude: coords.longitude,
+		            	animate: true,
+		            	latitudeDelta: 0.01,
+		            	longitudeDelta: 0.01
+		            });
+		        }
+		    });
+		} else {
+		    alert('Please enable location services');
+		}
+	} else {
+	    alert('Please enable location services');
+	}
+});
+}
+else  //zelfde functie, op paar dingen na(puur voor de test) nu voor android
+{mapButton.addEventListener("click", function(){
+	if (Ti.Geolocation.locationServicesEnabled) {	
+		if (Ti.Geolocation.locationServicesEnabled) {
+		    Titanium.Geolocation.purpose = 'Get Current Location';
+		    Titanium.Geolocation.getCurrentPosition(function(e) {
+		        if (e.error) {
+		            Ti.API.error('Error: ' + e.error);
+		        } else {
+		            Ti.App.fireEvent("app:got.location", {
+       			 	coords : e.coords});
+		            mapView.setRegion({
+		            	latitude: coords.latitude,
+		            	longitude: coords.longitude,
+		            	animate: true,
+		            	latitudeDelta: 0.01,
+		            	longitudeDelta: 0.01
+		            });
+		        }
+		    });
+		} else {
+		    alert('Please enable location services');
+		}
+	} else {
+	    alert('Please enable location services');
+	}
+});
+}
 //Zodra hij op de rightButton van de annotation klikt krijg je een alert
 /*mapView.addEventListener('click', function(e){
 	if(e.clicksource === 'rightButton'){
@@ -103,9 +167,6 @@ searchBarMap.addEventListener("return", function(){
 	}
 });
 
-//Een event waarmee wordt gekeken of er een orientatiechange is
 Titanium.Gesture.addEventListener('orientationchange', function () {
-	if(Titanium.Platform.osname === 'android'){
-		searchBarMap.height = Titanium.Gesture.isPortrait() ? '12%' : '20%';
-	}
+	searchBarMap.height = Titanium.Gesture.isPortrait() ? '12%' : '20%';
 });
