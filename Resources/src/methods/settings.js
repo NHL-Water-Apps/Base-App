@@ -86,14 +86,14 @@ if(Titanium.Platform.osname !== 'android'){
 if(config.showHeight)	// indien we deze optie geven
 {	
 	heightField.addEventListener('blur', function(){
-		checkField(heightField, 'height');
+		checkField(heightField, 'height'); // controle op dit veld aanroepen
 	});
 }
 // indien we een breedte willen weergeven
 if(config.showWidth)
 {
 	widthField.addEventListener('blur', function(){
-		checkField(widthField, 'width');
+		checkField(widthField, 'width'); // controle op dit veld aanroepen
 	});
 }
 

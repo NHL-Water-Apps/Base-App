@@ -147,7 +147,7 @@ if(config.showWidth)
  */
 // Een nieuwe sectie aanmaken
 data[1] = Titanium.UI.createTableViewSection({
-	headerTitle: 'Type kaart:',
+	headerTitle: 'Kaart eigenschappen:',
 	touchEnabled: true,
 	top: '1%'
 });
@@ -185,6 +185,7 @@ if(Titanium.Platform.osname !== 'android'){
 // En de verschillende types kaart toevoegen aan de data
 data[1].add(sSatelite);
 data[1].add(sMap);
+
 
 
 // De daadwerkelijke tabel creëren
