@@ -26,19 +26,14 @@ function sortName(thisObject,thatObject) {     //sorteerfunctie
   }
 
 
-var searchBarList = Titanium.UI.createSearchBar({
-	barColor: '#000',
-	height: 55,
-	hintText: 'U zoekt...',
-	top: 0,
-	filterAttribute: 'title',
-	showCancel: false
-});
-
-var table = Titanium.UI.createTableView({
-			data:data,       //list met data
-			search: searchBarList // de zoekbalk voor de lijst
-});
+var table = Titanium.UI.createTableView({data:data,       //list inclusief zoekveld
+			search: Titanium.UI.createSearchBar(
+			{barColor: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '#000000' : '#FFF',    //kleur voor zoekbar
+   			height:55,
+   			hintText:'U zoekt..',  //hulptekst
+   			top:0,
+			filterAttribute:'title'  //filteren op title wanneer er iets ingevoerd wordt
+			})});
 
 table.addEventListener('click', function(e)   //eventlistener
 {	

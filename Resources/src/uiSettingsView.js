@@ -45,6 +45,7 @@ var tableData = [];
  *	Hiervoor wordt eerst een section aangemaakt.
  *	Deze sectie zal de eigenschappen hoogte en breedte krijgen
  */
+
 // 	De sectie die als groepering zal dienen voor alle booteigenschappen
 tableData[0] = Titanium.UI.createTableViewSection({
 	top: '5%',
@@ -66,67 +67,101 @@ var height = Titanium.UI.createTableViewRow({
  * 	Hierin kunnen gebruikers de hoogte van hun boot ingeven
  * 		zodat de app hier rekening mee kan houden (brughoogte)
  */
-var heightField = Titanium.UI.createTextField({
-	height: 'auto',
-	width: '35%',
-	focusable: true,
-	right: '5%',
-	keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
-	returnKeyType: Titanium.UI.RETURNKEY_DONE,
-	top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
-	hintText: 'Hoogte',
-	touchEnabled: true,
-	keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0
-});
-height.add(heightField); // toevoegen aan de rij
-// 	En een label aanmaken wat aangeeft wat er in deze rij dient te worden ingevoerd
-// 	Dit in verband met als je iets invuld de hintText niet meer zichtbaar is
-height.add(Titanium.UI.createLabel({
-	text: 'Hoogte (meters):',
-	top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
-	left: '5%',
-	height: 'auto',
-	width: 'auto',
-	touchEnabled: false
-}));
-tableData[0].add(height); // Het geheel toevoegen aan de sectie (booteigenschappen)
 
-// Daarna ook een rij maken om de breedte in te geven
-var width = Titanium.UI.createTableViewRow({
-	top: 0,
-	left: 0,
-	width: '100%',
-	height: 'auto',
-	selectionStyle: 0
-});
+// Indien we geen hoogte en geen breedte willen kunnen invoeren
+if(config.showHeight || config.showWidth) // hoeven we ook geen sectie aan te maken
+{ 
+	// 	De sectie die als groepering zal dienen voor alle booteigenschappen
+	tableData[0] = Titanium.UI.createTableViewSection({
+		top: '5%',
+		headerTitle: 'Boot eigenschappen:',
+		touchEnabled: false
+	});
+}
 
-/*
- * 	De rij breedte zal een textField krijgen (widthField)
- * 	Hierin kunnen gebruikers de breedte van hun boot ingeven
- * 		zodat de app hier rekening mee kan houden (brug breedte of anders)
- */
-var widthField = Titanium.UI.createTextField({
-	height: 'auto',
-	width: '35%',
-	right: '5%',
-	keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
-	returnKeyType: Titanium.UI.RETURNKEY_DONE,
-	top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
-	keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0,
-	hintText: 'Breedte'
-});
-width.add(widthField); // Deze toevoegen aan de rij
-// 	En een label toevoegen die zegt wat er zou moeten komen te staan
-//	Dit omdat als we iets ingevuld hebben we de hintText niet meer zien
-width.add(Titanium.UI.createLabel({
-	text: 'Breedte (meters):',
-	top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
-	left: '5%',
-	touchEnabled: false,
-	height: 'auto',
-	width: 'auto'
-}));
-tableData[0].add(width);	// Het geheel toevoegen aan de booteigenschappen
+// als we een hoogte moeten kunnen ingeven
+if(config.showHeight)
+{
+	// 	Aanmaken van een nieuwe rij voor de hoogte
+	var height = Titanium.UI.createTableViewRow({
+		top: 0,
+		left: 0,
+		width: 'auto',
+		selectionStyle: 0,
+		height: 'auto'
+	});
+
+	/*
+	 * 	De rij hoogte zal een textField krijgen (heightField)
+	 * 	Hierin kunnen gebruikers de hoogte van hun boot ingeven
+	 * 		zodat de app hier rekening mee kan houden (brughoogte)
+	 */
+	var heightField = Titanium.UI.createTextField({
+		height: 'auto',
+		width: '35%',
+		focusable: true,
+		right: '5%',
+		keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
+		returnKeyType: Titanium.UI.RETURNKEY_DONE,
+		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
+		hintText: 'Hoogte',
+		touchEnabled: true,
+		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0
+	});
+	height.add(heightField); // toevoegen aan de rij
+	// 	En een label aanmaken wat aangeeft wat er in deze rij dient te worden ingevoerd
+	// 	Dit in verband met als je iets invuld de hintText niet meer zichtbaar is
+	height.add(Titanium.UI.createLabel({
+		text: 'Hoogte (meters):',
+		top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
+		left: '5%',
+		height: 'auto',
+		width: 'auto',
+		touchEnabled: false
+	}));
+	tableData[0].add(height); // Het geheel toevoegen aan de sectie (booteigenschappen)
+}
+
+// Als we een breedte moeten kunnen ingeven
+if(config.showWidth)
+{
+	// Daarna ook een rij maken om de breedte in te geven
+	var width = Titanium.UI.createTableViewRow({
+		top: 0,
+		left: 0,
+		width: '100%',
+		height: 'auto',
+		selectionStyle: 0
+	});
+	
+	/*
+ 	* 	De rij breedte zal een textField krijgen (widthField)
+ 	* 	Hierin kunnen gebruikers de breedte van hun boot ingeven
+ 	* 		zodat de app hier rekening mee kan houden (brug breedte of anders)
+ 	*/
+	var widthField = Titanium.UI.createTextField({
+		height: 'auto',
+		width: '35%',
+		right: '5%',
+		keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
+		returnKeyType: Titanium.UI.RETURNKEY_DONE,
+		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
+		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0,
+		hintText: 'Breedte'
+	});
+	width.add(widthField); // Deze toevoegen aan de rij
+	// 	En een label toevoegen die zegt wat er zou moeten komen te staan
+	//	Dit omdat als we iets ingevuld hebben we de hintText niet meer zien
+	width.add(Titanium.UI.createLabel({
+		text: 'Breedte (meters):',
+		top: Titanium.Platform.osname === 'android' ? '35%' : '6%',
+		left: '5%',
+		touchEnabled: false,
+		height: 'auto',
+		width: 'auto'
+	}));
+	tableData[0].add(width);	// Het geheel toevoegen aan de booteigenschappen
+}
 
 /*
  * 	De tweede secie:
@@ -136,7 +171,8 @@ tableData[0].add(width);	// Het geheel toevoegen aan de booteigenschappen
 // Een nieuwe sectie aanmaken
 tableData[1] = Titanium.UI.createTableViewSection({
 	headerTitle: 'Type kaart:',
-	touchEnabled: true
+	touchEnabled: true,
+	top: '1%'
 });
 
 // Het type sateliet toevoegen
@@ -179,7 +215,10 @@ var settingsTable = Titanium.UI.createTableView({
 	top: 0,
 	left: 0,
 	// 	Workaround voor het niet laten zien van de tabel
-	height: Titanium.Gesture.isPortrait ? Titanium.Platform.displayCaps.platformHeight : Titanium.Platform.displayCaps.platformWidth,
+	height: Titanium.Platform.osname === 'android' ? 
+			// op android de hoogte absoluut zetten anders werkt hij niet en is hij weg :<
+			(Titanium.Gesture.isPortrait ? Titanium.Platform.displayCaps.platformHeight : Titanium.Platform.displayCaps.platformWidth) : 
+			'100%',
 	width: '100%',
 	data: tableData,
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED
