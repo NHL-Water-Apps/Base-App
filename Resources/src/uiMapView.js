@@ -21,38 +21,11 @@ for(var i = 0; i < data.length; i++){
 		longitude: data[i].LON, //de longitude van de brug
 		title: data[i].title, //de titel van de brug
 		subtitle: 'H: ' + data[i].HEIGTH + 'm' + '\tB: ' + data[i].WIDTH + 'm', //de hoogte van de brug
-		image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationGroen.png' : '/img/Anotation Android Groen.png',
-		rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
-		animate: true,
-	})
-}
-Titanium.API.info(annotationsMap);
-
-/*
-// Hiermee maak je een annotation op de map
-var mountainView = Titanium.Map.createAnnotation({
-    latitude:53.206547,
-    longitude:5.801554,
-    title:'VrouwenpoortBrug',
-    subtitle:'Hoogte: 3.25 m',
-    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationRood.png' : '/img/Groter/Anotation Android Rood G.png',
-    animate:true,
-    rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
-    myid:1 // Custom property to uniquely identify this annotation.
-});
-
-//	Hiermee maak je een annotation op de map
-var mountainView2 = Titanium.Map.createAnnotation({
-    latitude:53.208547,
-    longitude:5.803554,
-    title:'allesandersBrug',
-    subtitle:'Hoogte: 13.15 m',
-    image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationGroen.png' : '/img/Groter/Anotation Android Groen G.png',
-    animate:true,
-    rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE,
-    myid:2 // Custom property to uniquely identify this annotation.
-});
-*/
+		image: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '/img/AnnotationGroen.png' : '/img/groter/Anotation Android Groen G.png', //de image van de annotation
+		rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE, // de button die op de annotation wordt getoond zodra er op geklikt wordt.
+		animate: true, //hiermee wordt er een animatie toegevoegd aan de annotation
+	});
+};
 
 // Het maken van een map
 var mapView = Titanium.Map.createView({
@@ -64,8 +37,7 @@ var mapView = Titanium.Map.createView({
 	animate: true, //hiermee geeft hij een animatie zodra de kaart getoond wordt
 	regionFit: true, //de kaart wordt niet passende gemaakt
 	userLocation: true, //hiemeer haalt hij je huidge positie op en toont hij die op de kaart
-	annotations: annotationsMap
-	//annotations:annotationsMap
+	annotations: annotationsMap //hiermee geeft hij de annotation weer op de kaart
 });
 
 
@@ -82,7 +54,7 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 }
 
 if(Titanium.Platform.osname === 'android'){
-	//een searchbar voor de map
+	//een searchbar voor de map op android
 	var searchBarMap = Titanium.UI.createSearchBar({
 	    barColor:'#000', //de kleur van de searchbar
 	    showCancel: false, //hij zet de cancelButton op false
@@ -90,27 +62,27 @@ if(Titanium.Platform.osname === 'android'){
 	    hintText: 'Zoek...', //dit is de hinttext die in de searchbar wordt geplaatst
 	    height: Titanium.Gesture.isPortrait() ? '12%' : '20%', //de hoogte van de searchbar
 	    top: 0, //hiermee wordt de searhbar tegen de bovenkant van het scherm gepositioneerd
-	    visible: false
+	    visible: false //hier geeft hij de searchbar aan het begin niet weer 
 	});
 	
+	//de searchbutton voor android waarmee de searchbar wordt getoggled van visible naar unvisible en vice versa
 	var searchButton = Titanium.UI.createButton({
-		title: '',
-		image: '/img/Groter/ZoekG.png',
-		right: '2%',
-		bottom: 50,
-		height: 'auto',
-		width: 'auto'
+		title: '', //de titel van de zoekbutton wordt leeggemaakt
+		image: '/img/Groter/ZoekG.png', //de afbeelding van de button
+		right: '2%', // de positie van de button vanaf de rechterkant
+		bottom: 50, //de positie van de button vanaf de onderkant
+		height: 'auto', //de hoogte van de button
+		width: 'auto' //de breedte van de button
 	});
 }
 
 var mapButton = Titanium.UI.createButton({
-	title: '',
-	//backgroundColor: 'rgba(0,0,0,0.0)',
-	image: Titanium.Platform.osname === 'android' ? '/img/Groter/LocatieG.png' : '/img/ILocatie.png',
-	right: '3%',
-	bottom: 5,
-	height: 'auto',
-	width: 'auto'
+	//title: '', //de titel van de mapbutton wordt leeggemaakt
+	image: Titanium.Platform.osname === 'android' ? '/img/Groter/LocatieG.png' : '/img/ILocatie.png', //de afbeelding van de mapbutton
+	right: '3%', //de positie van de button vanaf de rechterkant
+	bottom: 5, //de positie van de button vanaf de onderkant
+	height: 'auto', //de hoogte van de button
+	width: 'auto' //de breedte van de button
 });
 
 //De orientatiemodus voor de verschillende platformen
@@ -121,15 +93,13 @@ MapWindow.orientationModes = [
 	Titanium.UI.LANDSCAPE_RIGHT
 ];
 
-//hierin staan alle functies van de MapView
-Titanium.include('methods/map.js');
+Titanium.include('methods/map.js'); //hierin staan alle functies van de MapView 
 
-// hier voegt hij de MapView toe aan de MapWindow
-MapWindow.add(mapView);
-MapWindow.add(mapButton);
-MapWindow.add(searchBarMap);
+MapWindow.add(mapView); // hier voegt hij de MapView toe aan de MapWindow
+MapWindow.add(mapButton); //hier voegt hij de mapButton toe aan de MapWindow
+MapWindow.add(searchBarMap); //hier voegt hij de searchbar toe aan de MapWindow
 if(Titanium.Platform.osname === 'android'){
-	MapWindow.add(searchButton);
-}
+	MapWindow.add(searchButton); //hier voegt hij op android een zoekbutton toe
+};
 
 
