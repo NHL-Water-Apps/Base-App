@@ -29,18 +29,13 @@ if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad')
 	    title : config.volgendeText,
 	    style : Titanium.UI.iPhone.SystemButtonStyle.DONE,
 	});
-<<<<<<< HEAD
 	
 	var flex = Titanium.UI.createButton({
 	    systemButton : Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE,
 	}); 
-	var done = Titanium.UI.createButton({
-		title: 'Klaar',
-=======
-	 
+
 	var Done = Titanium.UI.createButton({
 		title: config.klaarText,
->>>>>>> 067f48c8158fcdcdf3c2c565fe58e8fbbcf690e2
 	    systemButton : Titanium.UI.iPhone.SystemButton.DONE,
 	});
 }
@@ -138,13 +133,8 @@ if(config.showWidth)
 		keyboardType: Titanium.UI.KEYBOARD_NUMBER_PAD,
 		returnKeyType: Titanium.UI.RETURNKEY_DONE,
 		top: Titanium.Platform.osname === 'android' ? '5%' : '6%',
-<<<<<<< HEAD
 		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, flex, done] : 0,
-		hintText: 'Breedte'
-=======
-		keyboardToolbar: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? [next, Done] : 0,
 		hintText: config.breedteHintText
->>>>>>> 067f48c8158fcdcdf3c2c565fe58e8fbbcf690e2
 	});
 	width.add(widthField); // Deze toevoegen aan de rij
 	// 	En een label toevoegen die zegt wat er zou moeten komen te staan
