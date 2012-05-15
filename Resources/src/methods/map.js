@@ -62,18 +62,34 @@ if(Titanium.Platform.osname === 'android'){
 	})
 }
 
+/**
+ *	Fucntie die draait op het moment dat er op een punt in de kaart geklikt wordt
+ * 	Als hierop geklikt is zal er gekeken "waar" er op de item geklikt is en als dat
+ * 		op het knopje is, zal er een nieuw venster geopend worden naar een detailview	 
+ */
 mapView.addEventListener('click', function(e){
-	if(e.clicksource === 'rightButton')
+	// Kijken of er op het juiste gedrukt is
+	
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
+	//Ti.API.log('Main log: ' +  e.annotation.dataToPass);
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
+	
+	
+	
+	if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane')
 	{
-		alert('test');
+		//Ti.API.log(e.dataToPass.PICTURE);
+		// Indien een nieuw window aanmaken
 		var windowBrug = Titanium.UI.createWindow({
 			title: 				e.title,
 			backgroundColor: 	"#FFF",
+			dataToPass: 		e.annotation.dataToPass,
 			url: 				'/src/uiDetailView.js',
 			navBarHidden: 		false,
 			tabBarHidden: 		true
 		});
 		
+		// En deze dan openen
 		MapTab.open(windowBrug, {animated: true});
 	}	
 });

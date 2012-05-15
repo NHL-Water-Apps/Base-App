@@ -17,14 +17,16 @@ var annotationsMap = [];
 //hiermee loopt hij door de array met data heen
 for(var i = 0; i < data.length; i++){
 	annotationsMap[i] = Titanium.Map.createAnnotation({ //voor elke index maakt hij een annotation aan
-		latitude: data[i].LAT, //de latitude van de brug
-		longitude: data[i].LON, //de longitude van de brug
-		title: data[i].title, //de titel van de brug
-		subtitle: 'H: ' + data[i].HEIGTH + 'm' + '\tB: ' + data[i].WIDTH + 'm', //de hoogte van de brug
-		image: (Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad') ? 
-			'/img/AnnotationGroen.png' : '/img/Groter/Anotation Android Groen G.png', //de image van de annotation
-		rightButton: Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE, // de button die op de annotation wordt getoond zodra er op geklikt wordt.
-		animate: true, //hiermee wordt er een animatie toegevoegd aan de annotation
+		// Custom attribute zodat we een detail pagina kunnen maken
+		dataToPass: 	data[i],
+		latitude: 		data[i].LAT, //de latitude van de brug
+		longitude: 		data[i].LON, //de longitude van de brug
+		title: 			data[i].title, //de titel van de brug
+		subtitle: 		'H: ' + data[i].HEIGTH + 'm' + '\tB: ' + data[i].WIDTH + 'm', //de hoogte van de brug
+		image: 			(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad') ? 
+						'/img/AnnotationGroen.png' : '/img/Groter/Anotation Android Groen G.png', //de image van de annotation
+		rightButton: 	Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE, // de button die op de annotation wordt getoond zodra er op geklikt wordt.
+		animate: 		true //hiermee wordt er een animatie toegevoegd aan de annotation
 	});
 };
 
