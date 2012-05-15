@@ -11,7 +11,7 @@ function ShowOnMap(){
 	        } else {
 	            Ti.API.info(e.coords.latitude);
 	            
-	            mapView.setRegion({
+	            mapView.setLocation({
 	            	latitude: e.coords.latitude,
 	            	longitude: e.coords.longitude,
 	            	animate: true,
