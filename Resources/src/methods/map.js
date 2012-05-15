@@ -1,6 +1,7 @@
-//Een event voor het bepalen van de huidge locatie
-	// Self exectuting functie voor het bepalen van je huidige positie op de kaart
-	// Als er geen type kaart geselecteerd is zal er voor de stratenkaart gekozen worden
+/*
+ * 	Een functie die je naar jouw plaats op de kaart brengt 
+ * 	Indien er geen gps beschikbaar is of niet gevonden dan zal er een alert gegeven worden
+ */
 function ShowOnMap(){
 	if (Ti.Geolocation.locationServicesEnabled) {
 	    Titanium.Geolocation.purpose = 'Get Current Location';
@@ -8,7 +9,7 @@ function ShowOnMap(){
 	        if (e.error) {
 	            Ti.API.error('Error: ' + e.error);
 	        } else {
-	            Ti.API.info(e.coords);
+	            Ti.API.info(e.coords.latitude);
 	            
 	            mapView.setRegion({
 	            	latitude: e.coords.latitude,
@@ -24,6 +25,10 @@ function ShowOnMap(){
 	}
 }
 
+/*
+ * 	Zelf uitvoerende functie die je naar jouw positie op de kaart brengt 
+ * 		en begint met het maken van een trail
+ */
 (function(){
 	ShowOnMap();
 	showTrail(0);
@@ -32,30 +37,6 @@ function ShowOnMap(){
 //een event voor de mapButton waarmee de huidige positie op de kaart wordt getoond
 mapButton.addEventListener("click", function(){
 	ShowOnMap();
-});
-
-
-mapButton.addEventListener("click", function(){
-	if (Ti.Geolocation.locationServicesEnabled) {
-		Titanium.Geolocation.purpose = 'Get Current Location';
-		Titanium.Geolocation.getCurrentPosition(function(e) {
-			if (e.error) {
-		    	Ti.API.error('Error: ' + e.error);
-			} else {
-		    	Ti.App.fireEvent("app:got.location", {
-       				coords : e.coords})
-		            mapView.setRegion({
-		            latitude: coords.latitude,
-		            longitude: coords.longitude,
-		            animate: true,
-		            latitudeDelta: 0.01,
-		            longitudeDelta: 0.01
-			});
-		}
-		});
-	} else {
-		alert('Please enable location services');
-	}
 });
 
 //Zodra hij op de rightButton van de annotation klikt krijg je een alert
@@ -80,11 +61,11 @@ mapView.addEventListener('click', function(e){
 	if(e.clicksource === 'rightButton')
 	{
 		var windowBrug = Titanium.UI.createWindow({
-			title: e.title,
-			backgroundColor: "#FFF",
-			url: '/src/uiDetailView.js',
-			navBarHidden: false,
-			tabBarHidden: true
+			title: 				e.title,
+			backgroundColor: 	"#FFF",
+			url: 				'/src/uiDetailView.js',
+			navBarHidden: 		false,
+			tabBarHidden: 		true
 		});
 		
 		MapTab.open(windowBrug, {animated: true});
@@ -148,7 +129,7 @@ function showTrail(plaats){
 	// Kijken of we een positie kunnen krijg
 	Titanium.Geolocation.getCurrentPosition(function(e) {
 		// Kijken of we bewegen
-		if(e.coords.speed > 0){		
+		if(e.coords.speed > 0 || e.coords.speed <= 0){		
 			// Indien dan zal er een nieuwe annotaion gemaakt worden maar eerst zullen we een oude annotation verwijderen
 			mapView.removeAnnotation(trailers[plaats]);
 			
