@@ -34,65 +34,30 @@ mapButton.addEventListener("click", function(){
 	ShowOnMap();
 });
 
-if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){  //if iphone
-mapButton.addEventListener("click", function(){
-	
-		if (Ti.Geolocation.locationServicesEnabled) {
-		    Titanium.Geolocation.purpose = 'Get Current Location';
-		    Titanium.Geolocation.getCurrentPosition(function(e) {
-		        if (e.error) {
-		            Ti.API.error('Error: ' + e.error);
-		        } else {
-		            Ti.App.fireEvent("app:got.location", {
-       				 	coords : e.coords})
-		            	mapView.setRegion({
-		            	latitude: coords.latitude,
-		            	longitude: coords.longitude,
-		            	animate: true,
-		            	latitudeDelta: 0.01,
-		            	longitudeDelta: 0.01
-		            });
-		        }
-		    });
-		} else {
-		    alert('Please enable location services');
-		}
-	
-});
-}
-else  //zelfde functie, op paar dingen na(puur voor de test) nu voor android
-{mapButton.addEventListener("click", function(){
-		
-		if (Ti.Geolocation.locationServicesEnabled) {
-		    Titanium.Geolocation.purpose = 'Get Current Location';
-		    Titanium.Geolocation.getCurrentPosition(function(e) {
-		        if (e.error) {
-		            Ti.API.error('Error: ' + e.error);
-		        } else {
-		            Ti.App.fireEvent("app:got.location", {   //de verandering in de code
-       			 	coords : e.coords});
-		            mapView.setRegion({
-		            	latitude: coords.latitude,
-		            	longitude: coords.longitude,
-		            	animate: true,
-		            	latitudeDelta: 0.01,
-		            	longitudeDelta: 0.01
-		            });
-		        }
-		    });
-		} else {
-		    alert('Please enable location services');
-		}
-	
-});
-}
-Ti.App.addEventListener("app:got.location", function(d) {
-    Ti.App.GeoApp.f_lng = d.longitude;
-    Ti.App.GeoApp.f_lat = d.latitude;
-    Ti.API.debug(JSON.stringify(d));
-    alert(JSON.stringify(d));
 
+mapButton.addEventListener("click", function(){
+	if (Ti.Geolocation.locationServicesEnabled) {
+		Titanium.Geolocation.purpose = 'Get Current Location';
+		Titanium.Geolocation.getCurrentPosition(function(e) {
+			if (e.error) {
+		    	Ti.API.error('Error: ' + e.error);
+			} else {
+		    	Ti.App.fireEvent("app:got.location", {
+       				coords : e.coords})
+		            mapView.setRegion({
+		            latitude: coords.latitude,
+		            longitude: coords.longitude,
+		            animate: true,
+		            latitudeDelta: 0.01,
+		            longitudeDelta: 0.01
+			});
+		}
+		});
+	} else {
+		alert('Please enable location services');
+	}
 });
+
 //Zodra hij op de rightButton van de annotation klikt krijg je een alert
 /*mapView.addEventListener('click', function(e){
 	if(e.clicksource === 'rightButton'){
@@ -168,30 +133,42 @@ if(Titanium.Platform.osname === 'android'){
 	});
 }
 
+/*
+ * 	De onderstaande functie zal annotaions toevoegen op de kaart om zo een trail
+ * 		te maken.
+ * 	Indien er al x aantal annotaions op de kaart staan zal hij de als eerste
+ * 		toegevoegde annotation weghalen.
+ */
 var trailers = [];
 function showTrail(plaats){
+	// Controle of we niet al teveel annotaions op de kaart hebben
+	// Als we al we te veel hebben zetten we de pointer op 0 (en dan opnieuw eroverheen)
 	if(plaats > config.trailerAmmount) { plaats = 0; }
+	
+	// Kijken of we een positie kunnen krijg
 	Titanium.Geolocation.getCurrentPosition(function(e) {
-		if(e.coords.speed > 0){
-		//var trailAnnotationArray = [10];
-		
-		mapView.removeAnnotation(trailers[plaats], {opacity: 0, duration: 1000, animate: true});			
-		//foreach(trail in trailAnnotationArray){
-		trailers[plaats] = Titanium.Map.createAnnotation({
-	   		latitude:e.coords.latitude,
-	   		longitude:e.coords.longitude,
-	 		title:'',
-    		opacity: 1,
-    		//animate: true,
-    		duration: 3000,
-	    	pincolor:Titanium.Map.ANNOTATION_RED,
-	   		image: '/img/trailstip.png',
-	   		myid:1 // Custom property to uniquely identify this annotation.
-		});					
-				
+		// Kijken of we bewegen
+		if(e.coords.speed > 0){		
+			// Indien dan zal er een nieuwe annotaion gemaakt worden maar eerst zullen we een oude annotation verwijderen
+			mapView.removeAnnotation(trailers[plaats]);
+			
+			// Darna maken we een nieuw annotion aan op deze lokatie in de array
+			trailers[plaats] = Titanium.Map.createAnnotation({
+	   			latitude:	e.coords.latitude,
+	   			longitude:	e.coords.longitude,
+	 			title:		'',
+    			opacity: 	1,
+    			duration: 	3000,
+	    		pincolor:	Titanium.Map.ANNOTATION_RED,
+	   			image: '	/img/trailstip.png'
+			});
+			// Daarna deze annotatie toeveogen aan de kaart						
 			mapView.addAnnotation(trailers[plaats]);				
-	 }
+	 	}
 	});
+	
+	// Toevoegen en verwijderen is klaar
+	// Functie opnieuw aanroepen na een timout (en pointer met 1 verhogen)
 	setTimeout(function(){
 	 	showTrail(plaats + 1)}, config.trailTimeout);
 }
