@@ -133,12 +133,12 @@ searchBarMap.addEventListener('focus', function(){
 		//MapWindow.showNavBar();
 	}	
 	//voor de android
-	else if(Titanium.Platform.osname = 'android'){
+	//else if(Titanium.Platform.osname = 'android'){
 		//softKeyboardOnFocus: Titaniu==m.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
 		//searchBarMap.setFocusable = false;
 		//Titanium.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
 		//searchBarMap.setSoftKeyboardOnFocus();
-	}
+	//}
 })
 
 //een event waarmee de searhBar inactief wordt gemaakt zodra je op de cancel knop klikt
@@ -161,6 +161,8 @@ searchBarMap.addEventListener("return", function(){
 	}
 });
 
-Titanium.Gesture.addEventListener('orientationchange', function () {
-	searchBarMap.height = Titanium.Gesture.isPortrait() ? '12%' : '20%';
-});
+if(Titanium.Platform.osname === 'android'){
+	Titanium.Gesture.addEventListener('orientationchange', function () {
+		searchBarMap.height = Titanium.Gesture.isPortrait() ? '12%' : '20%';
+	});
+}
