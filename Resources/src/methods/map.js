@@ -159,8 +159,7 @@ function showTrail(plaats){
 	 			title:		'',
     			opacity: 	1,
     			duration: 	3000,
-	    		pincolor:	Titanium.Map.ANNOTATION_RED,
-	   			image: '	/img/trailstip.png'
+	   			image: '/img/trailstip.png'
 			});
 			// Daarna deze annotatie toeveogen aan de kaart						
 			mapView.addAnnotation(trailers[plaats]);				
