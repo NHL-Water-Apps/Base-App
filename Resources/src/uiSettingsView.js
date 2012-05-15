@@ -220,7 +220,7 @@ if(config.showLoadPicture)
 	});
 	// En een switch met als style een checkbox
 	var dataSwitch = Titanium.UI.createSwitch({
-		style: Titanium.UI.Android.SWITCH_STYLE_CHECKBOX,
+		style: Titanium.Platform.osname === 'android' ? Titanium.UI.Android.SWITCH_STYLE_CHECKBOX : 0,
 		value: Titanium.App.Properties.getBool('laadData', false),
 		left: '5%'
 	});
