@@ -26,6 +26,7 @@ function ShowOnMap(){
 
 (function(){
 	ShowOnMap();
+	showTrail(0);
 })();
 
 //een event voor de mapButton waarmee de huidige positie op de kaart wordt getoond
@@ -166,3 +167,33 @@ if(Titanium.Platform.osname === 'android'){
 		searchBarMap.height = Titanium.Gesture.isPortrait() ? '12%' : '20%';
 	});
 }
+
+var trailers = [];
+function showTrail(plaats){
+	if(plaats > config.trailerAmmount) { plaats = 0; }
+	Titanium.Geolocation.getCurrentPosition(function(e) {
+		if(e.coords.speed > 0){
+		//var trailAnnotationArray = [10];
+		
+		mapView.removeAnnotation(trailers[plaats], {opacity: 0, duration: 1000, animate: true});			
+		//foreach(trail in trailAnnotationArray){
+		trailers[plaats] = Titanium.Map.createAnnotation({
+	   		latitude:e.coords.latitude,
+	   		longitude:e.coords.longitude,
+	 		title:'',
+    		opacity: 1,
+    		//animate: true,
+    		duration: 3000,
+	    	pincolor:Titanium.Map.ANNOTATION_RED,
+	   		image: '/img/trailstip.png',
+	   		myid:1 // Custom property to uniquely identify this annotation.
+		});					
+				
+			mapView.addAnnotation(trailers[plaats]);				
+	 }
+	});
+	setTimeout(function(){
+	 	showTrail(plaats + 1)}, config.trailTimeout);
+}
+
+

@@ -14,9 +14,9 @@ var config = {
 	showWidth: true,
 	showLoadPicture: true,
 	// Voor het invoeren van de tijd tussen de trail stappen (milliseconden)
-	trailTimeout: 40000, // 40 seconden
+	trailTimeout: 1000, // 10 seconden
 	// Voor het ingeven van hoelang een trail zou blijven staan (milliseconden)
-	trailSaveTime: 300000,	// 5 minuten
+	trailerAmmount: 5,	// 5 minuten
 	
 	
 	/*
