@@ -228,7 +228,7 @@ if(config.showLoadPicture)
 	// Een label erbij te indicatie
 	dataRow.add(Titanium.UI.createLabel({
 		text: config.laadAfbeeldingText,
-		top: Titanium.Platform.osname === 'android' ? '35%' : '6%', // voor het uitlijnen
+		top: Titanium.Platform.osname === 'android' ? '33%' : '6%', // voor het uitlijnen
 		left: '23%',
 		touchEnabled: false,
 		height: 'auto',
