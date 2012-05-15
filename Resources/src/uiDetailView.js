@@ -5,7 +5,7 @@
 
 var windowDetailview = Ti.UI.currentWindow;
 
-if(windowDetailview.dataToPass != "geen foto beschikbaar")   //kijken of er een foto beschikbaar is
+if(windowDetailview.dataToPass.PICTURE != "geen foto beschikbaar")   //kijken of er een foto beschikbaar is
 {
 var labels = 
 	Ti.UI.createImageView({url:'http://www.moorsmagazine.com/images13/brug002.jpg'})  //dummylink voor foto, dit kan dataToPass zijn

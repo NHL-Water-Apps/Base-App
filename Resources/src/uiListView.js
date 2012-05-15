@@ -35,11 +35,10 @@ var table = Titanium.UI.createTableView({data:data,       //list inclusief zoekv
 			filterAttribute:'title'  //filteren op title wanneer er iets ingevoerd wordt
 			})});
 
-table.addEventListener('click', function(e)   //eventlistener
-{	
-	 var DetailView = Titanium.UI.createWindow({ //aanmaken nieuw window
-	 	title: e.rowData.title,  //titel nieuwe window
-	 	dataToPass: e.rowData.PICTURE,  //data versturen naar detailscherm
+table.addEventListener('click', function(e){   //eventlistener	
+	var DetailView = Titanium.UI.createWindow({ //aanmaken nieuw window
+		title: e.rowData.title,  //titel nieuwe window
+	 	dataToPass: e.rowData,  //data versturen naar detailscherm
 	 	backgroundColor: '#FFF',  //achtergrondkleur
 	 	url:'src/uiDetailView.js',  //url van pagina is uiDetailView.js
 	 	navBarHidden: false,
