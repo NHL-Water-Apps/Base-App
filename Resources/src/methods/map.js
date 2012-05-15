@@ -129,24 +129,27 @@ function showTrail(plaats){
 	
 	// Kijken of we een positie kunnen krijg
 	Titanium.Geolocation.getCurrentPosition(function(e) {
-		// Kijken of we bewegen
-		if(e.coords.speed > 0 || e.coords.speed <= 0){		
-			// Indien dan zal er een nieuwe annotaion gemaakt worden maar eerst zullen we een oude annotation verwijderen
-			if(trailers[plaats])
-			{
-				mapView.removeAnnotation(trailers[plaats]);
-			}
-			// Darna maken we een nieuw annotion aan op deze lokatie in de array
-			trailers[plaats] = Titanium.Map.createAnnotation({
-	   			latitude:	e.coords.latitude,
-	   			longitude:	e.coords.longitude,
-	 			title:		'',
-    			opacity: 	1,
-    			duration: 	3000,
-	   			image: '/img/trailstip.png'
-			});
-			// Daarna deze annotatie toeveogen aan de kaart					
-			mapView.addAnnotation(trailers[plaats]);			
+		if(e.speed)
+		{
+			// Kijken of we bewegen
+			if(e.coords.speed > 0){		
+				// Indien dan zal er een nieuwe annotaion gemaakt worden maar eerst zullen we een oude annotation verwijderen
+				if(trailers[plaats])
+				{
+					mapView.removeAnnotation(trailers[plaats]);
+				}
+				// Darna maken we een nieuw annotion aan op deze lokatie in de array
+				trailers[plaats] = Titanium.Map.createAnnotation({
+	   				latitude:	e.coords.latitude,
+	   				longitude:	e.coords.longitude,
+	 				title:		'',
+    				opacity: 	1,
+    				duration: 	3000,
+	   				image: '/img/trailstip.png'
+				});
+				// Daarna deze annotatie toeveogen aan de kaart					
+				mapView.addAnnotation(trailers[plaats]);			
+	 		}
 	 	}
 	});
 	
