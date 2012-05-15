@@ -9,7 +9,7 @@ function ShowOnMap(){
 	        if (e.error) {
 	            Ti.API.error('Error: ' + e.error);
 	        } else {
-	            Ti.API.info(e.coords.latitude);
+	            Ti.API.info(e.coords);
 	            
 	            mapView.setLocation({
 	            	latitude: e.coords.latitude,
@@ -60,6 +60,7 @@ if(Titanium.Platform.osname === 'android'){
 mapView.addEventListener('click', function(e){
 	if(e.clicksource === 'rightButton')
 	{
+		alert('test');
 		var windowBrug = Titanium.UI.createWindow({
 			title: 				e.title,
 			backgroundColor: 	"#FFF",
@@ -131,8 +132,10 @@ function showTrail(plaats){
 		// Kijken of we bewegen
 		if(e.coords.speed > 0 || e.coords.speed <= 0){		
 			// Indien dan zal er een nieuwe annotaion gemaakt worden maar eerst zullen we een oude annotation verwijderen
-			mapView.removeAnnotation(trailers[plaats]);
-			
+			if(trailers[plaats])
+			{
+				mapView.removeAnnotation(trailers[plaats]);
+			}
 			// Darna maken we een nieuw annotion aan op deze lokatie in de array
 			trailers[plaats] = Titanium.Map.createAnnotation({
 	   			latitude:	e.coords.latitude,
@@ -142,8 +145,8 @@ function showTrail(plaats){
     			duration: 	3000,
 	   			image: '/img/trailstip.png'
 			});
-			// Daarna deze annotatie toeveogen aan de kaart						
-			mapView.addAnnotation(trailers[plaats]);				
+			// Daarna deze annotatie toeveogen aan de kaart					
+			mapView.addAnnotation(trailers[plaats]);			
 	 	}
 	});
 	
@@ -152,5 +155,4 @@ function showTrail(plaats){
 	setTimeout(function(){
 	 	showTrail(plaats + 1)}, config.trailTimeout);
 }
-
 
