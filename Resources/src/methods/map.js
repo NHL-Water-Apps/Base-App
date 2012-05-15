@@ -11,6 +11,11 @@ function ShowOnMap(){
 	        } else {
 	            Ti.API.info(e.coords.latitude);
 	            
+	            
+				Ti.Geolocation.forwardGeocoder('440 Bernardo Ave Mountain View CA', function(e) {
+				    Ti.API.info(e);
+				});
+	            
 	            mapView.setLocation({
 	            	latitude: e.coords.latitude,
 	            	longitude: e.coords.longitude,
@@ -77,15 +82,23 @@ searchBarMap.addEventListener('focus', function(){
 	//voor de iphone
 	if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ){
 		searchBarMap.setShowCancel(true, { animated: true});	
-		//MapWindow.showNavBar();
+		
+		var blackMapView = Titanium.UI.createView({
+			backgroundColor: '#000',
+			opacity: 0.5
+		});
+		
+		mapView.add(blackMapView);
+	
+		blackMapView.addEventListener('click', function(){
+			searchBarMap.blur();
+		});
+		
+		searchBarMap.addEventListener('blur', function(){
+			mapView.remove(blackMapView);
+			searchBarMap.setShowCancel(false, {animated: true});
+		});
 	}	
-	//voor de android
-	//else if(Titanium.Platform.osname = 'android'){
-		//softKeyboardOnFocus: Titaniu==m.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
-		//searchBarMap.setFocusable = false;
-		//Titanium.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
-		//searchBarMap.setSoftKeyboardOnFocus();
-	//}
 })
 
 //een event waarmee de searhBar inactief wordt gemaakt zodra je op de cancel knop klikt
