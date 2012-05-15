@@ -248,6 +248,7 @@ var settingsTable = Titanium.UI.createTableView({
 			(Titanium.Gesture.isPortrait ? Titanium.Platform.displayCaps.platformHeight : Titanium.Platform.displayCaps.platformWidth) : 
 			'100%',
 	width: '100%',
+	scrollable: false,
 	data: tableData,
 	style: Titanium.UI.iPhone.TableViewStyle.GROUPED
 });

@@ -130,5 +130,6 @@ function checkField(fieldName, saveName){
  * 	Indien zo nieuwe waarde opslaan
  */
 dataSwitch.addEventListener('change', function(){
+	// Het opslaan van de waarde van de switch
 	Titanium.App.Properties.setBool('laadData', dataSwitch.value);
 });

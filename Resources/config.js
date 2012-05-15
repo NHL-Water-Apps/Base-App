@@ -1,7 +1,8 @@
 /*
  *	Het config bestand
  * 	Hierin komen alle verschillende opties voor het snel uitbrengen
- * 		van verschillende apps 
+ * 		van verschillende apps en het veranderen van de teksten in de
+ * 		app (oa. voor andere talen)
  */
 var config = {
 	/*
@@ -35,6 +36,7 @@ var config = {
 	 * 		OVERALL
 	 * 	- - - - - - - - - -
 	 */
+	// Spreekt voor zich
 	zoekText: 'Zoek',
 	volgendeText: 'Volgende',
 	klaarText: 'Done',
@@ -44,7 +46,8 @@ var config = {
 	 * 		 KAART
 	 * 	- - - - - - - - - -
 	 */
-	// Wat er in de error message komt idien hij gps aanvraagt
+	// Wat er in de error message komt idien hij gps aanvraagt maar
+	//		dit uitstaat
 	geenGPS: 'Schakel alstublieft de Locatievoorziening in.',
 	
 	/*	- - - - - - - - - - 
@@ -72,7 +75,7 @@ var config = {
 	// Header van het databebruik
 	dataHeader: 'Datagebruik:',
 	// text achter checkbox van het laden van data
-	laadAfbeeldingText: 'Afbeeldingen laden',
+	laadAfbeeldingText: 'Internet afbeeldingen laden',
 	
 	/*	- - - - - - - - - - 
 	 * 	   DETAIL
