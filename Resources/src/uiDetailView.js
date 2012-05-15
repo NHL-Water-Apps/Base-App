@@ -5,6 +5,15 @@
 
 var windowDetailview = Ti.UI.currentWindow;
 
+var containerScrollView = Titanium.UI.createScrollView({
+	top: 0,
+	layout: 'vertical',
+	height: '100%',
+	width: '100%',
+	contentHeight: 'auto',
+	
+})
+
 if(windowDetailview.dataToPass.PICTURE != "geen foto beschikbaar")   //kijken of er een foto beschikbaar is
 {
 var labels = 
