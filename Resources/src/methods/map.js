@@ -69,20 +69,13 @@ if(Titanium.Platform.osname === 'android'){
  */
 mapView.addEventListener('click', function(e){
 	// Kijken of er op het juiste gedrukt is
-	
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
-	//Ti.API.log('Main log: ' +  e.annotation.dataToPass);
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
-	
-	
-	
 	if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane')
 	{
-		//Ti.API.log(e.dataToPass.PICTURE);
 		// Indien een nieuw window aanmaken
 		var windowBrug = Titanium.UI.createWindow({
 			title: 				e.title,
 			backgroundColor: 	"#FFF",
+			// Onze custom value meegeven met alle data over het POI
 			dataToPass: 		e.annotation.dataToPass,
 			url: 				'/src/uiDetailView.js',
 			navBarHidden: 		false,
