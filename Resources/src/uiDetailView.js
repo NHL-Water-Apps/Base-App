@@ -17,22 +17,48 @@ var containerScrollView = Titanium.UI.createScrollView({
 if(windowDetailview.dataToPass.PICTURE != "geen foto beschikbaar")   //kijken of er een foto beschikbaar is
 {
 var labels = 
-	Ti.UI.createImageView({url:'http://www.moorsmagazine.com/images13/brug002.jpg'})  //dummylink voor foto, dit kan dataToPass zijn
+	Ti.UI.createImageView({url:'http://www.moorsmagazine.com/images13/brug002.jpg',
+	height: '35%',
+	width : '80%',
+	top: '2%',
+	})  //dummylink voor foto, dit kan dataToPass zijn
 }
 
 else   //geen foto beschikbaar
 {	var labels = Titanium.UI.createLabel({
 	text : config.geenFoto})
 }
-windowDetailview.add(labels);  //toevoegen aan tabel
 
+var Type = Titanium.UI.createLabel({
+	text : 'Type: ' +windowDetailview.dataToPass.BRIDGETYPE,
+	textAlign : 'left',
+	width : 'auto',
+	heigth : 'auto'
+});
+var Hoogte = Titanium.UI.createLabel({
+	text : 'Hoogte: ' + windowDetailview.dataToPass.HEIGTH,
+	textAlign : 'left',
+	width : 'auto',
+	heigth : 'auto'
+});
+var Breedte = Titanium.UI.createLabel({
+	text : 'Breedte' + windowDetailview.dataToPass.WIDTH,
+	textAlign : 'left',
+	width : 'auto',
+	heigth : 'auto'
+});
+containerScrollView.add(labels);
+containerScrollView.add(Type);
+containerScrollView.add(Hoogte);
+containerScrollView.add(Breedte);  //toevoegen aan tabel
+windowDetailview.add(containerScrollView )
 
 
 //eddie oud
 //var windowDetailView = Titanium.UI.currentWindow; 
 		
 //var windowLabel = Titanium.UI.createLabel({
-	//text: 'Dit is een nieuw scherm vanaf de annotation:' + windowDetailView.title,
+	//text: 'Dit is een nieuw scherm vanaf de annotation:' + windowDetailView.title \n +,
 	//textAlign: 'center',
 	//width: 'auto',
 	//height: 'auto'
