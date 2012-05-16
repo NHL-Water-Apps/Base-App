@@ -50,7 +50,7 @@ table.addEventListener('click', function(e){   //eventlistener
 	 	navBarHidden: false, //de navbar op iphone en ipad zichtbaar gemaakt
 	 	tabBarHidden: true //de tabBar op de iphone en ipad wordt onzichtbaar gemaakt
 }); 
-		
+	
 		ListTab.open(DetailView, {animated: true});	//nieuwe window openenen
 });
 

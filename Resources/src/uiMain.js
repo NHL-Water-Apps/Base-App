@@ -8,11 +8,11 @@
  * 	Titanium.App.Properties.getInt("BoatHeight", null) bevat de hoogte van de boot
  * 	Wel checken of het niet null is (default)
  */
-
+Titanium.include('uiMapView.js'); // kaart pagina
 // Alle andere pagina ui's includen
 Titanium.include('uiListView.js'); // lijst pagina
 //Titanium.include('uiDetailView.js'); // detail pagina
-Titanium.include('uiMapView.js'); // kaart pagina
+
 Titanium.include('uiSettingsView.js'); // settings pagina
 
 // Maken van het menu

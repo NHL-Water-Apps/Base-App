@@ -14,7 +14,7 @@ var config = {
 	showWidth: true,
 	showLoadPicture: true,
 	// Voor het invoeren van de tijd tussen de trail stappen (milliseconden)
-	trailTimeout: 1000, // 10 seconden
+	trailTimeout: 1000, // 1 seconden
 	// Voor het ingeven van hoelang een trail zou blijven staan (milliseconden)
 	trailerAmmount: 5,	// 5 minuten
 	
@@ -82,6 +82,15 @@ var config = {
 	 *	- - - - - - - - - -
 	 */ 
 	 // Text weer te geven als er geen foto is
-	 geenFoto: 'Geen foto beschikbaar'
-	 
+	 geenFoto: 'Geen foto beschikbaar',
+	 // 
+	 fotoUitgeschakeld: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
+	 //detailview eigenschappen
+	 hoogte : "Hoogte: ",
+	 breedte : "Breedte: ",
+	 type : "Type: ",
+	 adres : "Adres: ",
+	 eenheid : " Meter",
+	 //titel van de toon op kaart knop
+	 ToonopKaart : "Toon op kaart"
 };
