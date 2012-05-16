@@ -7,7 +7,7 @@
 // Het maken van de window
 var ListWindow = Titanium.UI.createWindow({
 	title: 'Lijst',				// Titel van de window
-	backgroundColor: '#FFFFFF',	// En de achtergrond kleur
+	backgroundColor:'#000000',	// En de achtergrond kleur
 	navBarHidden: true // Navigatie balk op de iPhone en Ipad onzichtbaar
 });
 
@@ -27,8 +27,8 @@ function sortName(thisObject,thatObject) {     //sorteerfunctie
 
 //De Searchbar voor de lijst
 var tableSearchBar = Titanium.UI.createSearchBar(
-			{barColor: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? '#000000' : '#FFF',    //kleur voor zoekbar
-   			height: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? 43 : 55, //de hoogte van de zoekbalk per platform
+			{barColor: '#000000',    //kleur voor zoekbar
+   			height: Titanium.Gesture.isPortrait() ? '12%' : '20%',
    			hintText: config.zoekText,  //hulptekst
    			top:0, //de afstand vanaf de bovenkant
 			filterAttribute:'title',  //filteren op title wanneer er iets ingevoerd wordt
