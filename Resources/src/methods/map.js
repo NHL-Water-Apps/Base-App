@@ -151,7 +151,7 @@ function showTrail(plaats){
 	
 	// Kijken of we een positie kunnen krijg
 	Titanium.Geolocation.getCurrentPosition(function(e) {
-		if(e.speed)
+		if(e.coords.speed)
 		{
 			// Kijken of we bewegen
 			if(e.coords.speed > 0){		
