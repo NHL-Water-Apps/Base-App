@@ -112,7 +112,7 @@ function checkField(fieldName, saveName){
 	var rExp  = /[0-9]+(\.[0-9]+)?/; 							// Regualar expression die test voor juiste getallen
 	if(fieldName.value === '' || rExp.test(fieldName.value)) 	// kijken of er een juist iets is ingevuld
 	{
-		var temp = rExp.exec(widthField.value); 				// kijken of er een getal uit de regular expression komt
+		var temp = rExp.exec(fieldName.value); 				// kijken of er een getal uit de regular expression komt
 		if(fieldName.value === '') { Titanium.App.Properties.setString( saveName, null); } 
 		else if(temp !== null && temp.length > 0){				// kleine controle (gaf een error zonder vreemd genoeg)
 			Titanium.App.Properties.setString(saveName, temp[0]); // anders het eerste getal uit de regular expression opslaan
