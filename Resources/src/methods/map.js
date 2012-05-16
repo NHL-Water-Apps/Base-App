@@ -34,15 +34,6 @@ function ShowOnMap(){
 	showTrail(0);
 })();
 
-function annotationImage(){
-		if(data[i].HEIGTH > Titanium.App.Properties.getString('height', '0') && Titanium.App.Properties.getString('height', '0') !=  '0' && data[i].BRIDGETYPE != 'beweegbare brug'){
-			annotationsMap[i].image = '/img/OnMap/BrugRood.png'; 
-		}
-		else{
-			annotationsMap[i].image = '/img/OnMap/BrugGroen.png';
-		}
-}
-
 //een event voor de mapButton waarmee de huidige positie op de kaart wordt getoond
 mapButton.addEventListener("click", function(){
 	ShowOnMap();
