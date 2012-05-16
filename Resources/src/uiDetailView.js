@@ -14,8 +14,9 @@ var containerScrollView = Titanium.UI.createScrollView({
 	
 })
 
-if(windowDetailview.dataToPass.PICTURE != "geen foto beschikbaar")   //kijken of er een foto beschikbaar is
+if(windowDetailview.dataToPass.PICTURE != "geen foto beschikbaar" && Titanium.App.Properties.getBool('laadData', false))   //kijken of er een foto beschikbaar is
 {
+	alert(Titanium.App.Properties.getBool('laadData', false));
 var labels = 
 	Ti.UI.createImageView({url:'http://www.moorsmagazine.com/images13/brug002.jpg',
 	height: '35%',
@@ -25,8 +26,14 @@ var labels =
 }
 
 else   //geen foto beschikbaar
-{	var labels = Titanium.UI.createLabel({
-	text : config.geenFoto})
+{   if(dataSwitch.value)
+	{var labels = Titanium.UI.createLabel({
+	text : config.geenFoto})}
+	else
+	{
+	var labels = Titanium.UI.createLabel({
+	text : "Foto laden is uitgeschakeld, schakel deze in bij de instellingen."})
+	}
 }
 
 var Type = Titanium.UI.createLabel({
