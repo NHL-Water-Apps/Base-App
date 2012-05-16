@@ -35,7 +35,7 @@ function ShowOnMap(){
 })();
 
 function annotationImage(){
-		if(data[i].HEIGTH > Titanium.App.Properties.getString('height', '0') && Titanium.App.Properties.getString('height', '0') !=  '0'){
+		if(data[i].HEIGTH > Titanium.App.Properties.getString('height', '0') && Titanium.App.Properties.getString('height', '0') !=  '0' && data[i].BRIDGETYPE != 'beweegbare brug'){
 			annotationsMap[i].image = '/img/OnMap/BrugRood.png'; 
 		}
 		else{
