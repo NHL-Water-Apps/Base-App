@@ -91,7 +91,6 @@ mapView.addEventListener('click', function(e){
 searchBarMap.addEventListener('focus', function(){
 	//voor de iphone
 	if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ){
-		searchBarMap.setShowCancel(true, { animated: true});	
 		
 		var blackMapView = Titanium.UI.createView({
 			backgroundColor: '#000',
@@ -106,23 +105,10 @@ searchBarMap.addEventListener('focus', function(){
 		
 		searchBarMap.addEventListener('blur', function(){
 			mapView.remove(blackMapView);
-			searchBarMap.setShowCancel(false, {animated: true});
 			blackMapView = null;
 		});
 	}	
 })
-
-//een event waarmee de searhBar inactief wordt gemaakt zodra je op de cancel knop klikt
-searchBarMap.addEventListener('cancel', function(){
-	if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
-		searchBarMap.setShowCancel(false, { animated: true });	//de cancel knop wordt inactief gemaakt
-		searchBarMap.blur();
-		//MapWindow.hideNavBar();
-	}
-	else if(Titanium.Platform.osname === 'android'){
-		searchBarMap.setShowCancel(false, {animated: true});
-	}
-});
 
 //een event waarmee de searchBar inactief wordt gemaakt zodra je op de search knop klikt
 searchBarMap.addEventListener("return", function(){

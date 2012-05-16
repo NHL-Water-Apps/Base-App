@@ -40,7 +40,7 @@ var mapView = Titanium.Map.createView({
 	animate: true, //hiermee geeft hij een animatie zodra de kaart getoond wordt
 	regionFit: true, //de kaart wordt niet passende gemaakt
 	userLocation: true, //hiemeer haalt hij je huidge positie op en toont hij die op de kaart
-	annotations: annotationsMap, //hiermee geeft hij de annotation weer op de kaart
+	annotations: annotationsMap //hiermee geeft hij de annotation weer op de kaart
 });
 
 
