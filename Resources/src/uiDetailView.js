@@ -2,31 +2,27 @@
 // de detail pagina van een POI.
 // Dus alle informatie die er is over een POI en een 
 // knopje naar het tonen van deze POI op de kaart.
-
 var windowDetailview = Ti.UI.currentWindow;   //tabview , hierin komt de scrollview
-
+Titanium.include('config.js');
 var containerScrollView = Titanium.UI.createScrollView({   //scrollview
 	top: 0,
 	layout: 'vertical',
 	height: '100%',
 	width: '100%', 
 	backgroundColor:'#000000',  
-	contentHeight: 'auto', 
-	
-})
+	contentHeight: 'auto'
+});
 
 if(windowDetailview.dataToPass.PICTURE != "geen foto beschikbaar" && Titanium.App.Properties.getBool('laadData', false))   //kijken of er een foto beschikbaar is
 //en of het laten zien van foto's aangevinkt is in de settings.
 {
-
-var imagebridge =       //foto van de brug tonen
+	var imagebridge =       //foto van de brug tonen
 	Ti.UI.createImageView({url:'http://www.moorsmagazine.com/images13/brug002.jpg',  //dummylink voor foto, dit kan dataToPass zijn
 	height: '35%',
 	width : '80%',
 	top: '2%',
-	})  
+});
 }
-
 else   //geen foto beschikbaar
 {   if(Titanium.App.Properties.getBool('laadData', false))     //wanneer foto's laden ingeschakeld is en er is geen foto beschikbaar toon de tekst dat er geen foto beschikbaar is
 	{var imagebridge = Titanium.UI.createLabel({
@@ -38,7 +34,7 @@ else   //geen foto beschikbaar
 	height: '35%',
 	width : '80%',
 	top: '2%',
-	position: 'center'})
+	position: 'center'});
 	}
 }
 //Hieronder staan de eigenschappen van de brug. Type, hoogte etc
