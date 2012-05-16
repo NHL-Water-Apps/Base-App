@@ -64,11 +64,12 @@ var Breedte = Titanium.UI.createLabel({
 	heigth : 'auto'
 });
 var Toonkaart = Titanium.UI.createButton({
-		right: '2%', // de positie van de button vanaf de rechterkant
+		
 		bottom: 5, //de positie van de button vanaf de onderkant
 		height: 'auto', //de hoogte van de button
 		width: 'auto', //de breedte van de button
-		text: "Toon kaart"
+		title: "Toon kaart",
+		position: 'center'
 	});
 containerScrollView.add(labels);
 containerScrollView.add(Type);

@@ -28,7 +28,8 @@ function sortName(thisObject,thatObject) {     //sorteerfunctie
 //De Searchbar voor de lijst
 var tableSearchBar = Titanium.UI.createSearchBar(
 			{barColor: '#000000',    //kleur voor zoekbar
-   			height: Titanium.Gesture.isPortrait() ? '12%' : '20%',
+   			//height: Titanium.Gesture.isPortrait() ? '12%' : '20%',
+   			height: Titanium.Platform.osname == 'iphone' || Titanium.Platform.osname == 'ipad' ? 43 : 55,
    			hintText: config.zoekText,  //hulptekst
    			top:0, //de afstand vanaf de bovenkant
 			filterAttribute:'title',  //filteren op title wanneer er iets ingevoerd wordt
