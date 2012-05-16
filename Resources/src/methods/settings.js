@@ -84,8 +84,42 @@ if(config.showHeight)	// indien we deze optie geven
 {	
 	heightField.addEventListener('blur', function(){
 		checkField(heightField, 'height'); // controle op dit veld aanroepen
-	});
+		
+		//zodra er opnieuw iets wordt ingevoerd in de heightField worden alle annotations van de map verwijderd
+		mapView.removeAllAnnotations();
+		
+		//Hierna worden er opnieuw annotations op de kaart getoond
+		
+		//hier maakt hij een array aan waarin de annotations worden opgeslagen
+		var annotationsMap = [];
+		//hiermee loopt hij door de array met data heen
+		for(var i = 0; i < data.length; i++){
+			annotationsMap[i] = Titanium.Map.createAnnotation({ //voor elke index maakt hij een annotation aan
+				// Custom attribute zodat we een detail pagina kunnen maken
+				dataToPass: 	data[i],
+				latitude: 		data[i].LAT, //de latitude van de brug
+				longitude: 		data[i].LON, //de longitude van de brug
+				title: 			data[i].title, //de titel van de brug
+				subtitle: 		'H: ' + data[i].HEIGTH + 'm' + '\tB: ' + data[i].WIDTH + 'm', //de hoogte van de brug
+				//image: 			'/img/OnMap/BrugGroen.png',
+				rightButton: 	Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE, // de button die op de annotation wordt getoond zodra er op geklikt wordt.
+				animate: 		true //hiermee wordt er een animatie toegevoegd aan de annotation
+			});
+			//annotationImage();
+			
+			//Hier wordt gechecked of de hoogte van de brug kleiner is dan de hoogte van de boot + de brugtype mag niet gelijk zijn aan beweegbare brug om een rode annotation te plaatsen
+			if(data[i].HEIGTH < Titanium.App.Properties.getString('height', '0') && Titanium.App.Properties.getString('height', '0') !=  '0' && data[i].BRIDGETYPE != 'beweegbare brug'){
+					annotationsMap[i].image = '/img/OnMap/BrugRood.png'; 
+				}
+				else{
+					annotationsMap[i].image = '/img/OnMap/BrugGroen.png'; //in alle andere gevallen komen er groene annations op de map
+				}
+		
+			};
+			mapView.addAnnotations(annotationsMap);
+		});
 }
+
 // indien we een breedte willen weergeven
 if(config.showWidth)
 {
