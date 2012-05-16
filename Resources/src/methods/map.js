@@ -107,6 +107,7 @@ searchBarMap.addEventListener('focus', function(){
 		searchBarMap.addEventListener('blur', function(){
 			mapView.remove(blackMapView);
 			searchBarMap.setShowCancel(false, {animated: true});
+			blackMapView = null;
 		});
 	}	
 })
@@ -151,7 +152,7 @@ function showTrail(plaats){
 	
 	// Kijken of we een positie kunnen krijg
 	Titanium.Geolocation.getCurrentPosition(function(e) {
-		if(e.coords.speed)
+		if(e.coords && e.coords.speed)
 		{
 			// Kijken of we bewegen
 			if(e.coords.speed > 0){		
