@@ -10,12 +10,7 @@ function ShowOnMap(){
 	            Ti.API.error('Error: ' + e.error);
 	        } else {
 	            Ti.API.info(e.coords);
-	            
-	            
-				Ti.Geolocation.forwardGeocoder('440 Bernardo Ave Mountain View CA', function(e) {
-				    Ti.API.info(e);
-				});
-	            
+
 	            mapView.setLocation({
 	            	latitude: e.coords.latitude,
 	            	longitude: e.coords.longitude,
@@ -38,6 +33,10 @@ function ShowOnMap(){
 	ShowOnMap();
 	showTrail(0);
 })();
+
+//function annotationImage(){
+	
+//}
 
 //een event voor de mapButton waarmee de huidige positie op de kaart wordt getoond
 mapButton.addEventListener("click", function(){

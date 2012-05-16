@@ -23,8 +23,7 @@ for(var i = 0; i < data.length; i++){
 		longitude: 		data[i].LON, //de longitude van de brug
 		title: 			data[i].title, //de titel van de brug
 		subtitle: 		'H: ' + data[i].HEIGTH + 'm' + '\tB: ' + data[i].WIDTH + 'm', //de hoogte van de brug
-		image: 			(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad') ? 
-						'/img/AnnotationGroen.png' : '/img/Groter/Anotation Android Groen G.png', //de image van de annotation
+		image: 			'/img/OnMap/BrugGroen.png',
 		rightButton: 	Titanium.Platform.osname === 'android' ? '/img/pijl.png' : Titanium.UI.iPhone.SystemButton.DISCLOSURE, // de button die op de annotation wordt getoond zodra er op geklikt wordt.
 		animate: 		true //hiermee wordt er een animatie toegevoegd aan de annotation
 	});
