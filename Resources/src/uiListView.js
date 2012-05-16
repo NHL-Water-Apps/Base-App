@@ -53,8 +53,9 @@ table.addEventListener('click', function(e){   //eventlistener
 		ListTab.open(DetailView, {animated: true});	//nieuwe window openenen
 });
 
+//Op de iphone en ipad voegt hij de tableSearchbar ook apart toe aan de ListWindow om zo tijdens het scrollen altijd zichtbaar te zijn
 if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
-	ListWindow.add(tableSearchBar); //Op de iphone en ipad voegt hij de tableSearchbar ook apart toe aan de ListWindow om zo tijdens het scrollen altijd zichtbaar te zijn
+	ListWindow.add(tableSearchBar); 
 }
 ListWindow.add(table);
 
